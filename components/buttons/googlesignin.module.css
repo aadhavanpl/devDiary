@@ -1,0 +1,12 @@
+.container {
+	display: flex;
+	padding: 12px 24px;
+	gap: 14px;
+	align-items: center;
+	font-size: 16px;
+	font-weight: 500;
+
+	border: 1px solid var(--border-color);
+	border-radius: 16px;
+	box-shadow: 0px 1px 10px 0px rgba(0, 0, 0, 0.1);
+}
