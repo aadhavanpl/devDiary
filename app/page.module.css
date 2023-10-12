@@ -22,7 +22,7 @@
 	display: flex;
 	flex-direction: column;
 	box-shadow: var(--box-shadow);
-	border-radius: 16px;
+	border-radius: 16px 16px 0px 0px;
 	width: 48vw;
 
 	position: absolute;
@@ -40,6 +40,7 @@
 
 .inputWrapper input {
 	width: 100%;
+	font-size: 18px;
 }
 
 .googleSignIn {
@@ -53,4 +54,15 @@
 	height: 1px;
 	width: calc(48vw - 16px);
 	align-self: center;
+}
+
+.questionsContainer {
+	position: absolute;
+	top: calc(100%);
+	left: 50%;
+	transform: translateX(-50%);
+	width: 48vw;
+	background: white;
+	border-radius: 0px 0px 16px 16px;
+	box-shadow: var(--box-shadow);
 }

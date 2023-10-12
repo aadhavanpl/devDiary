@@ -11,7 +11,7 @@ const montserrat = Montserrat({
 })
 
 export default function Home() {
-	const [search, setSearch] = useState(false)
+	const [search, setSearch] = useState(true)
 
 	return (
 		<main className={styles.main} style={montserrat.style}>
@@ -22,13 +22,13 @@ export default function Home() {
 					<input className={styles.input} placeholder='Search up a leetcode question' />
 					<img src='/svgs/x.svg' />
 				</div>
-				{search ? (
-					<>
-						<div className={styles.inputBorder}></div>
+				{search && <div className={styles.inputBorder}></div>}
+				{search && (
+					<div className={styles.questionsContainer}>
 						<Question />
-					</>
-				) : (
-					<></>
+						<Question />
+						<Question />
+					</div>
 				)}
 			</div>
 			<div className={styles.googleSignIn}>
