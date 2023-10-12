@@ -12,6 +12,7 @@ const montserrat = Montserrat({
 
 export default function Home() {
 	const [search, setSearch] = useState(true)
+	const [noResult, setNoResult] = useState(false)
 
 	return (
 		<main className={styles.main} style={montserrat.style}>
@@ -24,11 +25,20 @@ export default function Home() {
 				</div>
 				{search && <div className={styles.inputBorder}></div>}
 				{search && (
-					<div className={styles.questionsContainer}>
-						<Question />
-						<Question />
-						<Question />
-					</div>
+					<>
+						{noResult ? (
+							<div className={styles.noQuestionsContainer}>
+								<img src='/svgs/sad.svg' />
+								No result found!
+							</div>
+						) : (
+							<div className={styles.questionsContainer}>
+								<Question />
+								<Question />
+								<Question />
+							</div>
+						)}
+					</>
 				)}
 			</div>
 			<div className={styles.googleSignIn}>

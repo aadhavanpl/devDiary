@@ -5,6 +5,11 @@
 	justify-content: space-between;
 }
 
+.container:hover {
+	background-color: var(--hover);
+	cursor: pointer;
+}
+
 .leftWrapper {
 	display: flex;
 	gap: 24px;
