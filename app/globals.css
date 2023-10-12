@@ -19,6 +19,7 @@ body::-webkit-scrollbar {
 	--black: #000000;
 	--white: #ffffff;
 	--hover: rgba(0, 0, 0, 0.05);
+	--grey-20: rgba(229, 234, 232, 1);
 	--grey-30: rgba(0, 0, 0, 0.3);
 	--grey-50: rgba(0, 0, 0, 0.5);
 	--border: 1px solid rgba(0, 0, 0, 0.2);

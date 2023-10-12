@@ -4,7 +4,6 @@ import { Montserrat } from '@next/font/google'
 import GoogleSignIn from '@/components/buttons/GoogleSignIn'
 import { useState } from 'react'
 import Question from '@/components/Search/Question'
-
 const montserrat = Montserrat({
 	subsets: ['latin'],
 	weight: ['100', '200', '300', '400', '500', '600'],
