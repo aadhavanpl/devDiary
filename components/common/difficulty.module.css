@@ -1,0 +1,23 @@
+.container {
+	font-size: 14px;
+	font-weight: 500;
+	border: 1px solid var(--black);
+	border-radius: 50px;
+	width: 28px;
+	height: 28px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.E {
+	background-color: var(--easy);
+}
+
+.M {
+	background-color: var(--medium);
+}
+
+.H {
+	background-color: var(--hard);
+}

@@ -1,0 +1,40 @@
+.container {
+	display: flex;
+	padding: 16px;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.leftWrapper {
+	display: flex;
+	gap: 24px;
+	align-items: center;
+}
+
+.questionNumber {
+	width: 80px;
+	text-align: center;
+	font-size: 30px;
+	font-weight: 300;
+}
+
+.titleWrapper {
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+}
+
+.title {
+	font-size: 18px;
+}
+
+.tagsWrapper {
+	display: flex;
+	gap: 8px;
+}
+
+.rightWrapper {
+	display: flex;
+	gap: 32px;
+	align-items: center;
+}
