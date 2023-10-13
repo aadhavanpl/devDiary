@@ -2,7 +2,7 @@
 import styles from './page.module.css'
 import GoogleSignIn from '@/components/buttons/GoogleSignIn'
 import { useState } from 'react'
-import Question from '@/components/Search/Question'
+import SmallProblem from '@/components/common/Problem'
 
 export default function Home() {
 	const [search, setSearch] = useState(true)
@@ -21,15 +21,15 @@ export default function Home() {
 				{search && (
 					<>
 						{noResult ? (
-							<div className={styles.noQuestionsContainer}>
+							<div className={styles.noProblemsContainer}>
 								<img src='/svgs/sad.svg' />
 								No result found!
 							</div>
 						) : (
-							<div className={styles.questionsContainer}>
-								<Question />
-								<Question />
-								<Question />
+							<div className={styles.problemsContainer}>
+								<SmallProblem />
+								<SmallProblem />
+								<SmallProblem />
 							</div>
 						)}
 					</>

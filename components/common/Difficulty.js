@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from './difficulty.module.css'
 
-export default function SmallDifficulty({ difficulty }) {
+export function SmallDifficulty({ difficulty }) {
 	return <div className={`${styles.smallDifficulty} ${styles[difficulty]}`}>{difficulty}</div>
 }
 
