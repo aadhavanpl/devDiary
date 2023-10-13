@@ -1,0 +1,8 @@
+.container {
+	display: flex;
+	width: 100vw;
+}
+
+.content {
+	margin: 100px 0px 0px 80px;
+}

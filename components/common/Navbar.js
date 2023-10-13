@@ -3,7 +3,7 @@ import React from 'react'
 import styles from './navbar.module.css'
 import { useRouter } from 'next/navigation'
 
-export default function Page({ pathname }) {
+export default function Navbar({ pathname }) {
 	const router = useRouter()
 	const isDashboard = pathname === 'dashboard'
 	const isProblems = pathname === 'problems'

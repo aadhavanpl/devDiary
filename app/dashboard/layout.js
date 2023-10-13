@@ -1,4 +1,4 @@
-import './globals.css'
+import '../globals.css'
 import { Montserrat } from '@next/font/google'
 
 const montserrat = Montserrat({
@@ -7,8 +7,8 @@ const montserrat = Montserrat({
 })
 
 export const metadata = {
-	title: 'Search',
-	description: 'Search up a leetcode problem',
+	title: 'Dashboard',
+	description: 'Track your progress practicing Leetcode here!',
 }
 
 export default function RootLayout({ children }) {
