@@ -1,0 +1,63 @@
+.container {
+	display: flex;
+	gap: 30px;
+
+	margin-bottom: 48px;
+}
+
+.icon {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 11px 13px;
+
+	border-radius: 18px;
+	height: fit-content;
+}
+
+.icon img {
+	height: 61px;
+	width: 61px;
+}
+
+.heading {
+	display: flex;
+	flex-direction: column;
+	gap: 11px;
+
+	font-size: 50px;
+	font-weight: 500;
+	margin-top: 11px;
+
+	text-transform: capitalize;
+}
+
+.heading span {
+	font-size: 18px;
+	color: var(--grey-50);
+	text-transform: none;
+}
+
+.dashboard {
+	background-color: #fff1c5;
+}
+
+.problems {
+	background-color: #f7d5bc;
+}
+
+.bookmarks {
+	background-color: #ffb7c4;
+}
+
+.archive {
+	background-color: #ffd636;
+}
+
+.leaderboard {
+	background-color: #ffaf8b;
+}
+
+.settings {
+	background-color: #f3eeff;
+}

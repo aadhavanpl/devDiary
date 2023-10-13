@@ -56,8 +56,8 @@
 	align-self: center;
 }
 
-.questionsContainer,
-.noQuestionsContainer {
+.problemsContainer,
+.noProblemsContainer {
 	position: absolute;
 	top: calc(100%);
 	left: 50%;
@@ -68,7 +68,7 @@
 	box-shadow: var(--box-shadow);
 }
 
-.noQuestionsContainer {
+.noProblemsContainer {
 	height: 255px;
 	font-size: 18px;
 	color: var(--grey-50);

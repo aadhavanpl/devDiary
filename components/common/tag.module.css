@@ -1,6 +1,13 @@
-.container {
+.smallTag {
 	font-size: 14px;
 	border-radius: 50px;
 	width: fit-content;
 	padding: 4px 10px;
+}
+
+.bigTag {
+	font-size: 16px;
+	border-radius: 50px;
+	width: fit-content;
+	padding: 6px 14px;
 }

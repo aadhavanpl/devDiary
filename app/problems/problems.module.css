@@ -1,0 +1,39 @@
+.container {
+	display: flex;
+}
+
+.searchWrapper {
+	display: flex;
+	gap: 32px;
+	justify-content: center;
+	align-items: center;
+}
+
+.difficultyWrapper {
+	display: flex;
+	gap: 16px;
+	justify-content: center;
+	align-items: center;
+}
+
+.tagsWrapper {
+	display: flex;
+	flex-direction: column;
+	margin-top: 32px;
+}
+
+.tags {
+	display: flex;
+	gap: 10px;
+}
+
+.problemsWrapper {
+	display: flex;
+	flex-direction: column;
+	margin-top: 32px;
+}
+
+.problems {
+	display: flex;
+	flex-direction: column;
+}
