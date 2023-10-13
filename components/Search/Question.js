@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from './question.module.css'
 import Tag from '../common/Tag'
-import Difficulty from '../common/Difficulty'
+import SmallDifficulty from '../common/Difficulty'
 
 export default function Question() {
 	return (
@@ -17,7 +17,7 @@ export default function Question() {
 				</div>
 			</div>
 			<div className={styles.rightWrapper}>
-				<Difficulty difficuty='E' />
+				<SmallDifficulty difficuty='E' />
 				<img src='/svgs/arrow-right.svg' />
 			</div>
 		</div>

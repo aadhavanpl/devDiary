@@ -14,7 +14,7 @@ export default function Home() {
 			<div className={search ? styles.containerWithSearch : styles.containerWithoutSearch}>
 				<div className={styles.inputWrapper}>
 					<img src='/svgs/search.svg' />
-					<input className={styles.input} placeholder='Search up a leetcode problem' />
+					<input placeholder='Search up a leetcode problem' />
 					<img src='/svgs/x.svg' />
 				</div>
 				{search && <div className={styles.inputBorder}></div>}
