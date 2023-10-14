@@ -62,7 +62,7 @@ export default function Navbar() {
 					}`}
 					onClick={() => router.push('/leaderboards')}
 				>
-					<img src='/svgs/leaderboard.svg' className={styles['icon']} />
+					<img src='/svgs/leaderboards.svg' className={styles['icon']} />
 					Leaderboards
 				</div>
 				<div
