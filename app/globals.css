@@ -18,15 +18,19 @@ body::-webkit-scrollbar {
 :root {
 	--black: #000000;
 	--white: #ffffff;
-	--hover: rgba(0, 0, 0, 0.05);
-	--grey-20: rgba(229, 234, 232, 1);
-	--grey-30: rgba(0, 0, 0, 0.3);
-	--grey-50: rgba(0, 0, 0, 0.5);
-	--border: 1px solid rgba(0, 0, 0, 0.2);
-	--box-shadow: 0px 1px 10px 0px rgba(0, 0, 0, 0.1);
+	--navbar: #e5eae8;
 	--easy: #3fb7a2;
 	--medium: #f8c00b;
 	--hard: #e44944;
+
+	--hover: rgba(0, 0, 0, 0.05);
+	--grey-10: rgba(0, 0, 0, 0.1);
+	--grey-20: rgba(0, 0, 0, 0.2);
+	--grey-30: rgba(0, 0, 0, 0.3);
+	--grey-50: rgba(0, 0, 0, 0.5);
+
+	--border: 1px solid var(--grey-20);
+	--box-shadow: 0px 1px 10px 0px var(--grey-10);
 }
 
 input:focus {

@@ -1,9 +1,14 @@
-.container {
+.container,
+.containerNoClick {
 	display: flex;
 	padding: 16px;
 	align-items: center;
 	justify-content: space-between;
 	border-bottom: var(--border);
+}
+
+.containerNoClick {
+	border-bottom: 3px solid var(--grey-20);
 }
 
 .container:hover {

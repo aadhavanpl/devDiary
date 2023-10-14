@@ -47,3 +47,26 @@ export function BigProblem() {
 		</div>
 	)
 }
+
+export function ProblemNoClick() {
+	return (
+		<div className={styles.containerNoClick}>
+			<div className={styles.leftWrapper}>
+				<div className={styles.problemNumber}>512</div>
+				<div className={styles.titleWrapper}>
+					<div className={styles.title}>Remove Palindromic Subsequences</div>
+					<div className={styles.tagsWrapper}>
+						<SmallTag tag='String' color='#FCB0BD' />
+						<SmallTag tag='Array' color='#B1DCC9' />
+					</div>
+				</div>
+			</div>
+			<div className={styles.rightWrapper}>
+				<LongDifficulty difficulty='Easy' />
+				<img src='/svgs/done.svg' />
+				<img src='/svgs/bookmark-empty.svg' />
+				<img src='/svgs/bookmarked.svg' />
+			</div>
+		</div>
+	)
+}
