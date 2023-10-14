@@ -48,6 +48,7 @@ export default function Slug() {
 									<textarea
 										className={styles.textarea}
 										placeholder='Enter your notes here'
+										rows={10}
 									></textarea>
 								</div>
 							)}
