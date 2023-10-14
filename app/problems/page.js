@@ -36,6 +36,15 @@ export default function problems() {
 						<BigProblem />
 						<BigProblem />
 						<BigProblem />
+						<BigProblem />
+						<BigProblem />
+						<BigProblem />
+						<BigProblem />
+						<BigProblem />
+						<BigProblem />
+						<BigProblem />
+						<BigProblem />
+						<BigProblem />
 					</div>
 				</div>
 			</NavbarLayout>

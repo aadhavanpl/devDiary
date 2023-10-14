@@ -17,7 +17,7 @@ export function SmallProblem() {
 				</div>
 			</div>
 			<div className={styles.rightWrapper}>
-				<SmallDifficulty difficuty='E' />
+				<SmallDifficulty difficulty='E' />
 				<img src='/svgs/arrow-right.svg' />
 			</div>
 		</div>

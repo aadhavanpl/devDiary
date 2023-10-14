@@ -3,6 +3,7 @@
 	flex-direction: column;
 	box-shadow: var(--box-shadow);
 	border-radius: 16px;
+	width: 100%;
 }
 
 .inputWrapper {
@@ -14,4 +15,5 @@
 
 .inputWrapper input {
 	font-size: 18px;
+	width: 100%;
 }

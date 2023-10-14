@@ -1,8 +1,8 @@
 'use client'
 import styles from './page.module.css'
-import GoogleSignIn from '@/components/buttons/GoogleSignIn'
+import { GoogleSignInButton } from '@/components/common/Button'
 import { useState } from 'react'
-import SmallProblem from '@/components/common/Problem'
+import { SmallProblem } from '@/components/common/Problem'
 
 export default function Home() {
 	const [search, setSearch] = useState(true)
@@ -36,7 +36,7 @@ export default function Home() {
 				)}
 			</div>
 			<div className={styles.googleSignIn}>
-				<GoogleSignIn />
+				<GoogleSignInButton />
 			</div>
 		</main>
 	)

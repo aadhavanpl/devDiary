@@ -38,7 +38,7 @@ export default function Navbar({ pathname }) {
 				<div
 					className={`${styles['button-container']} ${isBookmarks ? styles['active-button'] : ''}`}
 				>
-					<img src='/svgs/bookmark.svg' className={styles['icon']} />
+					<img src='/svgs/bookmarks.svg' className={styles['icon']} />
 					<div className={styles['button-text']}>Bookmarks</div>
 				</div>
 				<div
