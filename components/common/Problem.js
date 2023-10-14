@@ -38,10 +38,10 @@ export function BigProblem() {
 				</div>
 			</div>
 			<div className={styles.rightWrapper}>
-				<LongDifficulty difficulty='Easy' />
 				<img src='/svgs/done.svg' />
 				<img src='/svgs/bookmark-empty.svg' />
 				<img src='/svgs/bookmarked.svg' />
+				<LongDifficulty difficulty='Easy' />
 				<img src='/svgs/arrow-right.svg' />
 			</div>
 		</div>

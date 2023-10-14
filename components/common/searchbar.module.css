@@ -4,6 +4,7 @@
 	box-shadow: var(--box-shadow);
 	border-radius: 16px;
 	width: 100%;
+	border: var(--border);
 }
 
 .inputWrapper {
