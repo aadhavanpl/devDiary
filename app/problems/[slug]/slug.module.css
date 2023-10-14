@@ -1,11 +1,75 @@
 .container {
 	display: flex;
 	flex-direction: column;
-	margin: 50px;
-	gap: 48px;
+	margin: 48px 48px 0 48px;
+	gap: 24px;
 }
 
 .header {
 	display: flex;
 	justify-content: space-between;
+}
+
+.logo {
+	width: 218px;
+	height: 48px;
+}
+
+.wrapper {
+	display: flex;
+	gap: 24px;
+	margin-top: 12px;
+}
+
+.editor {
+	border-radius: 16px;
+}
+
+.features {
+	display: flex;
+	flex-direction: column;
+	gap: 25px;
+	flex-grow: 1;
+}
+
+.topWrapper {
+	border-radius: 16px;
+	box-shadow: var(--box-shadow);
+	padding: 24px;
+	flex-grow: 1;
+	display: flex;
+	flex-direction: column;
+	gap: 24px;
+}
+
+.toggleWrapper {
+	display: flex;
+	gap: 32px;
+}
+
+.toggle {
+	font-size: 18px;
+	font-weight: 500;
+	line-height: 34px;
+	cursor: pointer;
+}
+
+.feature {
+}
+
+.stopwatch {
+}
+
+.notes {
+	background-color: var(--grey-10);
+	border-radius: 8px;
+	flex-grow: 1;
+	padding: 12px;
+}
+
+.textarea {
+	font-size: 18px;
+	resize: none;
+	background-color: transparent;
+	flex-grow: 1;
 }
