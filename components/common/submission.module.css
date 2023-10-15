@@ -1,0 +1,46 @@
+.container {
+	display: flex;
+	padding: 24px 16px;
+	align-items: center;
+	justify-content: space-between;
+	border-bottom: var(--border);
+}
+
+.container:hover {
+	background-color: var(--hover);
+	cursor: pointer;
+}
+
+.leftWrapper {
+	display: flex;
+	gap: 24px;
+	align-items: center;
+}
+
+.position {
+	display: flex;
+	width: 60px;
+	text-align: center;
+	font-size: 30px;
+	font-weight: 300;
+	align-items: center;
+	justify-content: center;
+}
+
+.name {
+	font-size: 18px;
+}
+
+.problemsDoneWrapper {
+	display: flex;
+	gap: 8px;
+	align-items: center;
+	justify-content: center;
+}
+
+.rightWrapper {
+	display: flex;
+	align-items: center;
+	width: 150px;
+	justify-content: space-between;
+}
