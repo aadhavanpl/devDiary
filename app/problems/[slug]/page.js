@@ -4,9 +4,12 @@ import styles from './slug.module.css'
 import { GoogleSignInButton, SubmitButton } from '@/components/common/Button'
 import { ProblemNoClick } from '@/components/common/Problem'
 import { Editor } from '@monaco-editor/react'
+import { useRouter, usePathname } from 'next/navigation'
 
 export default function Slug() {
 	const [feature, setFeature] = useState(0)
+	const router = useRouter()
+	const pathname = usePathname()
 
 	return (
 		<div className={styles.container}>
@@ -25,19 +28,28 @@ export default function Slug() {
 				<div className={styles.features}>
 					<div className={styles.topWrapper}>
 						<div className={styles.toggleWrapper}>
-							<div
-								className={styles.toggle}
-								style={{ borderBottom: feature ? '4px solid #b235ff' : '' }}
-								onClick={() => setFeature(1)}
-							>
-								Stopwatch
+							<div className={styles.linksWrapper}>
+								<div
+									className={styles.toggle}
+									style={{ borderBottom: feature ? '4px solid #b235ff' : '' }}
+									onClick={() => setFeature(1)}
+								>
+									Stopwatch
+								</div>
+								<div
+									className={styles.toggle}
+									style={{ borderBottom: feature ? '' : '4px solid #b235ff', marginLeft: '24px' }}
+									onClick={() => setFeature(0)}
+								>
+									Notes
+								</div>
 							</div>
 							<div
-								className={styles.toggle}
-								style={{ borderBottom: feature ? '' : '4px solid #b235ff' }}
-								onClick={() => setFeature(0)}
+								className={styles.submissions}
+								onClick={() => router.push(pathname + '/history')}
 							>
-								Notes
+								Submissions
+								<img src='/svgs/arrow-up-right.svg' />
 							</div>
 						</div>
 						<div className={styles.feature}>

@@ -44,14 +44,32 @@
 
 .toggleWrapper {
 	display: flex;
-	gap: 32px;
+	justify-content: space-between;
 }
 
-.toggle {
+.linksWrapper {
+	display: flex;
+}
+
+.toggle,
+.submissions {
 	font-size: 18px;
 	font-weight: 500;
 	line-height: 34px;
 	cursor: pointer;
+}
+
+.toggle:hover,
+.submissions:hover {
+	border-bottom: 4px solid #b235ff3e;
+}
+
+.submissions {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 4px;
+	height: fit-content;
 }
 
 .feature {
@@ -71,4 +89,10 @@
 	font-size: 18px;
 	resize: none;
 	background-color: transparent;
+}
+
+.previousSubmissionWrapper {
+	display: flex;
+	flex-direction: column;
+	margin-top: 24px;
 }
