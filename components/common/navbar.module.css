@@ -24,6 +24,8 @@
 
 .profile-pic {
 	cursor: pointer;
+	border: 2px solid var(--black);
+	border-radius: 50%;
 }
 
 .profile-container {
@@ -47,6 +49,7 @@
 	padding: 10px 0px 10px 69px;
 	align-items: center;
 	cursor: pointer;
+	font-weight: 500;
 }
 
 .button-container:hover:not(.active-button) {
@@ -61,15 +64,4 @@
 	align-items: center;
 	cursor: pointer;
 	border-right: solid 5px;
-}
-
-.signOut-container {
-	display: flex;
-	gap: 12px;
-	justify-content: center;
-	align-items: center;
-	padding: 10px 70px 10px 69px;
-	cursor: pointer;
-
-	font-size: 16px;
 }
