@@ -1,5 +1,5 @@
 .container {
-	background-color: var(--grey-10);
+	background-color: var(--hover);
 	padding: 24px;
 	border-radius: 32px;
 }

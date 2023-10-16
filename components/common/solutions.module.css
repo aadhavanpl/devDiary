@@ -1,7 +1,7 @@
 .container {
 	padding: 24px;
 	border-radius: 32px;
-	background-color: var(--grey-10);
+	box-shadow: var(--box-shadow);
 }
 
 .wrapper {
