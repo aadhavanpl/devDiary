@@ -1,12 +1,23 @@
 'use client'
 import styles from './page.module.css'
 import { GoogleSignInButton } from '@/components/common/Button'
-import { useState } from 'react'
 import { SmallProblem } from '@/components/common/Problem'
+import { useEffect, useState } from 'react'
 
 export default function Home() {
-	const [search, setSearch] = useState(true)
+	const [problems, setProblems] = useState()
+	const [search, setSearch] = useState(false)
 	const [noResult, setNoResult] = useState(false)
+
+	useEffect(() => {
+		async function fetchProblems() {
+			const res = await fetch('http://localhost:3000/api/problems')
+			const problems = await res.json()
+			console.log(problems.problemsAPI)
+			setProblems(problems.problemsAPI)
+		}
+		fetchProblems()
+	}, [])
 
 	return (
 		<main className={styles.main}>
@@ -15,13 +26,9 @@ export default function Home() {
 			</picture>
 			<div className={search ? styles.containerWithSearch : styles.containerWithoutSearch}>
 				<div className={styles.inputWrapper}>
-					<picture>
-						<img src='/svgs/search.svg' alt='search' />
-					</picture>
-					<input placeholder='Search up a leetcode problem' />
-					<picture>
-						<img src='/svgs/x.svg' alt='close' />
-					</picture>
+					<img src='/svgs/search.svg' alt='search' />
+					<input placeholder='Search a leetcode problem' />
+					<img src='/svgs/x.svg' alt='close' />
 				</div>
 				{search && <div className={styles.inputBorder}></div>}
 				{search && (
@@ -35,9 +42,15 @@ export default function Home() {
 							</div>
 						) : (
 							<div className={styles.problemsContainer}>
-								<SmallProblem />
-								<SmallProblem />
-								<SmallProblem />
+								{problems?.map((problem, index) => (
+									<SmallProblem
+										qno={problem?.qno}
+										title={problem?.title}
+										tags={problem?.tags}
+										difficulty={problem?.difficulty}
+										key={index}
+									/>
+								))}
 							</div>
 						)}
 					</>

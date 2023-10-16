@@ -16,12 +16,12 @@ export default function Participant({ position, name, problems }) {
 						position
 					)}
 				</div>
-				<div className={styles.name}>Aadhavan</div>
+				<div className={styles.name}>{name}</div>
 			</div>
 			<div className={styles.rightWrapper}>
 				<div className={styles.problemsDoneWrapper}>
 					<img src='/svgs/problems-done.svg' />
-					123
+					{problems}
 				</div>
 				<img src='/svgs/arrow-right.svg' />
 			</div>

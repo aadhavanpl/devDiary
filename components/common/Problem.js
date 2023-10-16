@@ -3,16 +3,17 @@ import styles from './problem.module.css'
 import { SmallTag } from './Tag'
 import { BigDifficulty, LongDifficulty, SmallDifficulty } from './Difficulty'
 
-export function SmallProblem() {
+export function SmallProblem({ qno, title, tags, difficulty }) {
 	return (
 		<div className={styles.container}>
 			<div className={styles.leftWrapper}>
-				<div className={styles.problemNumber}>512</div>
+				<div className={styles.problemNumber}>{qno}</div>
 				<div className={styles.titleWrapper}>
-					<div className={styles.title}>Remove Palindromic Subsequences</div>
+					<div className={styles.title}>{title}</div>
 					<div className={styles.tagsWrapper}>
-						<SmallTag tag='String' color='#FCB0BD' />
-						<SmallTag tag='Array' color='#B1DCC9' />
+						{tags?.map((tag, index) => (
+							<SmallTag tag={tag} color='#FCB0BD' key={index} />
+						))}
 					</div>
 				</div>
 			</div>

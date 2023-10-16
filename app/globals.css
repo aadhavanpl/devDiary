@@ -51,3 +51,8 @@ textarea::placeholder {
 	color: var(--grey-50);
 	font-size: 16px;
 }
+
+picture {
+	margin: none;
+	padding: none;
+}
