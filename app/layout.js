@@ -1,5 +1,6 @@
 import './globals.css'
-import { Montserrat } from "next/font/google"
+import { Montserrat } from 'next/font/google'
+import { GlobalContextWrapper } from '@/lib/utils/globalContext'
 
 const montserrat = Montserrat({
 	subsets: ['latin'],
@@ -14,7 +15,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
 	return (
 		<html lang='en'>
-			<body style={montserrat.style}>{children}</body>
+			<GlobalContextWrapper>
+				<body style={montserrat.style}>{children}</body>
+			</GlobalContextWrapper>
 		</html>
 	)
 }

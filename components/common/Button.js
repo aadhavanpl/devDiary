@@ -1,8 +1,10 @@
+'use client'
 import styles from './button.module.css'
-
+import { useGlobalContext } from '@/lib/utils/globalContext'
 export function GoogleSignInButton() {
+	const { signIn } = useGlobalContext()
 	return (
-		<div className={styles.googleContainer}>
+		<div className={styles.googleContainer} onClick={signIn}>
 			<img src='/svgs/google.svg' />
 			Sign In
 		</div>

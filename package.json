@@ -11,6 +11,8 @@
 	"dependencies": {
 		"@monaco-editor/react": "^4.6.0",
 		"chart.js": "^4.4.0",
+		"encoding": "^0.1.13",
+		"firebase": "^10.5.0",
 		"mongoose": "^7.6.2",
 		"next": "13.5.4",
 		"react": "^18",

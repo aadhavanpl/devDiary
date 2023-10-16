@@ -16,12 +16,18 @@ export default function Dashboard() {
 			user_photo: 'lmaoadsfasd@google.com',
 		}
 
+		const problemData = {
+			user_email: 'sahelnriaz@gmail.com',
+			qno: 12,
+			code: 'tempcode',
+		}
+
 		fetch('http://localhost:3000/api/users', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
 			},
-			body: JSON.stringify(userData),
+			body: JSON.stringify(problemData),
 		})
 			.then((response) => {
 				if (!response.ok) {

@@ -10,19 +10,27 @@ export default function Home() {
 
 	return (
 		<main className={styles.main}>
-			<img src='/svgs/logo.svg' className={styles.logo} />
+			<picture>
+				<img src='/svgs/logo.svg' className={styles.logo} alt='logo' />
+			</picture>
 			<div className={search ? styles.containerWithSearch : styles.containerWithoutSearch}>
 				<div className={styles.inputWrapper}>
-					<img src='/svgs/search.svg' />
+					<picture>
+						<img src='/svgs/search.svg' alt='search' />
+					</picture>
 					<input placeholder='Search up a leetcode problem' />
-					<img src='/svgs/x.svg' />
+					<picture>
+						<img src='/svgs/x.svg' alt='close' />
+					</picture>
 				</div>
 				{search && <div className={styles.inputBorder}></div>}
 				{search && (
 					<>
 						{noResult ? (
 							<div className={styles.noProblemsContainer}>
-								<img src='/svgs/sad.svg' />
+								<picture>
+									<img src='/svgs/sad.svg' alt='no-result' />
+								</picture>
 								No result found!
 							</div>
 						) : (

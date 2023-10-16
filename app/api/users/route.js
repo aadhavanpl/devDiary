@@ -15,12 +15,16 @@ export async function GET() {
 
 export async function POST(req) {
 	try {
-		const { user_email, user_name, user_photo } = await req.json()
+		const { user_email, qno, code } = await req.json()
 		await connectMongoDB()
 		await users.updateOne(
-			{ user_email }, // Filter to find an existing document
-			{ user_email, user_name, user_photo }, // Data to update or insert
-			{ upsert: true }
+			{
+				user_email: user_email,
+				'problems.qno': qno,
+			},
+			{
+				$push: { 'problems.$.codes': code },
+			}
 		)
 		return NextResponse.json({ message: 'User added' }, { status: 201 })
 	} catch (error) {
