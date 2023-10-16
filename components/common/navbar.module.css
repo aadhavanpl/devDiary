@@ -1,5 +1,5 @@
 .container {
-	background-color: var(--grey-20);
+	background-color: var(--navbar);
 	width: fit-content;
 	display: flex;
 	flex-direction: column;

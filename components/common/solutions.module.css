@@ -1,0 +1,28 @@
+.container {
+	padding: 24px;
+	border-radius: 32px;
+	background-color: var(--grey-10);
+}
+
+.wrapper {
+	display: flex;
+}
+
+.easy {
+	border-top-left-radius: 16px;
+	border-bottom-left-radius: 16px;
+	background-color: var(--easy);
+	height: 26px;
+}
+
+.medium {
+	background-color: var(--medium);
+	height: 26px;
+}
+
+.hard {
+	background-color: var(--hard);
+	border-top-right-radius: 16px;
+	border-bottom-right-radius: 16px;
+	height: 26px;
+}

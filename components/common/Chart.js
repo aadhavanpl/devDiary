@@ -27,7 +27,9 @@ export default function Chart() {
 	}
 	return (
 		<div className={styles.container}>
-			<Line data={data} maintainAspectRatio={false} height={100} />
+			<div className={styles.wrapper}>
+				<Line data={data} maintainAspectRatio={false} height={65} />
+			</div>
 		</div>
 	)
 }
