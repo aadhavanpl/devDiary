@@ -73,9 +73,13 @@
 }
 
 .feature {
+	background-color: blue;
+	height: 100%;
 }
 
 .stopwatch {
+	background-color: blue;
+	height: 100%;
 }
 
 .notes {
@@ -95,4 +99,12 @@
 	display: flex;
 	flex-direction: column;
 	margin-top: 24px;
+}
+
+.stopwatchContainer {
+	height: 300px;
+	background-image: repeating-conic-gradient(from 359deg, #555 0 2deg, transparent 2deg 90deg),
+		repeating-conic-gradient(from 359.5deg, #555 0 1deg, transparent 1deg 30deg),
+		repeating-conic-gradient(from 359.75deg, #ccc 0 0.5deg, transparent 0.5deg 6deg);
+	mask-image: radial-gradient(circle at center, transparent 66%, #fff 66.1%);
 }

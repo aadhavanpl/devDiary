@@ -14,7 +14,9 @@ export default function Slug() {
 	return (
 		<div className={styles.container}>
 			<div className={styles.header}>
-				<img src='/svgs/logo.svg' className={styles.logo} />
+				<picture>
+					<img src='/svgs/logo.svg' className={styles.logo} alt='logo' />
+				</picture>
 				<GoogleSignInButton />
 			</div>
 			<ProblemNoClick />
@@ -54,7 +56,9 @@ export default function Slug() {
 						</div>
 						<div className={styles.feature}>
 							{feature ? (
-								<div className={styles.stopwatch}></div>
+								<div className={styles.stopwatch}>
+									<Stopwatch />
+								</div>
 							) : (
 								<div className={styles.notes}>
 									<textarea
@@ -71,4 +75,8 @@ export default function Slug() {
 			</div>
 		</div>
 	)
+}
+
+function Stopwatch() {
+	return <div className={styles.stopwatchContainer}>{elapsedFormatted}</div>
 }

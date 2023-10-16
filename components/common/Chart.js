@@ -71,7 +71,7 @@ export default function Chart() {
 	return (
 		<div className={styles.container}>
 			<div className={styles.wrapper}>
-				<Line data={data} maintainAspectRatio={false} height={65} options={data.options} />
+				<Line data={data} maintainaspectratio={false} height={65} options={data.options} />
 			</div>
 		</div>
 	)

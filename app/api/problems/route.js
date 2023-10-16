@@ -1,15 +1,15 @@
 import connectMongoDB from '@/lib/mongodb'
-import { users } from '@/models/users'
+import { problems } from '@/models/problems'
 import { NextResponse } from 'next/server'
 
 export async function GET() {
 	try {
 		await connectMongoDB()
-		const tempUsers = await users.find()
-		return NextResponse.json({ tempUsers }, { message: 'Users fetched' }, { status: 200 })
+		const tempProblems = await problems.find()
+		return NextResponse.json({ tempProblems }, { message: 'Problems fetched' }, { status: 200 })
 	} catch (error) {
 		console.error('Error:', error)
-		return NextResponse.json({ message: 'Error fetching users' }, { status: 500 })
+		return NextResponse.json({ message: 'Error fetching problems' }, { status: 500 })
 	}
 }
 
