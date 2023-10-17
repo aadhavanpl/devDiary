@@ -1,3 +1,4 @@
+'use client'
 import PageHeader from '@/components/common/PageHeader'
 import styles from './problems.module.css'
 import NavbarLayout from '@/components/common/NavbarLayout'
@@ -6,8 +7,26 @@ import { BigDifficulty } from '@/components/common/Difficulty'
 import { BigTag } from '@/components/common/Tag'
 import { BigProblem } from '@/components/common/Problem'
 import SubHeading from '@/components/common/SubHeading'
+import { useEffect, useState } from 'react'
 
-export default function problems() {
+async function fetchProblems() {
+	const res = await fetch('http://localhost:3000/api/problems')
+	const problems = await res.json()
+	return problems.problemsAPI
+}
+
+export default function Problems() {
+	const [problems, setProblems] = useState()
+
+	useEffect(() => {
+		async function fetchProblems() {
+			const res = await fetch('http://localhost:3000/api/problems')
+			const problems = await res.json()
+			setProblems(problems.problemsAPI)
+		}
+		fetchProblems()
+	}, [])
+
 	return (
 		<div className={styles.container}>
 			<NavbarLayout>
@@ -32,19 +51,15 @@ export default function problems() {
 				<div className={styles.problemsWrapper}>
 					<SubHeading subheading='Problems' />
 					<div className={styles.problems}>
-						<BigProblem />
-						<BigProblem />
-						<BigProblem />
-						<BigProblem />
-						<BigProblem />
-						<BigProblem />
-						<BigProblem />
-						<BigProblem />
-						<BigProblem />
-						<BigProblem />
-						<BigProblem />
-						<BigProblem />
-						<BigProblem />
+						{problems?.map((problem, index) => (
+							<BigProblem
+								qno={problem.qno}
+								title={problem.title}
+								tags={problem.tags}
+								difficulty={problem.difficulty}
+								key={index}
+							/>
+						))}
 					</div>
 				</div>
 			</NavbarLayout>

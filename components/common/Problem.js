@@ -25,16 +25,16 @@ export function SmallProblem({ qno, title, tags, difficulty }) {
 	)
 }
 
-export function BigProblem() {
+export function BigProblem({ qno, title, tags, difficulty }) {
 	return (
 		<div className={styles.container}>
 			<div className={styles.leftWrapper}>
-				<div className={styles.problemNumber}>512</div>
+				<div className={styles.problemNumber}>{qno}</div>
 				<div className={styles.titleWrapper}>
-					<div className={styles.title}>Remove Palindromic Subsequences</div>
+					<div className={styles.title}>{title}</div>
 					<div className={styles.tagsWrapper}>
-						<SmallTag tag='String' color='#FCB0BD' />
-						<SmallTag tag='Array' color='#B1DCC9' />
+						{tags.length &&
+							tags?.map((tag, index) => <SmallTag tag={tag} color='#FCB0BD' key={index} />)}
 					</div>
 				</div>
 			</div>
@@ -42,7 +42,7 @@ export function BigProblem() {
 				<img src='/svgs/done.svg' />
 				<img src='/svgs/bookmark-empty.svg' />
 				<img src='/svgs/bookmarked.svg' />
-				<LongDifficulty difficulty='Easy' />
+				<LongDifficulty difficulty={difficulty} />
 				<img src='/svgs/arrow-right.svg' />
 			</div>
 		</div>

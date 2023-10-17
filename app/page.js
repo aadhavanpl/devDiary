@@ -13,7 +13,6 @@ export default function Home() {
 		async function fetchProblems() {
 			const res = await fetch('http://localhost:3000/api/problems')
 			const problems = await res.json()
-			console.log(problems.problemsAPI)
 			setProblems(problems.problemsAPI)
 		}
 		fetchProblems()
