@@ -38,6 +38,7 @@ export default function Archive() {
 							title={problem.title}
 							tags={problem.tags}
 							difficulty={problem.difficulty}
+							bookmark={problem.bookmark}
 							key={index}
 						/>
 					))}
