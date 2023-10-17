@@ -9,12 +9,6 @@ import { BigProblem } from '@/components/common/Problem'
 import SubHeading from '@/components/common/SubHeading'
 import { useEffect, useState } from 'react'
 
-async function fetchProblems() {
-	const res = await fetch('http://localhost:3000/api/problems')
-	const problems = await res.json()
-	return problems.problemsAPI
-}
-
 export default function Problems() {
 	const [problems, setProblems] = useState()
 

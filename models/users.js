@@ -8,11 +8,19 @@ const userSchema = new Schema(
 		problems: [
 			{
 				qno: Number,
-				date: String,
-				time: String,
-				notes: [String],
-				codes: [String],
+				title: String,
+				tags: [String],
+				slug: String,
+				difficulty: String,
 				bookmark: Number,
+				submissions: [
+					{
+						date: String,
+						time: String,
+						note: String,
+						code: String,
+					},
+				],
 			},
 		],
 	},

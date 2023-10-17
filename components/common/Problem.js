@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from './problem.module.css'
 import { SmallTag } from './Tag'
-import { BigDifficulty, LongDifficulty, SmallDifficulty } from './Difficulty'
+import { LongDifficulty, SmallDifficulty } from './Difficulty'
 
 export function SmallProblem({ qno, title, tags, difficulty }) {
 	return (
@@ -33,7 +33,7 @@ export function BigProblem({ qno, title, tags, difficulty }) {
 				<div className={styles.titleWrapper}>
 					<div className={styles.title}>{title}</div>
 					<div className={styles.tagsWrapper}>
-						{tags.length &&
+						{tags?.length &&
 							tags?.map((tag, index) => <SmallTag tag={tag} color='#FCB0BD' key={index} />)}
 					</div>
 				</div>
