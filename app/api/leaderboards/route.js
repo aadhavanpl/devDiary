@@ -7,9 +7,13 @@ export async function GET() {
 		await connectMongoDB()
 		const leaderboardsAPI = await users.aggregate([
 			{
-				$project: { _id: 0, user_email: 1, user_name: 1, problems: { $size: '$problems.codes' } },
+				$project: {
+					_id: 0,
+					user_name: 1,
+					problemCount: { $size: '$problems' },
+				},
 			},
-			{ $sort: { codesCount: -1 } },
+			{ $sort: { problemCount: -1 } },
 		])
 		return NextResponse.json(
 			{ leaderboardsAPI },

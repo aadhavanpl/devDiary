@@ -30,7 +30,7 @@ export default function Leaderboards() {
 						<Participant
 							position={index + 1}
 							name={participant.user_name}
-							problems={participant.problems}
+							problems={participant.problemCount}
 							key={index}
 						/>
 					))}
