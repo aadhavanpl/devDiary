@@ -5,8 +5,15 @@ export function SmallDifficulty({ difficulty }) {
 	return <div className={`${styles.smallDifficulty} ${styles[difficulty]}`}>{difficulty}</div>
 }
 
-export function BigDifficulty({ difficulty }) {
-	return <div className={`${styles.bigDifficulty} ${styles[difficulty]}`}>{difficulty}</div>
+export function BigDifficulty({ difficulty, filter, setFilter }) {
+	return (
+		<div
+			className={`${styles.bigDifficulty} ${filter ? styles[difficulty] : styles.unselected}`}
+			onClick={() => setFilter(!filter)}
+		>
+			{difficulty}
+		</div>
+	)
 }
 
 export function LongDifficulty({ difficulty }) {

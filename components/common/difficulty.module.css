@@ -20,6 +20,7 @@
 	border-radius: 50px;
 	width: 40px;
 	height: 40px;
+	cursor: pointer;
 }
 
 .longDifficulty {
@@ -47,4 +48,8 @@
 .H,
 .Hard {
 	background-color: var(--hard);
+}
+
+.unselected {
+	background-color: var(--white);
 }
