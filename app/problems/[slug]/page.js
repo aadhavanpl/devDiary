@@ -1,15 +1,58 @@
 'use client'
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import styles from './slug.module.css'
 import { GoogleSignInButton, SubmitButton } from '@/components/common/Button'
 import { ProblemNoClick } from '@/components/common/Problem'
 import { Editor } from '@monaco-editor/react'
-import { useRouter, usePathname } from 'next/navigation'
+import { useRouter, useParams } from 'next/navigation'
 
 export default function Slug() {
 	const [feature, setFeature] = useState(0)
 	const router = useRouter()
-	const pathname = usePathname()
+	const params = useParams()
+	const editorRef = useRef(null)
+
+	const [code, setCode] = useState('')
+	const [duration, setDuration] = useState('00:23:12')
+	const [note, setNote] = useState('Test note')
+	const [language, setLanguage] = useState('Python')
+
+	useEffect(() => {}, [])
+
+	async function handleSubmit() {
+		const date = new Date()
+		const correctDateFormat =
+			date.getDate() +
+			'/' +
+			date.getMonth() +
+			'/' +
+			date.getFullYear() +
+			'-' +
+			date.getHours() +
+			':' +
+			date.getMinutes() +
+			':' +
+			date.getSeconds()
+
+		const res = await fetch('http://localhost:3000/api/problem', {
+			method: 'POST',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify({
+				user_email: 'user2@example.com',
+				slug: params.slug,
+				date: correctDateFormat,
+				duration: duration,
+				note: note,
+				code: code,
+				language: language,
+			}),
+		})
+		await res.json()
+	}
+
+	function handleEditorDidMount(editor) {
+		editorRef.current = editor
+	}
 
 	return (
 		<div className={styles.container}>
@@ -26,6 +69,8 @@ export default function Slug() {
 					height='calc(100vh - 292px)'
 					theme='vs-dark'
 					className={styles.editor}
+					onChange={() => setCode(editorRef.current.getValue())}
+					onMount={handleEditorDidMount}
 				/>
 				<div className={styles.features}>
 					<div className={styles.topWrapper}>
@@ -70,7 +115,7 @@ export default function Slug() {
 							)}
 						</div>
 					</div>
-					<SubmitButton />
+					<SubmitButton func={handleSubmit} />
 				</div>
 			</div>
 		</div>

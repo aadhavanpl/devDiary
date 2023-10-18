@@ -41,6 +41,6 @@
 .rightWrapper {
 	display: flex;
 	align-items: center;
-	width: 150px;
+	width: 180px;
 	justify-content: space-between;
 }

@@ -20,11 +20,11 @@ export function RandomButton() {
 	)
 }
 
-export function SubmitButton() {
+export function SubmitButton({ func }) {
 	return (
-		<div className={styles.submitContainer}>
+		<div className={styles.submitContainer} onClick={func}>
 			Submit
-			<img src='/svgs/submit-arrow-right.svg' />
+			<img src='/svgs/submit-arrow-right.svg' alt='submit' />
 		</div>
 	)
 }
