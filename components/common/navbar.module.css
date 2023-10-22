@@ -20,12 +20,13 @@
 
 .logo {
 	cursor: pointer;
+	width: 180px;
 }
 
 .profile-pic {
-	cursor: pointer;
-	border: 2px solid var(--black);
 	border-radius: 50%;
+	width: 80px;
+	height: 80px;
 }
 
 .profile-container {
@@ -39,7 +40,7 @@
 .navbar-items {
 	display: flex;
 	flex-direction: column;
-	gap: 10px;
+	gap: 8px;
 	width: 100%;
 }
 
@@ -54,7 +55,7 @@
 
 .button-container:hover:not(.active-button) {
 	cursor: pointer;
-	border-right: solid 5px var(--hover);
+	border-right: solid 5px var(--grey-20);
 }
 
 .active-button {

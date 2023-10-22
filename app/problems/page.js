@@ -30,7 +30,7 @@ export default function Problems() {
 			<NavbarLayout>
 				<PageHeader heading='problems' desc='Track your progress practicing Leetcode here!' />
 				<div className={styles.searchWrapper}>
-					<SearchBar setSearch={setSearch} />
+					<SearchBar setSearch={setSearch} search={search} />
 					<div className={styles.difficultyWrapper}>
 						<BigDifficulty difficulty='E' filter={easyFilter} setFilter={setEasyFilter} />
 						<BigDifficulty difficulty='M' filter={mediumFilter} setFilter={setMediumFilter} />

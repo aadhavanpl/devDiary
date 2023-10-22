@@ -3,6 +3,7 @@ import React, { useEffect } from 'react'
 import styles from './navbar.module.css'
 import { useRouter } from 'next/navigation'
 import { usePathname } from 'next/navigation'
+import Link from 'next/link'
 
 export default function Navbar() {
 	const router = useRouter()
