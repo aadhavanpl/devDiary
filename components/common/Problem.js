@@ -50,8 +50,8 @@ export function BigProblem({ qno, title, tags, difficulty, bookmark }) {
 			<div className={styles.leftWrapper}>
 				<div className={styles.problemNumber}>{qno}</div>
 				<div className={styles.titleWrapper}>
-					<div className={styles.title}>{title}</div>
-					<div className={styles.tagsWrapper}>
+					<div className={styles.bigTitle}>{title}</div>
+					<div className={styles.bigTagsWrapper}>
 						{tags?.length > 0 &&
 							tags?.map((tag, index) => <SmallTag tag={tag} color='#FCB0BD' key={index} />)}
 					</div>

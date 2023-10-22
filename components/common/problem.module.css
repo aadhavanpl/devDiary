@@ -35,18 +35,25 @@
 	gap: 5px;
 }
 
-.title {
+.title,
+.bigTitle {
 	white-space: nowrap;
 	font-size: 18px;
 	width: 31.3vw;
 	text-overflow: ellipsis;
 }
 
-.title::-webkit-scrollbar {
+.bigTitle {
+	width: 41.1vw;
+}
+
+.title::-webkit-scrollbar,
+.bigTitle::-webkit-scrollbar {
 	display: none;
 }
 
-.tagsWrapper {
+.tagsWrapper,
+.bigTagsWrapper {
 	display: flex;
 	gap: 8px;
 	height: 25px;
@@ -57,7 +64,12 @@
 	scrollbar-width: none;
 }
 
-.tagsWrapper::-webkit-scrollbar {
+.bigTagsWrapper {
+	width: 41.1vw;
+}
+
+.tagsWrapper::-webkit-scrollbar,
+.bigTagsWrapper::-webkit-scrollbar {
 	display: none;
 }
 
