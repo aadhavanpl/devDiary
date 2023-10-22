@@ -6,9 +6,17 @@ import { BigProblem } from '@/components/common/Problem'
 import { SearchBar } from '@/components/common/SearchBar'
 import React, { useEffect, useState } from 'react'
 import styles from './archive.module.css'
+import Fuse from 'fuse.js'
 
 export default function Archive() {
 	const [problems, setProblems] = useState()
+	const [allProblems, setAllProblems] = useState()
+	const [search, setSearch] = useState('')
+
+	const fuseOptions = {
+		keys: ['qno', 'title', 'slug', 'difficulty', 'tags'],
+		threshold: 1,
+	}
 
 	useEffect(() => {
 		async function fetchProblems() {
@@ -19,16 +27,28 @@ export default function Archive() {
 			})
 			const problems = await res.json()
 			setProblems(problems.archiveAPI[0].problems)
+			setAllProblems(problems.archiveAPI[0].problems)
 		}
 		fetchProblems()
 	}, [])
+
+	useEffect(() => {
+		if (search != '') {
+			const fuseInstance = new Fuse(problems, fuseOptions)
+			const res = fuseInstance.search(search)
+			let tempProblems = []
+			for (let i = 0; i < res.length; i++) tempProblems.push(res[i].item)
+			setProblems(tempProblems)
+		}
+		if (search == '') setProblems(allProblems)
+	}, [search])
 
 	return (
 		<div className={styles.container}>
 			<NavbarLayout>
 				<PageHeader heading='archive' desc='Questions that you have done before' />
 				<div className={styles.searchWrapper}>
-					<SearchBar />
+					<SearchBar search={search} setSearch={setSearch} />
 					<RandomButton />
 				</div>
 				<div className={styles.problems}>

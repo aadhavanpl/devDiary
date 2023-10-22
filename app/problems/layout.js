@@ -1,5 +1,5 @@
 import '../globals.css'
-import { Montserrat } from "next/font/google"
+import { Montserrat } from 'next/font/google'
 
 const montserrat = Montserrat({
 	subsets: ['latin'],
@@ -7,7 +7,7 @@ const montserrat = Montserrat({
 })
 
 export const metadata = {
-	title: 'Problems',
+	title: 'devDiary | Problems',
 	description: 'Track your progress practicing Leetcode here!',
 }
 
