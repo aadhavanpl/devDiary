@@ -3,6 +3,7 @@ import PageHeader from '@/components/common/PageHeader'
 import styles from './problems.module.css'
 import NavbarLayout from '@/components/common/NavbarLayout'
 import SearchBar from '@/components/common/SearchBar'
+import ScrollButton from '@/components/common/ScrollButton'
 import { BigDifficulty } from '@/components/common/Difficulty'
 import { BigTag } from '@/components/common/Tag'
 import { BigProblem } from '@/components/common/Problem'
@@ -60,6 +61,7 @@ export default function Problems() {
 								/>
 							))}
 					</div>
+					<ScrollButton />
 				</div>
 			</NavbarLayout>
 		</div>
