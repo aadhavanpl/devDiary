@@ -36,12 +36,29 @@
 }
 
 .title {
+	white-space: nowrap;
 	font-size: 18px;
+	width: 31.3vw;
+	text-overflow: ellipsis;
+}
+
+.title::-webkit-scrollbar {
+	display: none;
 }
 
 .tagsWrapper {
 	display: flex;
 	gap: 8px;
+	height: 25px;
+	width: 31.3vw;
+	overflow-x: scroll;
+
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+}
+
+.tagsWrapper::-webkit-scrollbar {
+	display: none;
 }
 
 .rightWrapper {

@@ -2,6 +2,9 @@ import React from 'react'
 import styles from './difficulty.module.css'
 
 export function SmallDifficulty({ difficulty }) {
+	if (difficulty == 'Easy') difficulty = 'E'
+	if (difficulty == 'Medium') difficulty = 'M'
+	if (difficulty == 'Hard') difficulty = 'H'
 	return <div className={`${styles.smallDifficulty} ${styles[difficulty]}`}>{difficulty}</div>
 }
 

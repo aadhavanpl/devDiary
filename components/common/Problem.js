@@ -13,14 +13,13 @@ export function SmallProblem({ qno, title, tags, difficulty }) {
 				<div className={styles.titleWrapper}>
 					<div className={styles.title}>{title}</div>
 					<div className={styles.tagsWrapper}>
-						{tags?.map((tag, index) => (
-							<SmallTag tag={tag} color='#FCB0BD' key={index} />
-						))}
+						{tags[0]?.length > 0 &&
+							tags?.map((tag, index) => <SmallTag tag={tag} color='#FCB0BD' key={index} />)}
 					</div>
 				</div>
 			</div>
 			<div className={styles.rightWrapper}>
-				<SmallDifficulty difficulty='E' />
+				<SmallDifficulty difficulty={difficulty} />
 				<img src='/svgs/arrow-right.svg' />
 			</div>
 		</div>
@@ -53,7 +52,7 @@ export function BigProblem({ qno, title, tags, difficulty, bookmark }) {
 				<div className={styles.titleWrapper}>
 					<div className={styles.title}>{title}</div>
 					<div className={styles.tagsWrapper}>
-						{tags?.length &&
+						{tags?.length > 0 &&
 							tags?.map((tag, index) => <SmallTag tag={tag} color='#FCB0BD' key={index} />)}
 					</div>
 				</div>
