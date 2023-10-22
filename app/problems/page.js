@@ -20,6 +20,12 @@ export default function Problems() {
 
 	const fuseOptions = {
 		keys: ['qno', 'title', 'slug', 'difficulty', 'tags'],
+		shouldSort: true,
+		threshold: 1,
+	}
+
+	const fuseDifficultyOptions = {
+		keys: ['difficulty'],
 		threshold: 1,
 	}
 
@@ -35,14 +41,47 @@ export default function Problems() {
 
 	useEffect(() => {
 		if (search != '') {
-			const fuseInstance = new Fuse(problems, fuseOptions)
+			let fuseInstance = new Fuse(problems, fuseOptions)
 			const res = fuseInstance.search(search)
 			let tempProblems = []
 			for (let i = 0; i < res.length; i++) tempProblems.push(res[i].item)
-			setProblems(tempProblems)
+
+			let easyProblems = []
+			if (easyFilter) {
+				let newFuseInstance = new Fuse(tempProblems, fuseDifficultyOptions)
+				const easyRes = newFuseInstance.search('Easy')
+				for (let i = 0; i < easyRes.length; i++) easyProblems.push(easyRes[i].item)
+			}
+
+			let mediumProblems = []
+			if (mediumFilter) {
+				let newFuseInstance = new Fuse(tempProblems, fuseDifficultyOptions)
+				const mediumRes = newFuseInstance.search('Medium')
+				for (let i = 0; i < mediumRes.length; i++) mediumProblems.push(mediumRes[i].item)
+			}
+
+			let hardProblems = []
+			if (hardFilter) {
+				let newFuseInstance = new Fuse(tempProblems, fuseDifficultyOptions)
+				const hardRes = newFuseInstance.search('Hard')
+				for (let i = 0; i < hardRes.length; i++) hardProblems.push(hardRes[i].item)
+			}
+
+			if (!easyFilter && !mediumFilter && !hardFilter) setProblems(tempProblems)
+			else {
+				let finalProblems = easyProblems.concat(mediumProblems, hardProblems)
+				console.log('easyProblems')
+				console.log(easyProblems)
+				console.log('mediumProblems')
+				console.log(mediumProblems)
+				console.log('hardProblems')
+				console.log(hardProblems)
+				console.log(finalProblems)
+				setProblems(finalProblems)
+			}
 		}
 		if (search == '') setProblems(allProblems)
-	}, [search])
+	}, [search, easyFilter, mediumFilter, hardFilter])
 
 	return (
 		<div className={styles.container}>
