@@ -2,7 +2,7 @@
 import PageHeader from '@/components/common/PageHeader'
 import styles from './problems.module.css'
 import NavbarLayout from '@/components/common/NavbarLayout'
-import SearchBar from '@/components/common/SearchBar'
+import { SearchBar } from '@/components/common/SearchBar'
 import { BigDifficulty } from '@/components/common/Difficulty'
 import { BigTag } from '@/components/common/Tag'
 import { BigProblem } from '@/components/common/Problem'

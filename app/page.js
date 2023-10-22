@@ -2,11 +2,12 @@
 import styles from './page.module.css'
 import { GoogleSignInButton } from '@/components/common/Button'
 import { SmallProblem } from '@/components/common/Problem'
+import { HomeSearchBar } from '@/components/common/SearchBar'
 import { useEffect, useState } from 'react'
 
 export default function Home() {
 	const [problems, setProblems] = useState()
-	const [search, setSearch] = useState(false)
+	const [search, setSearch] = useState('')
 	const [noResult, setNoResult] = useState(false)
 
 	useEffect(() => {
@@ -24,11 +25,7 @@ export default function Home() {
 				<img src='/svgs/logo.svg' className={styles.logo} alt='logo' />
 			</picture>
 			<div className={search ? styles.containerWithSearch : styles.containerWithoutSearch}>
-				<div className={styles.inputWrapper}>
-					<img src='/svgs/search.svg' alt='search' />
-					<input placeholder='Search a leetcode problem' />
-					<img src='/svgs/x.svg' alt='close' />
-				</div>
+				<HomeSearchBar search={search} setSearch={setSearch} />
 				{search && <div className={styles.inputBorder}></div>}
 				{search && (
 					<>

@@ -31,18 +31,6 @@
 	transform: translate(-50%, -50%);
 }
 
-.inputWrapper {
-	display: flex;
-	padding: 16px;
-	gap: 16px;
-	justify-content: space-between;
-}
-
-.inputWrapper input {
-	width: 100%;
-	font-size: 18px;
-}
-
 .googleSignIn {
 	position: absolute;
 	right: 32px;
