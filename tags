@@ -143,7 +143,7 @@ Hash table,Linked list,Two pointers
 Linked list,Two pointers,Stack,Recursion
 Stack,Tree,DFS,Binary tree
 Stack,Tree,DFS,Binary tree
-Hash table,Linked list,design,doubly-Linked list
+Hash table,Linked list,Design,doubly-Linked list
 Linked list,Sorting
 Linked list,Two pointers,Divide and conquer,Sorting,Merge sort
 Array,Hash table,Math,Geometry
@@ -152,7 +152,7 @@ Two pointers,String
 Array,DP
 Array,Binary search
 Array,Binary search
-Stack,design
+Stack,Design
 Tree,DFS,Binary tree
 String,Simulation,interactive
 String,Simulation,interactive
@@ -167,10 +167,10 @@ Hash table,Math,String
 Array,Two pointers,Binary search
 Math,String
 Array,Hash table,Divide and conquer,Sorting,Counting
-Array,Hash table,Two pointers,design,Data stream
+Array,Hash table,Two pointers,Design,Data stream
 Math,String
 Math
-Stack,Tree,design,Binary search tree,Binary tree,iterator
+Stack,Tree,Design,Binary search tree,Binary tree,iterator
 Array,DP,Matrix
 Database
 Database
@@ -205,10 +205,10 @@ Array,Math,enumeration,Number theory
 Hash table,String
 Linked list,Recursion
 DFS,BFS,Graph,Topological sort
-Hash table,String,design,Trie
+Hash table,String,Design,Trie
 Array,Binary search,Sliding window,Prefix sum
 DFS,BFS,Graph,Topological sort
-String,DFS,design,Trie
+String,DFS,Design,Trie
 Array,String,Backtracking,Trie,Matrix
 Array,DP
 String,Rolling hash,String matching,Hash function
@@ -222,14 +222,14 @@ Array,DP,Matrix
 Binary search,Tree,DFS,Binary tree
 Math,Geometry
 Math,String,Stack,Recursion
-Stack,design,queue
+Stack,Design,queue
 Tree,DFS,BFS,Binary tree
 Math,String,Stack
 Array
 Array,Hash table,Sorting,Counting
 Tree,DFS,Binary search tree,Binary tree
 Math,Bit manipulation,Recursion
-Stack,design,queue
+Stack,Design,queue
 Math,DP,Recursion
 Linked list,Two pointers,Stack,Recursion
 Tree,DFS,Binary search tree,Binary tree
@@ -241,14 +241,14 @@ Array,Binary search,Divide and conquer,Matrix
 Math,String,DP,Recursion,Memoization
 Hash table,String,Sorting
 Array,String
-Array,Hash table,Two pointers,String,design
+Array,Hash table,Two pointers,String,Design
 Array,String
 Hash table,Two pointers,String
 Array,String,Recursion
 Array,String,Recursion
 Array,Hash table,String
 Tree,DFS,Binary tree
-Array,Two pointers,design,iterator
+Array,Two pointers,Design,iterator
 Array,Sorting
 Array,Two pointers,Greedy,Sorting,Heap priority queue,Prefix sum
 Array,Backtracking
@@ -268,7 +268,7 @@ Hash table,String,Backtracking
 Array,Hash table,Math,Binary search,Bit manipulation,Sorting
 Array,String,DFS,BFS,Graph,Topological sort
 Binary search,Tree,DFS,Binary search tree,Binary tree
-Array,String,design
+Array,String,Design
 Two pointers,Stack,Tree,DFS,Binary search tree,Heap priority queue,Binary tree
 Math,String,Recursion
 Array,Sorting,Counting sort
@@ -278,34 +278,34 @@ Two pointers,Graph,interactive
 Binary search,interactive
 Math,DP,BFS
 Array,Greedy,Sorting
-Array,design,queue,iterator
+Array,Design,queue,iterator
 Math,String,Backtracking
 Array,Two pointers
-Array,design,iterator
+Array,Design,iterator
 Tree,DFS,Binary search tree,Binary tree
 Array,BFS,Matrix
 Array,Two pointers,Binary search,Bit manipulation
-Array,Hash table,String,design
+Array,Hash table,String,Design
 Array,Matrix,Simulation
 Hash table,String
 Hash table,String,Backtracking
 Math,brainteaser,game-theory
 String
 Math,DP,Backtracking,Memoization,game-theory
-Two pointers,design,Sorting,Heap priority queue,Data stream
+Two pointers,Design,Sorting,Heap priority queue,Data stream
 Array,Math,Sorting,Matrix
-String,Tree,DFS,BFS,design,Binary tree
+String,Tree,DFS,BFS,Design,Binary tree
 Tree,DFS,Binary tree
 Hash table,String,Counting
 Array,Binary search,DP
 String,Backtracking,BFS
 Array,Binary search,DFS,BFS,Matrix
-Array,design,Prefix sum
-Array,design,Matrix,Prefix sum
+Array,Design,Prefix sum
+Array,Design,Matrix,Prefix sum
 Array,Union find
 String,Backtracking
-Array,design,Binary indexed tree,Segment tree
-Array,design,Binary indexed tree,Segment tree,Matrix
+Array,Design,Binary indexed tree,Segment tree
+Array,Design,Binary indexed tree,Segment tree,Matrix
 Array,DP
 DFS,BFS,Graph,Topological sort
 Array,Hash table,Matrix
@@ -338,28 +338,28 @@ DP,Tree,DFS,Binary tree
 DP,Bit manipulation
 DFS,BFS
 Hash table,String,Sliding window
-Stack,Tree,DFS,design,queue,iterator
+Stack,Tree,DFS,Design,queue,iterator
 Math,Bit manipulation,Recursion
 Math,DP
 Two pointers,String
 Two pointers,String
-Array,design,queue,Data stream
+Array,Design,queue,Data stream
 Array,Hash table,Divide and conquer,Sorting,Heap priority queue,Bucket sort,Counting,quickselect
-Array,Hash table,design,Matrix,Simulation
+Array,Hash table,Design,Matrix,Simulation
 Array,Hash table,Two pointers,Binary search,Sorting
 Array,Hash table,Two pointers,Binary search,Sorting
 DP,Backtracking
-Binary search,design,Ordered set
-Array,Hash table,design,queue,Simulation
+Binary search,Design,Ordered set
+Array,Hash table,Design,queue,Simulation
 Array,Binary search,DP,Sorting
-Hash table,Linked list,design,Heap priority queue
+Hash table,Linked list,Design,Heap priority queue
 Array,Hash table,Math
 Math,DP,Backtracking
 Hash table,String,Greedy,Sorting,Heap priority queue,Counting
-Hash table,design
+Hash table,Design
 Array,Math,Two pointers,Sorting
 Array,DP,Matrix
-Array,Hash table,Binary search,design,queue
+Array,Hash table,Binary search,Design,queue
 Array,Binary search,Matrix,Prefix sum,Ordered set
 Stack,DFS,BFS
 Math,DFS,BFS
@@ -376,9 +376,9 @@ Math,DP,game-theory
 Array,DP,Greedy
 Array,DP
 Array,Binary search,Sorting,Heap priority queue,Matrix
-Array,Hash table,Linked list,design,queue
-Array,Hash table,Math,design,Randomized
-Array,Hash table,Math,design,Randomized
+Array,Hash table,Linked list,Design,queue
+Array,Hash table,Math,Design,Randomized
+Array,Hash table,Math,Design,Randomized
 Linked list,Math,reservoir-sampling,Randomized
 Hash table,String,Counting
 Array,Math,Randomized
@@ -428,8 +428,8 @@ Array,Divide and conquer,Tree,Matrix
 String,Tree,DFS,BFS
 Tree,BFS
 Linked list,DFS,doubly-Linked list
-Tree,DFS,BFS,design,Binary tree
-Hash table,Linked list,design,doubly-Linked list
+Tree,DFS,BFS,Design,Binary tree
+Hash table,Linked list,Design,doubly-Linked list
 Hash table,String,BFS
 String
 Array,DP,Greedy,Sorting
@@ -446,7 +446,7 @@ Linked list,Math,Stack
 Array,DP
 Array,Hash table,Math
 Array,Hash table
-String,Tree,DFS,BFS,design,Binary search tree,Binary tree
+String,Tree,DFS,BFS,Design,Binary search tree,Binary tree
 Tree,Binary search tree,Binary tree
 Hash table,String,Sorting,Heap priority queue,Bucket sort,Counting
 Array,Greedy,Sorting
@@ -457,7 +457,7 @@ Array,Binary search,Stack,Monotonic stack,Ordered set
 Array,Hash table,Two pointers
 Math,DP,Combinatorics
 String,String matching
-Hash table,Linked list,design,doubly-Linked list
+Hash table,Linked list,Design,doubly-Linked list
 Bit manipulation
 Array,Math,Sorting
 Array,DFS,BFS,Matrix
@@ -532,7 +532,7 @@ Array,Hash table,Matrix
 Array,Hash table,Two pointers,Binary search,Sorting
 Array,Hash table,Matrix
 Database
-Hash table,String,design,Hash function
+Hash table,String,Design,Hash function
 String,Tree,DFS,Binary tree
 Math,String,Simulation
 Tree,DFS,Binary search tree,Binary tree
@@ -585,7 +585,7 @@ Database
 Database
 Database
 Array,Math,Geometry
-Hash table,String,design,Trie
+Hash table,String,Design,Trie
 Stack,Tree,DFS
 Stack,Tree,DFS
 String,Stack
@@ -601,7 +601,7 @@ DP
 Database
 Database
 Database
-Array,Hash table,String,design,iterator
+Array,Hash table,String,Design,iterator
 Array,Greedy
 String,Tree,DFS,Binary tree
 Database
@@ -619,7 +619,7 @@ Database
 Database
 Database
 Array,Hash table,Greedy,Sorting,Heap priority queue,Counting
-Array,Linked list,design,queue
+Array,Linked list,Design,queue
 Tree,DFS,BFS,Binary tree
 Array,Greedy
 Math,Greedy
@@ -628,18 +628,18 @@ Database
 Array,Math,Sorting
 DP
 Array,Greedy,Sorting,Heap priority queue
-Graph,design,Topological sort
+Graph,Design,Topological sort
 Array,Hash table,Greedy,Sliding window,Sorting,Heap priority queue
 Math,Two pointers,Binary search
 Math,DP
-Hash table,String,design,Ordered set
+Hash table,String,Design,Ordered set
 Array,Stack
 Tree,DFS,BFS,Binary tree
 Array,DP,Backtracking,Bit manipulation,Memoization,bitmask
 String,DP
 Math,String,Simulation
-Array,Linked list,design,queue
-String,design,Trie,Data stream
+Array,Linked list,Design,queue
+String,Design,Trie,Data stream
 Array,Sliding window
 Array,Binary search,Prefix sum
 Array,Hash table,Bit manipulation,Sorting
@@ -673,8 +673,8 @@ Math,Bit manipulation,DFS,BFS
 Array,DP,Binary indexed tree,Segment tree
 Array
 Array,BFS,Heap priority queue,Matrix
-Hash table,String,DFS,design,Trie
-Hash table,String,design,Trie
+Hash table,String,DFS,Design,Trie
+Hash table,String,Design,Trie
 String,DP,Stack,Greedy
 Array,Math,Backtracking
 Two pointers,String,Greedy
@@ -700,11 +700,11 @@ Array,Segment tree,Ordered set
 Tree,Binary search tree,Binary tree
 Tree,Binary search tree,Binary tree
 Array,Binary search,interactive
-Tree,design,Binary search tree,Heap priority queue,Binary tree,Data stream
+Tree,Design,Binary search tree,Heap priority queue,Binary tree,Data stream
 Array,Binary search
-Array,Hash table,Linked list,design,Hash function
-Array,Hash table,Linked list,design,Hash function
-Linked list,design
+Array,Hash table,Linked list,Design,Hash function
+Array,Hash table,Linked list,Design,Hash function
+Linked list,Design
 Linked list
 String
 Array,Hash table,Math,Binary search,Sorting,Randomized
@@ -712,8 +712,8 @@ Hash table,DFS,BFS,Union find,Hash function
 String,DP
 Array,Sliding window
 Array,DP,Greedy
-design,Segment tree,Ordered set
-Linked list,Stack,design,doubly-Linked list,Ordered set
+Design,Segment tree,Ordered set
+Linked list,Stack,Design,doubly-Linked list,Ordered set
 Array
 Array,Binary search,DP,Sliding window,Rolling hash,Hash function
 Array,Two pointers,Binary search,Sorting
@@ -726,10 +726,10 @@ Linked list
 Hash table,String,Stack,Sorting
 String,DP,Sliding window
 Math
-Binary search,design,Segment tree,Ordered set
+Binary search,Design,Segment tree,Ordered set
 String,DP
-Binary search,design,Segment tree,Ordered set
-Binary search,design,Segment tree,Ordered set
+Binary search,Design,Segment tree,Ordered set
+Binary search,Design,Segment tree,Ordered set
 Array,DFS,BFS,Matrix
 Array,Hash table,String
 Array,Stack,Simulation
@@ -742,7 +742,7 @@ Array,DP,Matrix
 Tree,DFS,BFS,Binary tree
 DFS,BFS,Graph,Heap priority queue,shortest-path
 Array,Binary search
-Hash table,String,design,Trie
+Hash table,String,Design,Trie
 Array,DP
 Array,Sorting
 Array,Hash table,String
@@ -852,7 +852,7 @@ Array,DFS,Graph,Topological sort
 Array,Binary search
 Array,Stack,Sorting,Monotonic stack
 String,BFS
-design,Heap priority queue,Ordered set
+Design,Heap priority queue,Ordered set
 String,Stack
 Array,Greedy,Sorting,Heap priority queue
 Math,Geometry,Number theory
@@ -892,13 +892,13 @@ Array,Math,Sorting
 Array,Math,Geometry,Matrix
 Array,Hash table,String
 DP,Tree,Recursion,Memoization,Binary tree
-Hash table,Stack,design,Ordered set
+Hash table,Stack,Design,Ordered set
 Array
 Stack,Tree,DFS,Binary search tree,Binary tree
 Array,DP,Bit manipulation
 Math,String,Sorting
-Array,design,Counting,iterator
-Stack,design,Monotonic stack,Data stream
+Array,Design,Counting,iterator
+Stack,Design,Monotonic stack,Data stream
 Array,Math,String,Binary search,DP
 String,DP,Prefix sum
 Array,Hash table,Sliding window
@@ -908,7 +908,7 @@ Array,DP,Stack,Monotonic stack
 Array,Math
 Array,BFS,Matrix
 Array,Math,Greedy,Sorting
-Array,Hash table,Binary search,design
+Array,Hash table,Binary search,Design
 Array,Divide and conquer,Sorting,Heap priority queue,Merge sort,Bucket sort,Radix sort,Counting sort
 Math,DP,Graph,Topological sort,Memoization,game-theory
 Array,Hash table,Math,Counting,Number theory
@@ -916,7 +916,7 @@ Array
 Array,Hash table,String
 Two pointers,String
 Array,Divide and conquer,DP,queue,monotonic-queue
-Tree,BFS,design,Binary tree
+Tree,BFS,Design,Binary tree
 Math,DP,Combinatorics
 String,Stack,Greedy
 Array,Two pointers,Sorting
@@ -930,7 +930,7 @@ Array,Hash table,String
 Array,Hash table,Sliding window,Prefix sum
 Array,DP,Matrix
 Array,Math,Divide and conquer
-design,queue,Data stream
+Design,queue,Data stream
 Array,DFS,BFS,Matrix
 DP
 String,Stack,Greedy,queue
@@ -978,7 +978,7 @@ Array,Two pointers,Sorting
 Array,DP,Sliding window
 Tree,DFS,Binary tree
 Array,Backtracking,Bit manipulation,Matrix
-Hash table,String,Binary search,design
+Hash table,String,Binary search,Design
 Array,Hash table,Bit manipulation
 Array,DP
 String,Greedy
@@ -1029,7 +1029,7 @@ String,Tree,DFS,Binary tree
 Array,Greedy,Sorting
 Array,Math,Geometry,Sorting,Matrix
 Array,DP,Sliding window
-Array,String,design,Trie,Data stream
+Array,String,Design,Trie,Data stream
 Math,brainteaser
 Array,DFS,BFS,Matrix
 Array,DP
@@ -1143,7 +1143,7 @@ Database
 String,DP
 Array,Greedy
 Tree,DFS,Binary tree
-Array,Hash table,Binary search,design
+Array,Hash table,Binary search,Design
 Two pointers,String,DP,Greedy,Rolling hash,Hash function
 Database
 Database
@@ -1154,7 +1154,7 @@ Hash table,String
 Math,String
 DP
 Hash table,String,Sliding window
-Array,Binary search,design,Binary indexed tree,Segment tree
+Array,Binary search,Design,Binary indexed tree,Segment tree
 Database
 Database
 Array,Hash table,String
@@ -1163,13 +1163,13 @@ Array,DP,BFS,Matrix
 Two pointers,String
 Database
 Hash table,String
-Hash table,String,design,Trie
+Hash table,String,Design,Trie
 Array,Greedy,Heap priority queue
 Union find,Graph,minimum-spanning-Tree
 Array,Hash table,String,Sorting
 Array,Hash table,String,Binary search,Sorting
 Hash table,Linked list
-Hash table,Stack,design,Heap priority queue
+Hash table,Stack,Design,Heap priority queue
 Database
 Database
 Math
@@ -1203,7 +1203,7 @@ Array,Hash table,String,DFS,BFS,Union find,Sorting
 DFS,BFS,Graph,Topological sort
 Database
 Database
-Linked list,design
+Linked list,Design
 Array,Hash table
 String,Binary search,Sliding window,Prefix sum
 String,Stack
@@ -1241,7 +1241,7 @@ Backtracking
 Database
 DFS,BFS,concurrency
 Array,Simulation
-Hash table,design,Sorting
+Hash table,Design,Sorting
 Tree,DFS,BFS,Graph,Topological sort
 Array,DP
 Math,String,Greedy
@@ -1258,7 +1258,7 @@ Array,Hash table,String,Tree,DFS,BFS
 Array,Hash table,String,Backtracking,Union find
 Math,DP
 Array,Matrix,Simulation
-Hash table,Tree,DFS,BFS,design,Binary tree
+Hash table,Tree,DFS,BFS,Design,Binary tree
 Array,DP,Greedy,Sorting
 Array,BFS,Heap priority queue,Matrix
 Database
@@ -1283,7 +1283,7 @@ Array,Hash table
 Array,Binary search
 Array,Bit manipulation,BFS,Matrix
 Database
-String,Backtracking,design,iterator
+String,Backtracking,Design,iterator
 Array
 Array,Sorting
 Array,DP,Matrix
@@ -1345,16 +1345,16 @@ Math
 Array,Hash table,BFS
 Array,Hash table,Two pointers,Binary search,Sorting
 Hash table,String,Counting
-Hash table,Binary search,design,Sorting,Ordered set
+Hash table,Binary search,Design,Sorting,Ordered set
 Array,DP,Bit manipulation,Matrix,bitmask
 Database
 Array,Binary search,Matrix
-Array,Math,design,queue,Data stream
+Array,Math,Design,queue,Data stream
 Array,Greedy,Sorting,Heap priority queue
 Array,Heap priority queue
 Database
 Array,Bit manipulation,Sorting,Counting
-Array,Hash table,design
+Array,Hash table,Design
 Hash table,String,Sliding window
 Math,DP,Combinatorics
 Math,String
@@ -1378,7 +1378,7 @@ Tree,DFS,BFS,Graph
 Database
 Tree,DFS,BFS,Binary tree
 Array,Matrix
-Array,Stack,design
+Array,Stack,Design
 Divide and conquer,Greedy,Tree,DFS,Binary search tree,Binary tree
 Array,Greedy,Sorting,Heap priority queue
 Database
@@ -1393,7 +1393,7 @@ String,Rolling hash,String matching,Hash function
 Database
 Array,Hash table,Counting
 Array,DP,Binary indexed tree
-Hash table,String,design
+Hash table,String,Design
 String,DP,String matching
 Database
 Hash table,Math
@@ -1426,7 +1426,7 @@ Array,DP,queue,Sliding window,Heap priority queue,monotonic-queue
 Array,Hash table
 Array,Math,String
 Array,Binary search,Matrix,interactive
-Array,Hash table,design,queue,Data stream
+Array,Hash table,Design,queue,Data stream
 Tree,DFS,BFS,Binary tree
 Array
 Math,Greedy
@@ -1469,18 +1469,18 @@ Database
 Tree,DFS,BFS,Binary tree
 Array
 Array,Two pointers,Sorting
-Array,Linked list,Stack,design,doubly-Linked list,Data stream
+Array,Linked list,Stack,Design,doubly-Linked list,Data stream
 Array,DP
 Linked list
 Array,Stack,Monotonic stack
-Array,design,Matrix
+Array,Design,Matrix
 Array,Hash table,Binary search,DP,Sliding window
 Array,Math,DP,Sorting
 Database
 Array,Prefix sum
 Array,Hash table,Greedy,Sorting,Counting
 Array,Binary search
-Binary search,DP,Tree,DFS,BFS,design
+Binary search,DP,Tree,DFS,BFS,Design
 Database
 Hash table,Tree,DFS,BFS,Binary tree
 Math,Bit manipulation
@@ -1497,7 +1497,7 @@ Hash table,String
 Array,Hash table,Counting
 Array,Two pointers,Binary search,Sorting
 Array,queue,Sliding window,Heap priority queue,monotonic-queue
-Hash table,design,Heap priority queue,Data stream
+Hash table,Design,Heap priority queue,Data stream
 Database
 Array,Sorting
 Array,brainteaser,Simulation
@@ -1567,7 +1567,7 @@ Array,enumeration
 Array,DP,Greedy
 Array,DFS,BFS,Matrix,strongly-connected-component
 Array,Math,Divide and conquer,DP,Tree,Union find,Binary search tree,Memoization,Combinatorics,Binary tree
-Array,Hash table,Two pointers,design
+Array,Hash table,Two pointers,Design
 Database
 Array,Matrix
 Math,String
@@ -1583,7 +1583,7 @@ Array,Matrix
 Array,Simulation
 Array,Union find,Graph,minimum-spanning-Tree
 String,Greedy,Sorting
-Stack,Tree,design,Binary search tree,Binary tree,iterator
+Stack,Tree,Design,Binary search tree,Binary tree,iterator
 Database
 Array,Math,Prefix sum
 Array,Greedy,Sorting,Prefix sum
@@ -1597,10 +1597,10 @@ Database
 String,Stack,Tree,Binary tree
 Array,String,Stack
 Array,Simulation
-Hash table,Tree,DFS,design
+Hash table,Tree,DFS,Design
 Array,Backtracking,Bit manipulation,enumeration
 Tree,BFS,Binary tree
-design,Simulation,Counting
+Design,Simulation,Counting
 Array,Hash table,String,Sorting
 Array,Greedy,Matrix
 Array,Greedy,Heap priority queue,Ordered set
@@ -1619,13 +1619,13 @@ Array,String,Binary search,interactive
 Array,Sorting
 Array,enumeration
 Math,DP
-Math,design,Segment tree
+Math,Design,Segment tree
 Database
 Hash table,String
 String,BFS
 Array,DP,Sorting
 Array,Math,Union find,Number theory
-Math,Stack,Tree,design,Binary tree
+Math,Stack,Tree,Design,Binary tree
 Array,String
 Array,Sorting
 Array,Binary search,DFS,BFS,Union find,Heap priority queue,Matrix
@@ -1653,7 +1653,7 @@ Array
 String,DP,Stack
 Array,DP,BFS
 Array,DP,Backtracking,Bit manipulation,bitmask
-Array,Hash table,design,Data stream
+Array,Hash table,Design,Data stream
 Hash table,String,Sorting
 Array,Hash table,Binary search,Sliding window,Prefix sum
 DP,Bit manipulation,Memoization,bitmask
@@ -1667,7 +1667,7 @@ Tree,DFS,Binary tree
 Database
 String,String matching
 Linked list
-Array,Linked list,design,queue,Data stream
+Array,Linked list,Design,queue,Data stream
 Array,Binary search,DP,Greedy
 Array,Matrix
 Array,Stack,Greedy,Monotonic stack
@@ -1753,7 +1753,7 @@ Array
 Math,Greedy,Heap priority queue
 Two pointers,String,Greedy
 Array,Two pointers,DP,Bit manipulation,bitmask
-Array,Hash table,Stack,design,Binary indexed tree,Ordered set
+Array,Hash table,Stack,Design,Binary indexed tree,Ordered set
 Database
 String
 Math,String
@@ -1794,14 +1794,14 @@ Array,Two pointers,Binary search,Stack,Monotonic stack
 Hash table,String,Greedy
 Database
 Hash table,String
-Hash table,design
+Hash table,Design
 Array,Greedy
 Array,Math,DP,Backtracking,Bit manipulation,Number theory,bitmask
 Array
 Array,Heap priority queue,Simulation
 Binary search,Greedy
 Array,Bit manipulation,Trie
-Hash table,String,design,Trie
+Hash table,String,Design,Trie
 Hash table,String
 Array,Math,Simulation
 Array,Hash table,String
@@ -1822,7 +1822,7 @@ Database
 Array,Math
 Array,Math,Recursion,queue,Simulation
 Array,DP,Greedy
-design,queue,Heap priority queue,Data stream,Ordered set
+Design,queue,Heap priority queue,Data stream,Ordered set
 Array,Two pointers
 Array,Greedy
 Array,Math,Geometry
@@ -1842,7 +1842,7 @@ Database
 Two pointers,String
 Database
 String
-design,Heap priority queue
+Design,Heap priority queue
 Array,Greedy,Sorting
 Array,Binary search,Sorting
 Array
@@ -1862,7 +1862,7 @@ Array,Two pointers,Matrix
 Array,Math,Binary search,Prefix sum
 Array,Math,Backtracking,Bit manipulation,Combinatorics
 String,Greedy
-Array,Hash table,design
+Array,Hash table,Design
 Math,DP,Combinatorics
 Database
 Array,Two pointers
@@ -1909,7 +1909,7 @@ Array,Math,DP,Bit manipulation,brainteaser,game-theory
 Array
 String
 Array,DP
-Array,Hash table,design,Heap priority queue,Ordered set
+Array,Hash table,Design,Heap priority queue,Ordered set
 Array,Sorting
 Array,Matrix,Simulation
 Hash table,String,Bit manipulation,Prefix sum
@@ -1990,7 +1990,7 @@ Array,Greedy
 Database
 Array,Prefix sum
 Array,DFS,BFS,Matrix
-Array,Hash table,Tree,DFS,BFS,design
+Array,Hash table,Tree,DFS,BFS,Design
 Array,Math,DP,Bit manipulation,bitmask
 Array,enumeration
 Array,Stack,Greedy,Sorting,Monotonic stack
@@ -2010,7 +2010,7 @@ Array,Binary search
 Database
 Array,String,Simulation
 Array
-Array,Hash table,design,Counting
+Array,Hash table,Design,Counting
 String,Backtracking,Greedy,Counting,enumeration
 Array,Greedy,Sorting,Heap priority queue
 Array
@@ -2031,7 +2031,7 @@ String,Stack,Greedy,Monotonic stack
 Array,Binary search,Divide and conquer,Binary indexed tree,Segment tree,Merge sort,Ordered set
 Array,Hash table
 Array,Math,Sorting,Matrix
-Hash table,design,Heap priority queue,Data stream,Ordered set
+Hash table,Design,Heap priority queue,Data stream,Ordered set
 Array,Two pointers,Binary search,DP,Bit manipulation,Ordered set,bitmask
 Array,DP
 Array,Sorting
@@ -2040,7 +2040,7 @@ Array,BFS,Graph
 Array,Binary search
 Database
 String
-Array,Hash table,design,Simulation
+Array,Hash table,Design,Simulation
 Array,Backtracking,Bit manipulation
 BFS,Graph,shortest-path
 Linked list,Two pointers,Sorting
@@ -2066,7 +2066,7 @@ Array,Backtracking,Graph
 Database
 String,Counting,Prefix sum
 Hash table,String,Counting
-design,Simulation
+Design,Simulation
 Array,Binary search,Sorting
 Array,Binary search,Greedy,queue,Sorting,monotonic-queue
 Database
@@ -2077,7 +2077,7 @@ Union find,Graph
 Graph
 Array,Greedy
 Array
-Array,Hash table,Binary search,design,Segment tree
+Array,Hash table,Binary search,Design,Segment tree
 Math,enumeration
 Database
 Hash table,Math,String,Counting,Prefix sum
@@ -2099,7 +2099,7 @@ Array,Greedy,Sorting
 Array,Hash table,Sorting,Heap priority queue
 Array,DP,Prefix sum
 Array,Math,DFS,BFS,Graph,Geometry
-design,Heap priority queue,Data stream,Ordered set
+Design,Heap priority queue,Data stream,Ordered set
 Hash table,String
 Array,Stack,Monotonic stack
 Array,Two pointers,Simulation
@@ -2163,7 +2163,7 @@ Math,enumeration
 Array,DP,Heap priority queue
 Array,Sorting
 Math,Sorting
-Array,Hash table,design
+Array,Hash table,Design
 String,DP
 Hash table,String,Rolling hash,Counting,Hash function
 Math,Simulation
@@ -2224,7 +2224,7 @@ String,Binary search,Rolling hash,suffix-Array,String matching,Hash function
 String,Greedy
 Array,Hash table,Sorting,Counting
 Array,Binary search
-Array,Hash table,String,design,Trie
+Array,Hash table,String,Design,Trie
 Database
 Array
 Database
@@ -2238,7 +2238,7 @@ Array,Prefix sum
 Database
 Array
 Math,enumeration
-Array,Greedy,design
+Array,Greedy,Design
 Array,Graph,Sorting,enumeration
 String,Simulation
 Array,Hash table,Greedy,Counting
@@ -2251,7 +2251,7 @@ Array,Binary search,Binary indexed tree,Sorting
 Array,Hash table,Binary search,Sorting,Prefix sum,Ordered set
 Database
 Database
-Hash table,Stack,design,Ordered set
+Hash table,Stack,Design,Ordered set
 Array,String
 Array,Prefix sum
 Array,Matrix,Simulation
@@ -2273,7 +2273,7 @@ Array,DP
 Array,Hash table,String,Sorting
 Array,Sorting
 Array,Hash table,Bit manipulation,Counting
-design,Segment tree,Ordered set
+Design,Segment tree,Ordered set
 Array,Tree,DFS,BFS
 String
 Array,Greedy,Sorting
@@ -2283,7 +2283,7 @@ Array,Stack,Matrix,Monotonic stack
 Hash table,String,Counting
 Array,Hash table,String,Counting
 Greedy,Graph,Sorting,Heap priority queue
-Binary search,design,Binary indexed tree,Segment tree
+Binary search,Design,Binary indexed tree,Segment tree
 Hash table,String,Counting
 String
 Array,Linked list,Stack,Monotonic stack
@@ -2293,7 +2293,7 @@ Database
 Array,Simulation
 Array,Greedy,Sorting
 Array,Hash table,Simulation
-Linked list,String,Stack,design,Simulation,doubly-Linked list
+Linked list,String,Stack,Design,Simulation,doubly-Linked list
 Array,DP,Stack,Graph,Monotonic stack,shortest-path
 Database
 String
@@ -2333,7 +2333,7 @@ Array,Two pointers,Binary search,Sorting
 Array,Math,Sorting,Heap priority queue
 Array,Stack,Union find,Monotonic stack
 Array,Greedy,Sorting,Heap priority queue
-Hash table,design,Heap priority queue
+Hash table,Design,Heap priority queue
 Two pointers,String
 Math,DP,Combinatorics,Number theory
 Database
@@ -2346,11 +2346,11 @@ Array,Stack,Sorting,Monotonic stack
 Database
 Array,Hash table,Counting
 Array,Math
-Hash table,design,Heap priority queue,Ordered set
+Hash table,Design,Heap priority queue,Ordered set
 Array,Hash table,Greedy
 Hash table,String,Counting
 Array,Hash table,Matrix,Simulation
-Hash table,design,Heap priority queue,Ordered set
+Hash table,Design,Heap priority queue,Ordered set
 Array,Hash table,Binary search,Bit manipulation
 Array,DP,Stack,Monotonic stack
 Database
@@ -2405,7 +2405,7 @@ Array,Hash table,Counting
 Hash table,String,Greedy
 Array,Two pointers,Greedy,Sorting,Heap priority queue,Prefix sum
 Array,Divide and conquer,DP,Binary indexed tree,Segment tree,queue,monotonic-queue
-Array,Hash table,String,design
+Array,Hash table,String,Design
 Math,String
 Array,Two pointers,Greedy,Sorting
 Array,Binary search,Bit manipulation,Sliding window
@@ -2421,7 +2421,7 @@ Array,DP,Prefix sum
 Array,Tree,Union find,Graph
 Array,Two pointers,Greedy
 Hash table,String,Counting
-Binary search,Union find,design,Binary indexed tree,Segment tree,Heap priority queue,Ordered set
+Binary search,Union find,Design,Binary indexed tree,Segment tree,Heap priority queue,Ordered set
 Array,Bit manipulation,brainteaser
 Array,Binary search,Divide and conquer,Binary indexed tree,Segment tree,Merge sort,Ordered set
 Math,enumeration,Number theory
@@ -2499,7 +2499,7 @@ Array,Binary search,Greedy
 Array,Hash table,Greedy,Counting
 Array,Sorting,Heap priority queue,Matrix,Simulation
 Array,Hash table,Binary search,DP,Sorting
-Array,Hash table,design,Simulation
+Array,Hash table,Design,Simulation
 Array,Two pointers,BFS,Union find,Sorting,Heap priority queue,Matrix
 Database
 Array,Math,Bit manipulation,brainteaser
@@ -2523,7 +2523,7 @@ String,DP,Greedy
 Math,Number theory
 Array,Hash table,Math,Sliding window
 Math
-Hash table,design,queue,Counting,Data stream
+Hash table,Design,queue,Counting,Data stream
 Array,Math,Bit manipulation
 Array,Binary search,Greedy,queue,Sliding window,Prefix sum
 Array,Binary search,Counting
@@ -2587,7 +2587,7 @@ Array,String
 Array,Greedy,Sorting,Prefix sum
 Array,Hash table,Bit manipulation,Prefix sum
 Array,Binary search,Stack,Greedy,Sorting
-Array,Hash table,String,design,Sorting
+Array,Hash table,String,Design,Sorting
 Math,Greedy
 Array,Two pointers,Greedy,Sorting
 Array,Sorting,Heap priority queue,Simulation
@@ -2639,7 +2639,7 @@ Array,DP,Sorting
 Array,Matrix
 Array,Prefix sum
 Hash table,Tree,DFS,BFS,Binary tree
-Graph,design,Heap priority queue,shortest-path
+Graph,Design,Heap priority queue,shortest-path
 Array,Matrix
 Array
 String,DP,Stack,Greedy
@@ -2668,7 +2668,7 @@ Array,Backtracking,Matrix
 Database
 Database
 Array,Hash table
-Hash table,design
+Hash table,Design
 Array
 Array,DP,Greedy,Tree,Binary tree
 

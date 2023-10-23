@@ -7,20 +7,20 @@
 	flex-direction: column;
 	box-shadow: var(--box-shadow);
 	border-radius: 16px;
-	width: 100%;
+	width: 25%;
 	border: var(--border);
 }
 
 .user-wrapper {
     display: flex;
-    gap:10px;
+    gap:40px;
 }
+
 .inputWrapper {
 	display: flex;
-	padding: 16px;
-	gap: 16px;
+    flex-grow: 0;
+	padding: 14px 0 14px 18px;
 	justify-content: space-between;
-    /* width: 30%; */
 }
 
 .inputWrapper input {
@@ -39,8 +39,5 @@
 }
 
 .submitButton {
-    margin-top: 15px;
-    font-size: 18px;
-    padding: 12px;
-    border-radius: 10px;
+    cursor: pointer;
 }

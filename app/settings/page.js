@@ -5,13 +5,15 @@ import NavbarLayout from '@/components/common/NavbarLayout'
 import PageHeader from '@/components/common/PageHeader'
 import SubHeading from '@/components/common/SubHeading'
 import ThemeToggle from '@/components/common/ThemeToggle'
+import Loader from '@/components/common/Loader'
 
-export default function page() {
-	const [userName, setUserName] = useState('') // Use a single userName state
+export default function Settings() {
+	const [userName, setUserName] = useState('')
+	const [loader, setLoader] = useState(true)
 
 	useEffect(() => {
 		async function fetchUserName() {
-			// Fetch the initial user name
+			// setLoader(true)
 			const res = await fetch('http://localhost:3000/api/fetchUserName', {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
@@ -21,16 +23,26 @@ export default function page() {
 			})
 			const temp = await res.json()
 			setUserName(temp.tempUsers.user_name)
+			setLoader(false)
 		}
 		fetchUserName()
-	})
+	}, [])
 
 	function handleChange(e) {
 		setUserName(e.target.value)
 	}
 
-	function handleSubmit() {
-		console.log(userName)
+	async function handleSubmit() {
+		setLoader(true)
+		const res = await fetch('http://localhost:3000/api/updateUserName', {
+			method: 'POST',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify({
+				user_email: 'user2@example.com',
+				user_name: userName,
+			}),
+		})
+		setLoader(false)
 	}
 
 	return (
@@ -42,10 +54,10 @@ export default function page() {
 					<div className={styles['user-wrapper']}>
 						<div className={styles['userName']}>
 							<div className={styles['inputWrapper']}>
-								<input defaultValue={userName} maxLength='20' />
+								<input defaultValue={userName} maxLength='20' onChange={handleChange} />
 							</div>
 						</div>
-						<input type='submit' className={styles['submitButton']} onClick={handleSubmit} />
+						<img src='/svgs/submit.svg' className={styles['submitButton']} onClick={handleSubmit} />
 					</div>
 					<div className={styles['theme-wrapper']}>
 						<SubHeading subheading='Theme' />
@@ -56,6 +68,7 @@ export default function page() {
 					</div>
 				</div>
 			</NavbarLayout>
+			<Loader loader={loader} />
 		</div>
 	)
 }
