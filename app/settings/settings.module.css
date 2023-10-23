@@ -1,0 +1,46 @@
+.container {
+    display: flex;
+}
+
+.userName {
+	display: flex;
+	flex-direction: column;
+	box-shadow: var(--box-shadow);
+	border-radius: 16px;
+	width: 100%;
+	border: var(--border);
+}
+
+.user-wrapper {
+    display: flex;
+    gap:10px;
+}
+.inputWrapper {
+	display: flex;
+	padding: 16px;
+	gap: 16px;
+	justify-content: space-between;
+    /* width: 30%; */
+}
+
+.inputWrapper input {
+	font-size: 18px;
+	width: 100%;
+}
+
+.theme-wrapper{
+    margin-top: 32px;
+}
+
+.themeToggleWrapper {
+    margin-top: 16px;
+    display: flex;
+    gap: 10px;
+}
+
+.submitButton {
+    margin-top: 15px;
+    font-size: 18px;
+    padding: 12px;
+    border-radius: 10px;
+}
