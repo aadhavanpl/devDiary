@@ -5,6 +5,7 @@ import { GoogleSignInButton, SubmitButton } from '@/components/common/Button'
 import { ProblemNoClick } from '@/components/common/Problem'
 import { Editor } from '@monaco-editor/react'
 import { useRouter, useParams } from 'next/navigation'
+import SubHeading from '@/components/common/SubHeading'
 
 export default function Slug() {
 	const [feature, setFeature] = useState(0)
@@ -61,6 +62,45 @@ export default function Slug() {
 				<GoogleSignInButton />
 			</div>
 			<ProblemNoClick />
+			<div className={styles['language-wrapper']}>
+				<SubHeading subheading='Language:' />
+				<div className={styles['select-container']}>
+					<select className={styles['select-box']} onChange={(e) => setLanguage(e.target.value)}>
+						<option disabled>Select a language</option>
+						<option value='python'>Python</option>
+						<option value='cpp'>C++</option>
+						<option value='c'>C</option>
+						<option value='javascript'>JavaScript</option>
+						<option value='typescript'>TypeScript</option>
+						<option value='java'>Java</option>
+						<option value='sql'>SQL</option>
+						<option value='ruby'>Ruby</option>
+						<option value='php'>PHP</option>
+						<option value='go'>Go</option>
+						<option value='rust'>Rust</option>
+						<option value='swift'>Swift</option>
+						<option value='powershell'>PowerShell</option>
+						<option value='perl'>Perl</option>
+						<option value='kotlin'>Kotlin</option>
+						<option value='json'>JSON</option>
+						<option value='xml'>XML</option>
+						<option value='markdown'>Markdown</option>
+						<option value='yaml'>YAML</option>
+						<option value='dockerfile'>Dockerfile</option>
+						<option value='shell'>Shell Script</option>
+						<option value='html'>HTML</option>
+						<option value='css'>CSS</option>
+						<option value='r'>R</option>
+						<option value='scala'>Scala</option>
+						<option value='perl6'>Perl 6</option>
+						<option value='groovy'>Groovy</option>
+						<option value='lua'>Lua</option>
+						<option value='matlab'>Matlab</option>
+						<option value='fortran'>Fortran</option>
+					</select>
+					<img src='/svgs/caret-down.svg' className={styles['caret']} />
+				</div>
+			</div>
 			<div className={styles.wrapper}>
 				<Editor
 					width='calc(100vw - 550px)'
@@ -70,7 +110,7 @@ export default function Slug() {
 					onChange={() => setCode(editorRef.current.getValue())}
 					onMount={handleEditorDidMount}
 					defaultValue='hello'
-					defaultLanguage='python3'
+					language={language}
 				/>
 				<div className={styles.features}>
 					<div className={styles.topWrapper}>

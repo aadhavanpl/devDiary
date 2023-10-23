@@ -72,7 +72,7 @@
 }
 
 .feature {
-	background-color: blue;
+	/* background-color: blue; */
 	height: 100%;
 }
 
@@ -106,4 +106,47 @@
 		repeating-conic-gradient(from 359.5deg, #555 0 1deg, transparent 1deg 30deg),
 		repeating-conic-gradient(from 359.75deg, #ccc 0 0.5deg, transparent 0.5deg 6deg);
 	mask-image: radial-gradient(circle at center, transparent 66%, #fff 66.1%);
+}
+
+
+.language-wrapper {
+	display: flex;
+	gap: 70px;
+	align-items: center;
+}
+
+.select-container {
+	display: flex;
+	justify-content: center;
+	position: relative;
+	width: 220px;
+	height: 64px;
+	box-shadow: var(--box-shadow);
+	border-radius: 16px;
+}
+
+.select-box {
+	border: none;
+	border-radius: 16px;
+	appearance: none;
+	padding: 0 30px 0 15px;
+	width: 100%;
+	font-size: 16px;
+}
+
+.select-container .caret {
+	width: 35px;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: absolute;
+	right: 10px;
+}
+
+.select-items {
+	padding: 10px;
+	font-size: 16px;
+	cursor: pointer;
+	background-color: white;
 }
