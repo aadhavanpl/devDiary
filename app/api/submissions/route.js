@@ -7,8 +7,11 @@ export async function POST(req) {
 		const { user_email, slug } = await req.json()
 		await connectMongoDB()
 		const submissionsAPI = await users.find(
-			{ user_email: user_email, 'problems.slug': slug },
-			{ _id: 0, 'problems.submissions.date': 1, 'problems.submissions.time': 1 }
+			{
+				user_email: user_email,
+				'problems.slug': slug,
+			},
+			{ _id: 0, 'problems.submissions.$': 1 }
 		)
 		return NextResponse.json(
 			{ submissionsAPI },

@@ -18,11 +18,13 @@ export default function Submissions() {
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({
 					user_email: 'user2@example.com',
-					slug: params.slug,
+					slug: 'longest-substring-without-repeating-characters',
 				}),
 			})
-			const submissions = await res.json()
-			setSubmissions(submissions.submissionsAPI[0].problems[0].submissions)
+			const data = await res.json()
+			console.log(data)
+			console.log(data.submissionAPI[0].problems)
+			// setSubmissions(submissions.submissionsAPI[0].problems[0].submissions)
 		}
 		fetchSubmissions()
 	}, [])
