@@ -1,7 +1,7 @@
 .container {
 	display: flex;
-	gap: 30px;
-
+	gap: 18px;
+	align-items: center;
 	margin-bottom: 48px;
 }
 
@@ -23,17 +23,15 @@
 .heading {
 	display: flex;
 	flex-direction: column;
-	gap: 11px;
 
-	font-size: 50px;
+	font-size: 42px;
 	font-weight: 500;
-	margin-top: 11px;
 
 	text-transform: capitalize;
 }
 
 .heading span {
-	font-size: 18px;
+	font-size: 16px;
 	color: var(--grey-50);
 	text-transform: none;
 }
