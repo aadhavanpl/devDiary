@@ -5,9 +5,9 @@ import styles from './problem.module.css'
 import { SmallTag } from './Tag'
 import { LongDifficulty, SmallDifficulty } from './Difficulty'
 
-export function SmallProblem({ qno, title, tags, difficulty }) {
+export function SmallProblem({ qno, title, tags, difficulty, border }) {
 	return (
-		<div className={styles.container}>
+		<div className={styles.container} style={border ? { borderBottom: 'var(--border)' } : null}>
 			<div className={styles.leftWrapper}>
 				<div className={styles.problemNumber}>{qno}</div>
 				<div className={styles.titleWrapper}>
@@ -46,7 +46,7 @@ export function BigProblem({ qno, title, tags, difficulty, bookmark }) {
 	}, [bookmarkk])
 
 	return (
-		<div className={styles.container}>
+		<div className={styles.container} style={{ borderBottom: 'var(--border)' }}>
 			<div className={styles.leftWrapper}>
 				<div className={styles.problemNumber}>{qno}</div>
 				<div className={styles.titleWrapper}>

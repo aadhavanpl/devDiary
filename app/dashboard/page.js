@@ -6,9 +6,11 @@ import StatCard from '@/components/common/StatCard'
 import SubHeading from '@/components/common/SubHeading'
 import Chart from '@/components/common/Chart'
 import Solutions from '@/components/common/Solutions'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
+import Loader from '@/components/common/Loader'
 
 export default function Dashboard() {
+	const [loader, setLoader] = useState(true)
 	useEffect(() => {
 		const userData = {
 			user_email: 'anaghdeebbugsdkjfn@gmail.com',
@@ -41,6 +43,7 @@ export default function Dashboard() {
 			.catch((error) => {
 				console.error('Error:', error)
 			})
+		setLoader(false)
 	}, [])
 
 	return (
@@ -66,6 +69,7 @@ export default function Dashboard() {
 					</div>
 				</div>
 			</NavbarLayout>
+			<Loader loader={loader} />
 		</div>
 	)
 }

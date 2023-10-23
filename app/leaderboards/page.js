@@ -7,15 +7,19 @@ import SubHeading from '@/components/common/SubHeading'
 import Participant from '@/components/common/Participant'
 
 import styles from './leaderboard.module.css'
+import ScrollButton from '@/components/common/ScrollButton'
+import Loader from '@/components/common/Loader'
 
 export default function Leaderboards() {
 	const [participants, setParticipants] = useState()
+	const [loader, setLoader] = useState(true)
 
 	useEffect(() => {
 		async function fetchParticipants() {
 			const res = await fetch('http://localhost:3000/api/leaderboards')
 			const problems = await res.json()
 			setParticipants(problems.leaderboardsAPI)
+			setLoader(false)
 		}
 		fetchParticipants()
 	}, [])
@@ -35,7 +39,9 @@ export default function Leaderboards() {
 						/>
 					))}
 				</div>
+				<ScrollButton />
 			</NavbarLayout>
+			<Loader loader={loader} />
 		</div>
 	)
 }

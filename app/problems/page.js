@@ -3,12 +3,14 @@ import PageHeader from '@/components/common/PageHeader'
 import styles from './problems.module.css'
 import NavbarLayout from '@/components/common/NavbarLayout'
 import { SearchBar } from '@/components/common/SearchBar'
+import ScrollButton from '@/components/common/ScrollButton'
 import { BigDifficulty } from '@/components/common/Difficulty'
 import { BigTag } from '@/components/common/Tag'
 import { BigProblem } from '@/components/common/Problem'
 import SubHeading from '@/components/common/SubHeading'
 import { useEffect, useState } from 'react'
 import Fuse from 'fuse.js'
+import Loader from '@/components/common/Loader'
 
 export default function Problems() {
 	const [problems, setProblems] = useState()
@@ -17,9 +19,16 @@ export default function Problems() {
 	const [easyFilter, setEasyFilter] = useState(false)
 	const [mediumFilter, setMediumFilter] = useState(false)
 	const [hardFilter, setHardFilter] = useState(false)
+	const [loader, setLoader] = useState(true)
 
 	const fuseOptions = {
 		keys: ['qno', 'title', 'slug', 'difficulty', 'tags'],
+		shouldSort: true,
+		threshold: 1,
+	}
+
+	const fuseDifficultyOptions = {
+		keys: ['difficulty'],
 		threshold: 1,
 	}
 
@@ -29,20 +38,54 @@ export default function Problems() {
 			const problems = await res.json()
 			setProblems(problems.problemsAPI)
 			setAllProblems(problems.problemsAPI)
+			setLoader(false)
 		}
 		fetchProblems()
 	}, [])
 
 	useEffect(() => {
 		if (search != '') {
-			const fuseInstance = new Fuse(problems, fuseOptions)
+			let fuseInstance = new Fuse(problems, fuseOptions)
 			const res = fuseInstance.search(search)
 			let tempProblems = []
 			for (let i = 0; i < res.length; i++) tempProblems.push(res[i].item)
-			setProblems(tempProblems)
+
+			let easyProblems = []
+			if (easyFilter) {
+				let newFuseInstance = new Fuse(tempProblems, fuseDifficultyOptions)
+				const easyRes = newFuseInstance.search('Easy')
+				for (let i = 0; i < easyRes.length; i++) easyProblems.push(easyRes[i].item)
+			}
+
+			let mediumProblems = []
+			if (mediumFilter) {
+				let newFuseInstance = new Fuse(tempProblems, fuseDifficultyOptions)
+				const mediumRes = newFuseInstance.search('Medium')
+				for (let i = 0; i < mediumRes.length; i++) mediumProblems.push(mediumRes[i].item)
+			}
+
+			let hardProblems = []
+			if (hardFilter) {
+				let newFuseInstance = new Fuse(tempProblems, fuseDifficultyOptions)
+				const hardRes = newFuseInstance.search('Hard')
+				for (let i = 0; i < hardRes.length; i++) hardProblems.push(hardRes[i].item)
+			}
+
+			if (!easyFilter && !mediumFilter && !hardFilter) setProblems(tempProblems)
+			else {
+				let finalProblems = easyProblems.concat(mediumProblems, hardProblems)
+				console.log('easyProblems')
+				console.log(easyProblems)
+				console.log('mediumProblems')
+				console.log(mediumProblems)
+				console.log('hardProblems')
+				console.log(hardProblems)
+				console.log(finalProblems)
+				setProblems(finalProblems)
+			}
 		}
 		if (search == '') setProblems(allProblems)
-	}, [search])
+	}, [search, easyFilter, mediumFilter, hardFilter])
 
 	return (
 		<div className={styles.container}>
@@ -69,8 +112,10 @@ export default function Problems() {
 							/>
 						))}
 					</div>
+					<ScrollButton />
 				</div>
 			</NavbarLayout>
+			<Loader loader={loader} />
 		</div>
 	)
 }
