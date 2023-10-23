@@ -10,7 +10,6 @@ export default function Home() {
 	const [problems, setProblems] = useState()
 	const [allProblems, setAllProblems] = useState()
 	const [search, setSearch] = useState('')
-	const [noResult, setNoResult] = useState(false)
 
 	const fuseOptions = {
 		keys: ['qno', 'title', 'slug', 'difficulty', 'tags'],
@@ -48,28 +47,17 @@ export default function Home() {
 				<HomeSearchBar search={search} setSearch={setSearch} />
 				{search && <div className={styles.inputBorder}></div>}
 				{search && (
-					<>
-						{noResult ? (
-							<div className={styles.noProblemsContainer}>
-								<picture>
-									<img src='/svgs/sad.svg' alt='no-result' />
-								</picture>
-								No result found!
-							</div>
-						) : (
-							<div className={styles.problemsContainer}>
-								{problems?.slice(0, 3).map((problem, index) => (
-									<SmallProblem
-										qno={problem?.qno}
-										title={problem?.title}
-										tags={problem?.tags}
-										difficulty={problem?.difficulty}
-										key={index}
-									/>
-								))}
-							</div>
-						)}
-					</>
+					<div className={styles.problemsContainer}>
+						{problems?.slice(0, 3).map((problem, index) => (
+							<SmallProblem
+								qno={problem?.qno}
+								title={problem?.title}
+								tags={problem?.tags}
+								difficulty={problem?.difficulty}
+								key={index}
+							/>
+						))}
+					</div>
 				)}
 			</div>
 			<div className={styles.googleSignIn}>
