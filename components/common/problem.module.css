@@ -4,7 +4,6 @@
 	padding: 16px;
 	align-items: center;
 	justify-content: space-between;
-	border-bottom: var(--border);
 }
 
 .containerNoClick {
@@ -35,13 +34,42 @@
 	gap: 5px;
 }
 
-.title {
+.title,
+.bigTitle {
+	white-space: nowrap;
 	font-size: 18px;
+	width: 31.3vw;
+	text-overflow: ellipsis;
 }
 
-.tagsWrapper {
+.bigTitle {
+	width: 41.1vw;
+}
+
+.title::-webkit-scrollbar,
+.bigTitle::-webkit-scrollbar {
+	display: none;
+}
+
+.tagsWrapper,
+.bigTagsWrapper {
 	display: flex;
 	gap: 8px;
+	height: 25px;
+	width: 31.3vw;
+	overflow-x: scroll;
+
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+}
+
+.bigTagsWrapper {
+	width: 41.1vw;
+}
+
+.tagsWrapper::-webkit-scrollbar,
+.bigTagsWrapper::-webkit-scrollbar {
+	display: none;
 }
 
 .rightWrapper {

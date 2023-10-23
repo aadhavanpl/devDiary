@@ -8,7 +8,7 @@ const montserrat = Montserrat({
 })
 
 export const metadata = {
-	title: 'Search',
+	title: 'devDiary | Search',
 	description: 'Search up a leetcode problem',
 }
 

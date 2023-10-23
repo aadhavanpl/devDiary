@@ -5,22 +5,21 @@ import styles from './problem.module.css'
 import { SmallTag } from './Tag'
 import { LongDifficulty, SmallDifficulty } from './Difficulty'
 
-export function SmallProblem({ qno, title, tags, difficulty }) {
+export function SmallProblem({ qno, title, tags, difficulty, border }) {
 	return (
-		<div className={styles.container}>
+		<div className={styles.container} style={border ? { borderBottom: 'var(--border)' } : null}>
 			<div className={styles.leftWrapper}>
 				<div className={styles.problemNumber}>{qno}</div>
 				<div className={styles.titleWrapper}>
 					<div className={styles.title}>{title}</div>
 					<div className={styles.tagsWrapper}>
-						{tags?.map((tag, index) => (
-							<SmallTag tag={tag} color='#FCB0BD' key={index} />
-						))}
+						{tags[0]?.length > 0 &&
+							tags?.map((tag, index) => <SmallTag tag={tag} color='#FCB0BD' key={index} />)}
 					</div>
 				</div>
 			</div>
 			<div className={styles.rightWrapper}>
-				<SmallDifficulty difficulty='E' />
+				<SmallDifficulty difficulty={difficulty} />
 				<img src='/svgs/arrow-right.svg' />
 			</div>
 		</div>
@@ -47,13 +46,13 @@ export function BigProblem({ qno, title, tags, difficulty, bookmark }) {
 	}, [bookmarkk])
 
 	return (
-		<div className={styles.container}>
+		<div className={styles.container} style={{ borderBottom: 'var(--border)' }}>
 			<div className={styles.leftWrapper}>
 				<div className={styles.problemNumber}>{qno}</div>
 				<div className={styles.titleWrapper}>
-					<div className={styles.title}>{title}</div>
-					<div className={styles.tagsWrapper}>
-						{tags?.length &&
+					<div className={styles.bigTitle}>{title}</div>
+					<div className={styles.bigTagsWrapper}>
+						{tags?.length > 0 &&
 							tags?.map((tag, index) => <SmallTag tag={tag} color='#FCB0BD' key={index} />)}
 					</div>
 				</div>

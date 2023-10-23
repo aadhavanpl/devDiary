@@ -21,7 +21,7 @@
 .containerWithSearch {
 	display: flex;
 	flex-direction: column;
-	box-shadow: var(--box-shadow);
+	box-shadow: 0px 1px 10px 0px var(--grey-10);
 	border-radius: 16px 16px 0px 0px;
 	width: 48vw;
 
@@ -29,18 +29,6 @@
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
-}
-
-.inputWrapper {
-	display: flex;
-	padding: 16px;
-	gap: 16px;
-	justify-content: space-between;
-}
-
-.inputWrapper input {
-	width: 100%;
-	font-size: 18px;
 }
 
 .googleSignIn {
@@ -62,10 +50,10 @@
 	top: calc(100%);
 	left: 50%;
 	transform: translateX(-50%);
-	width: 48vw;
+	width: calc(48vw + 0.5px);
 	background: white;
 	border-radius: 0px 0px 16px 16px;
-	box-shadow: var(--box-shadow);
+	box-shadow: 0px 3px 10px 0px var(--grey-10);
 }
 
 .noProblemsContainer {
