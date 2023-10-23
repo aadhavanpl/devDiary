@@ -4,11 +4,11 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	height: calc(100vh - 62px);
+	height: calc(100vh - 64px);
 	justify-content: space-between;
 	width: fit-content;
-	width: 280px;
-	padding: 31px 0px;
+	width: 244px;
+	padding: 32px 0px;
 	position: fixed;
 }
 
@@ -47,7 +47,7 @@
 .button-container {
 	display: flex;
 	gap: 12px;
-	padding: 10px 0px 10px 69px;
+	padding: 10px 0px 10px 44px;
 	align-items: center;
 	cursor: pointer;
 	font-weight: 500;
@@ -55,13 +55,13 @@
 
 .button-container:hover:not(.active-button) {
 	cursor: pointer;
-	border-right: solid 5px var(--grey-20);
+	border-right: solid 5px var(--grey-10);
 }
 
 .active-button {
 	display: flex;
 	gap: 12px;
-	padding: 10px 0px 10px 69px;
+	padding: 10px 0px 10px 44px;
 	align-items: center;
 	cursor: pointer;
 	border-right: solid 5px;
