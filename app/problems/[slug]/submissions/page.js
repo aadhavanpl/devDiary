@@ -22,8 +22,8 @@ export default function Submissions() {
 				}),
 			})
 			const data = await res.json()
-			console.log(data)
-			console.log(data.submissionAPI[0].problems)
+			// console.log(data)
+			console.log(data.submissionsAPI[0].problems)
 			// setSubmissions(submissions.submissionsAPI[0].problems[0].submissions)
 		}
 		fetchSubmissions()
