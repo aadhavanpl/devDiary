@@ -66,7 +66,7 @@ export default function Slug() {
 				<SubHeading subheading='Language:' />
 				<div className={styles['select-container']}>
 					<select className={styles['select-box']} onChange={(e) => setLanguage(e.target.value)}>
-						<option disabled>Select a language</option>
+						<option disabled selected>Select a language</option>
 						<option value='python'>Python</option>
 						<option value='cpp'>C++</option>
 						<option value='c'>C</option>
