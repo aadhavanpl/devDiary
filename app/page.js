@@ -1,16 +1,23 @@
 'use client'
 import styles from './page.module.css'
-import { GoogleSignInButton } from '@/components/common/Button'
+import { GoogleSignInButton, SignedIn } from '@/components/common/Button'
 import { SmallProblem } from '@/components/common/Problem'
 import { HomeSearchBar } from '@/components/common/SearchBar'
 import Fuse from 'fuse.js'
 import { useEffect, useState } from 'react'
 import Loader from '@/components/common/Loader'
+import { useGlobalContext } from '@/lib/utils/globalContext'
 
 export default function Home() {
 	const [problems, setProblems] = useState()
 	const [allProblems, setAllProblems] = useState()
 	const [search, setSearch] = useState('')
+	const { user } = useGlobalContext()
+
+	useEffect(() => {
+		if (!user || !user?.length) return
+		console.log(user[0])
+	}, [user])
 
 	const fuseOptions = {
 		keys: ['qno', 'title', 'slug', 'difficulty', 'tags'],
@@ -62,7 +69,7 @@ export default function Home() {
 				)}
 			</div>
 			<div className={styles.googleSignIn}>
-				<GoogleSignInButton />
+				{user && user?.length ? <SignedIn photoURL={user[0]?.photoURL} /> : <GoogleSignInButton />}
 			</div>
 		</main>
 	)

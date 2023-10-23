@@ -1,4 +1,5 @@
 'use client'
+import Link from 'next/link'
 import styles from './button.module.css'
 import { useGlobalContext } from '@/lib/utils/globalContext'
 export function GoogleSignInButton() {
@@ -7,6 +8,17 @@ export function GoogleSignInButton() {
 		<div className={styles.googleContainer} onClick={signIn}>
 			<img src='/svgs/google.svg' />
 			Sign In
+		</div>
+	)
+}
+
+export function SignedIn({ photoURL }) {
+	return (
+		<div className={styles.signedInContainer}>
+			<Link href='/dashboard' className={styles.link}>
+				Dashboard
+			</Link>
+			<img src={photoURL} alt='google-image' />
 		</div>
 	)
 }
