@@ -10,6 +10,7 @@ import { BigProblem } from '@/components/common/Problem'
 import SubHeading from '@/components/common/SubHeading'
 import { useEffect, useState } from 'react'
 import Fuse from 'fuse.js'
+import Loader from '@/components/common/Loader'
 
 export default function Problems() {
 	const [problems, setProblems] = useState()
@@ -18,6 +19,7 @@ export default function Problems() {
 	const [easyFilter, setEasyFilter] = useState(false)
 	const [mediumFilter, setMediumFilter] = useState(false)
 	const [hardFilter, setHardFilter] = useState(false)
+	const [loader, setLoader] = useState(true)
 
 	const fuseOptions = {
 		keys: ['qno', 'title', 'slug', 'difficulty', 'tags'],
@@ -36,6 +38,7 @@ export default function Problems() {
 			const problems = await res.json()
 			setProblems(problems.problemsAPI)
 			setAllProblems(problems.problemsAPI)
+			setLoader(false)
 		}
 		fetchProblems()
 	}, [])
@@ -112,6 +115,7 @@ export default function Problems() {
 					<ScrollButton />
 				</div>
 			</NavbarLayout>
+			<Loader loader={loader} />
 		</div>
 	)
 }

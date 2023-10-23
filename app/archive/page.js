@@ -8,11 +8,13 @@ import React, { useEffect, useState } from 'react'
 import styles from './archive.module.css'
 import Fuse from 'fuse.js'
 import ScrollButton from '@/components/common/ScrollButton'
+import Loader from '@/components/common/Loader'
 
 export default function Archive() {
 	const [problems, setProblems] = useState()
 	const [allProblems, setAllProblems] = useState()
 	const [search, setSearch] = useState('')
+	const [loader, setLoader] = useState(true)
 
 	const fuseOptions = {
 		keys: ['qno', 'title', 'slug', 'difficulty', 'tags'],
@@ -29,6 +31,7 @@ export default function Archive() {
 			const problems = await res.json()
 			setProblems(problems.archiveAPI[0].problems)
 			setAllProblems(problems.archiveAPI[0].problems)
+			setLoader(false)
 		}
 		fetchProblems()
 	}, [])
@@ -66,6 +69,7 @@ export default function Archive() {
 				</div>
 				<ScrollButton />
 			</NavbarLayout>
+			<Loader loader={loader} />
 		</div>
 	)
 }
