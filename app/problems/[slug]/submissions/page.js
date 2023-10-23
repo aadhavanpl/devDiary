@@ -23,6 +23,7 @@ export default function Submissions() {
 			})
 			const data = await res.json()
 			console.log(data.submissionsAPI[0].problems[0].submissions)
+			setSubmissions(data.submissionsAPI[0].problems[0].submissions)
 		}
 		fetchSubmissions()
 	}, [])
@@ -41,7 +42,7 @@ export default function Submissions() {
 							<Submission
 								number={index + 1}
 								date={submission.date}
-								duration={submission.time}
+								duration={submission.duration}
 								key={index + 1}
 							/>
 					  ))
