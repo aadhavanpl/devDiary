@@ -57,20 +57,20 @@ export default function Slug() {
 	return (
 		<div className={styles.container}>
 			<div className={styles.header}>
-				<picture>
-					<img src='/svgs/logo.svg' className={styles.logo} alt='logo' />
-				</picture>
+				<img src='/svgs/logo.svg' className={styles.logo} alt='logo' />
 				<GoogleSignInButton />
 			</div>
 			<ProblemNoClick />
 			<div className={styles.wrapper}>
 				<Editor
 					width='calc(100vw - 550px)'
-					height='calc(100vh - 292px)'
+					height='calc(100vh - 260px)'
 					theme='vs-dark'
 					className={styles.editor}
 					onChange={() => setCode(editorRef.current.getValue())}
 					onMount={handleEditorDidMount}
+					defaultValue='hello'
+					defaultLanguage='python3'
 				/>
 				<div className={styles.features}>
 					<div className={styles.topWrapper}>
