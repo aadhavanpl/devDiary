@@ -8,9 +8,17 @@ import Chart from '@/components/common/Chart'
 import Solutions from '@/components/common/Solutions'
 import { useEffect, useState } from 'react'
 import Loader from '@/components/common/Loader'
+import { useGlobalContext } from '@/lib/utils/globalContext'
 
 export default function Dashboard() {
 	const [loader, setLoader] = useState(true)
+	const { user } = useGlobalContext()
+
+	useEffect(() => {
+		if (!user || !user?.length) return
+		console.log(user[0])
+	}, [user])
+
 	useEffect(() => {
 		const userData = {
 			user_email: 'anaghdeebbugsdkjfn@gmail.com',
@@ -48,7 +56,10 @@ export default function Dashboard() {
 
 	return (
 		<div className={styles.container}>
-			<NavbarLayout>
+			<NavbarLayout
+				photoURL={user ? user[0]?.photoURL : null}
+				name={user ? user[0]?.displayName : null}
+			>
 				<PageHeader heading='dashboard' desc='Track your progress practicing Leetcode here!' />
 				<div className={styles.wrapper}>
 					<div>

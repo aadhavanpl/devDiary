@@ -6,7 +6,7 @@ export default function Solutions() {
 	const [widths, setWidths] = useState()
 
 	useEffect(() => {
-		const width = window.innerWidth - 488
+		const width = window.innerWidth - 356
 		let data = [114, 120, 5]
 		const sum = data.reduce((a, b) => a + b, 0)
 		const widths = [(data[0] / sum) * width, (data[1] / sum) * width, (data[2] / sum) * width]

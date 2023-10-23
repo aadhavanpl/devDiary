@@ -1,79 +1,84 @@
 'use client'
 import React, { useEffect } from 'react'
 import styles from './navbar.module.css'
-import { useRouter } from 'next/navigation'
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
 
-export default function Navbar() {
-	const router = useRouter()
+export default function Navbar({ photoURL, name }) {
 	const pathname = usePathname()
-	const isDashboard = pathname === '/dashboard'
-	const isProblems = pathname === '/problems'
-	const isBookmarks = pathname === '/bookmarks'
-	const isArchive = pathname === '/archive'
-	const isLeaderboards = pathname === '/leaderboards'
-	const isSettings = pathname === '/settings'
 
 	return (
 		<div className={styles['container']}>
 			<div className={styles['logo-profile-wrapper']}>
-				<img
-					src='/svgs/small-logo.svg'
-					className={styles['logo']}
-					alt='logo'
-					onClick={() => router.push('/')}
-				/>
+				<Link href='/' className={styles.link}>
+					<img src='/svgs/small-logo.svg' className={styles['logo']} alt='logo' />
+				</Link>
 				<div className={styles['profile-container']}>
-					<img src='/svgs/profile-pic.svg' className={styles['profile-pic']} alt='profile-pic' />
-					Aadhavan
+					<img src={photoURL} className={styles['profile-pic']} alt='profile-pic' />
+					{name}
 				</div>
 			</div>
 			<div className={styles['navbar-items']}>
-				<div
-					className={`${styles['button-container']} ${isDashboard ? styles['active-button'] : ''}`}
-					onClick={() => router.push('/dashboard')}
-				>
-					<img src='/svgs/dashboard.svg' className={styles['icon']} alt='icon' />
-					Dashboard
-				</div>
-				<div
-					className={`${styles['button-container']} ${isProblems ? styles['active-button'] : ''}`}
-					onClick={() => router.push('/problems')}
-				>
-					<img src='/svgs/problems.svg' className={styles['icon']} alt='icon' />
-					Problems
-				</div>
-				<div
-					className={`${styles['button-container']} ${isBookmarks ? styles['active-button'] : ''}`}
-					onClick={() => router.push('/bookmarks')}
-				>
-					<img src='/svgs/bookmarks.svg' className={styles['icon']} alt='icon' />
-					Bookmarks
-				</div>
-				<div
-					className={`${styles['button-container']} ${isArchive ? styles['active-button'] : ''}`}
-					onClick={() => router.push('/archive')}
-				>
-					<img src='/svgs/archive.svg' className={styles['icon']} alt='icon' />
-					Archive
-				</div>
-				<div
-					className={`${styles['button-container']} ${
-						isLeaderboards ? styles['active-button'] : ''
-					}`}
-					onClick={() => router.push('/leaderboards')}
-				>
-					<img src='/svgs/leaderboards.svg' className={styles['icon']} alt='icon' />
-					Leaderboards
-				</div>
-				<div
-					className={`${styles['button-container']} ${isSettings ? styles['active-button'] : ''}`}
-					onClick={() => router.push('/settings')}
-				>
-					<img src='/svgs/settings.svg' className={styles['icon']} alt='icon' />
-					Settings
-				</div>
+				<Link href='/dashboard' className={styles.link}>
+					<div
+						className={`${styles['button-container']} ${
+							pathname === '/dashboard' ? styles['active-button'] : null
+						}`}
+					>
+						<img src='/svgs/dashboard.svg' className={styles['icon']} alt='icon' />
+						Dashboard
+					</div>
+				</Link>
+				<Link href='/problems' className={styles.link}>
+					<div
+						className={`${styles['button-container']} ${
+							pathname === '/problems' ? styles['active-button'] : null
+						}`}
+					>
+						<img src='/svgs/problems.svg' className={styles['icon']} alt='icon' />
+						Problems
+					</div>
+				</Link>
+				<Link href='/bookmarks' className={styles.link}>
+					<div
+						className={`${styles['button-container']} ${
+							pathname === '/bookmarks' ? styles['active-button'] : null
+						}`}
+					>
+						<img src='/svgs/bookmarks.svg' className={styles['icon']} alt='icon' />
+						Bookmarks
+					</div>
+				</Link>
+				<Link href='/archive' className={styles.link}>
+					<div
+						className={`${styles['button-container']} ${
+							pathname === '/archive' ? styles['active-button'] : null
+						}`}
+					>
+						<img src='/svgs/archive.svg' className={styles['icon']} alt='icon' />
+						Archive
+					</div>
+				</Link>
+				<Link href='/leaderboards' className={styles.link}>
+					<div
+						className={`${styles['button-container']} ${
+							pathname === '/leaderboards' ? styles['active-button'] : null
+						}`}
+					>
+						<img src='/svgs/leaderboards.svg' className={styles['icon']} alt='icon' />
+						Leaderboards
+					</div>
+				</Link>
+				<Link href='/settings' className={styles.link}>
+					<div
+						className={`${styles['button-container']} ${
+							pathname === '/settings' ? styles['active-button'] : null
+						}`}
+					>
+						<img src='/svgs/settings.svg' className={styles['icon']} alt='icon' />
+						Settings
+					</div>
+				</Link>
 			</div>
 			<div className={styles['navbar-items']}>
 				<div className={styles['button-container']}>

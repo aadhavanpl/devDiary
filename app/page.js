@@ -5,7 +5,6 @@ import { SmallProblem } from '@/components/common/Problem'
 import { HomeSearchBar } from '@/components/common/SearchBar'
 import Fuse from 'fuse.js'
 import { useEffect, useState } from 'react'
-import Loader from '@/components/common/Loader'
 import { useGlobalContext } from '@/lib/utils/globalContext'
 
 export default function Home() {
