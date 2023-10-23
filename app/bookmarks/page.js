@@ -8,6 +8,7 @@ import SubHeading from '@/components/common/SubHeading'
 import React, { useEffect, useState } from 'react'
 import styles from './bookmarks.module.css'
 import Fuse from 'fuse.js'
+import ScrollButton from '@/components/common/ScrollButton'
 
 export default function Bookmarks() {
 	const [problems, setProblems] = useState()
@@ -65,6 +66,7 @@ export default function Bookmarks() {
 						/>
 					))}
 				</div>
+				<ScrollButton />
 			</NavbarLayout>
 		</div>
 	)

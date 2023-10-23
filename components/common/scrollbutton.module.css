@@ -1,9 +1,8 @@
 .scrollButton {
-    width: 50px;
-    position: fixed;
-    bottom: 20px;
-    right: 25px;
-    transition: ease-in-out;
-    cursor: pointer;
+	width: 50px;
+	position: fixed;
+	bottom: 22px;
+	right: 22px;
+	transition: ease-in-out;
+	cursor: pointer;
 }
-

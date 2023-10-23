@@ -7,6 +7,7 @@ import SubHeading from '@/components/common/SubHeading'
 import Participant from '@/components/common/Participant'
 
 import styles from './leaderboard.module.css'
+import ScrollButton from '@/components/common/ScrollButton'
 
 export default function Leaderboards() {
 	const [participants, setParticipants] = useState()
@@ -35,6 +36,7 @@ export default function Leaderboards() {
 						/>
 					))}
 				</div>
+				<ScrollButton />
 			</NavbarLayout>
 		</div>
 	)

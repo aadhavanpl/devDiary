@@ -7,6 +7,7 @@ import { SearchBar } from '@/components/common/SearchBar'
 import React, { useEffect, useState } from 'react'
 import styles from './archive.module.css'
 import Fuse from 'fuse.js'
+import ScrollButton from '@/components/common/ScrollButton'
 
 export default function Archive() {
 	const [problems, setProblems] = useState()
@@ -63,6 +64,7 @@ export default function Archive() {
 						/>
 					))}
 				</div>
+				<ScrollButton />
 			</NavbarLayout>
 		</div>
 	)
