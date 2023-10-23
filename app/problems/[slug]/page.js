@@ -16,7 +16,7 @@ export default function Slug() {
 	const [code, setCode] = useState('')
 	const [duration, setDuration] = useState('00:23:12')
 	const [note, setNote] = useState('Test note')
-	const [language, setLanguage] = useState('Python')
+	const [language, setLanguage] = useState('python')
 
 	useEffect(() => {}, [])
 
@@ -62,57 +62,22 @@ export default function Slug() {
 				<GoogleSignInButton />
 			</div>
 			<ProblemNoClick />
-			<div className={styles['language-wrapper']}>
-				<SubHeading subheading='Language:' />
-				<div className={styles['select-container']}>
-					<select className={styles['select-box']} onChange={(e) => setLanguage(e.target.value)}>
-						<option disabled selected>Select a language</option>
-						<option value='python'>Python</option>
-						<option value='cpp'>C++</option>
-						<option value='c'>C</option>
-						<option value='javascript'>JavaScript</option>
-						<option value='typescript'>TypeScript</option>
-						<option value='java'>Java</option>
-						<option value='sql'>SQL</option>
-						<option value='ruby'>Ruby</option>
-						<option value='php'>PHP</option>
-						<option value='go'>Go</option>
-						<option value='rust'>Rust</option>
-						<option value='swift'>Swift</option>
-						<option value='powershell'>PowerShell</option>
-						<option value='perl'>Perl</option>
-						<option value='kotlin'>Kotlin</option>
-						<option value='json'>JSON</option>
-						<option value='xml'>XML</option>
-						<option value='markdown'>Markdown</option>
-						<option value='yaml'>YAML</option>
-						<option value='dockerfile'>Dockerfile</option>
-						<option value='shell'>Shell Script</option>
-						<option value='html'>HTML</option>
-						<option value='css'>CSS</option>
-						<option value='r'>R</option>
-						<option value='scala'>Scala</option>
-						<option value='perl6'>Perl 6</option>
-						<option value='groovy'>Groovy</option>
-						<option value='lua'>Lua</option>
-						<option value='matlab'>Matlab</option>
-						<option value='fortran'>Fortran</option>
-					</select>
-					<img src='/svgs/caret-down.svg' className={styles['caret']} />
-				</div>
-			</div>
 			<div className={styles.wrapper}>
 				<Editor
 					width='calc(100vw - 550px)'
-					height='calc(100vh - 260px)'
+					height='calc(100vh - 252px)'
 					theme='vs-dark'
 					className={styles.editor}
 					onChange={() => setCode(editorRef.current.getValue())}
 					onMount={handleEditorDidMount}
-					defaultValue='hello'
+					defaultValue='hello = "value"'
 					language={language}
+					options={{
+						fontSize: 16, // Set your desired font size here
+					}}
 				/>
 				<div className={styles.features}>
+					<LanguageSelector />
 					<div className={styles.topWrapper}>
 						<div className={styles.toggleWrapper}>
 							<div className={styles.linksWrapper}>
@@ -149,7 +114,6 @@ export default function Slug() {
 									<textarea
 										className={styles.textarea}
 										placeholder='Enter your notes here'
-										rows={10}
 									></textarea>
 								</div>
 							)}
@@ -164,4 +128,48 @@ export default function Slug() {
 
 function Stopwatch() {
 	return <div className={styles.stopwatchContainer}>{elapsedFormatted}</div>
+}
+
+function LanguageSelector() {
+	return (
+		<div className={styles.selectWrapper}>
+			Language:
+			<select
+				className={styles.selectBox}
+				defaultValue='python'
+				onChange={(e) => setLanguage(e.target.value)}
+			>
+				<option value='python'>Python</option>
+				<option value='cpp'>C++</option>
+				<option value='c'>C</option>
+				<option value='javascript'>JavaScript</option>
+				<option value='typescript'>TypeScript</option>
+				<option value='java'>Java</option>
+				<option value='sql'>SQL</option>
+				<option value='ruby'>Ruby</option>
+				<option value='php'>PHP</option>
+				<option value='go'>Go</option>
+				<option value='rust'>Rust</option>
+				<option value='swift'>Swift</option>
+				<option value='powershell'>PowerShell</option>
+				<option value='perl'>Perl</option>
+				<option value='kotlin'>Kotlin</option>
+				<option value='json'>JSON</option>
+				<option value='xml'>XML</option>
+				<option value='markdown'>Markdown</option>
+				<option value='yaml'>YAML</option>
+				<option value='dockerfile'>Dockerfile</option>
+				<option value='shell'>Shell Script</option>
+				<option value='html'>HTML</option>
+				<option value='css'>CSS</option>
+				<option value='r'>R</option>
+				<option value='scala'>Scala</option>
+				<option value='perl6'>Perl 6</option>
+				<option value='groovy'>Groovy</option>
+				<option value='lua'>Lua</option>
+				<option value='matlab'>Matlab</option>
+				<option value='fortran'>Fortran</option>
+			</select>
+		</div>
+	)
 }

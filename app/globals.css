@@ -56,3 +56,22 @@ picture {
 	margin: none;
 	padding: none;
 }
+
+select,
+option {
+	font-family: inherit;
+	outline: 0px;
+	border: 0px;
+}
+
+select {
+	scrollbar-width: none;
+	-ms-overflow-style: none;
+
+	appearance: none;
+	-webkit-appearance: none;
+}
+
+select::-webkit-scrollbar {
+	width: 0;
+}
