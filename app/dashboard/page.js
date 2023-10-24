@@ -19,39 +19,69 @@ export default function Dashboard() {
 		console.log(user[0])
 	}, [user])
 
+	// useEffect(() => {
+	// 	const userData = {
+	// 		user_email: 'anaghdeebbugsdkjfn@gmail.com',
+	// 		user_name: 'Aadfaasdfasddasdfashavan',
+	// 		user_photo: 'lmaoadsfasd@google.com',
+	// 	}
+
+	// 	const problemData = {
+	// 		user_email: 'sahelnriaz@gmail.com',
+	// 		qno: 12,
+	// 		code: 'tempcode',
+	// 	}
+
+	// 	fetch('http://localhost:3000/api/users', {
+	// 		method: 'POST',
+	// 		headers: {
+	// 			'Content-Type': 'application/json',
+	// 		},
+	// 		body: JSON.stringify(problemData),
+	// 	})
+	// 		.then((response) => {
+	// 			if (!response.ok) {
+	// 				throw new Error('Failed to add the user.')
+	// 			}
+	// 			return response.json()
+	// 		})
+	// 		.then((data) => {
+	// 			console.log('User added successfully:', data)
+	// 		})
+	// 		.catch((error) => {
+	// 			console.error('Error:', error)
+	// 		})
+	// 	setLoader(false)
+	// }, [])
+
 	useEffect(() => {
-		const userData = {
-			user_email: 'anaghdeebbugsdkjfn@gmail.com',
-			user_name: 'Aadfaasdfasddasdfashavan',
-			user_photo: 'lmaoadsfasd@google.com',
+		async function fetchCountProblems() {
+			const res = await fetch('http://localhost:3000/api/countProblems', {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({
+					user_email: 'user2@example.com',
+				}),
+			})
+			const data = await res.json()
+			console.log('problemmsssss', data)
+			setLoader(false)
 		}
+		fetchCountProblems()
 
-		const problemData = {
-			user_email: 'sahelnriaz@gmail.com',
-			qno: 12,
-			code: 'tempcode',
+		async function fetchChartValues() {
+			const res = await fetch('http://localhost:3000/api/fetchChart', {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({
+					user_email: 'user2@example.com',
+				}),
+			})
+			const data = await res.json()
+			console.log('chartttt', data)
+			setLoader(false)
 		}
-
-		fetch('http://localhost:3000/api/users', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify(problemData),
-		})
-			.then((response) => {
-				if (!response.ok) {
-					throw new Error('Failed to add the user.')
-				}
-				return response.json()
-			})
-			.then((data) => {
-				console.log('User added successfully:', data)
-			})
-			.catch((error) => {
-				console.error('Error:', error)
-			})
-		setLoader(false)
+		fetchChartValues()
 	}, [])
 
 	return (
