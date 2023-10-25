@@ -52,6 +52,34 @@ export default function Slug() {
 		await res.json()
 	}
 
+	useEffect(() => {
+		async function fetchProblemDetails() {
+			const res = await fetch('http://localhost:3000/api/fetchProblem', {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({
+					slug: 'reverse-integer',
+				}),
+			})
+			const data = await res.json()
+			console.log(data)
+		}
+		fetchProblemDetails()
+
+		async function fetchUserProblemDetails() {
+			const res = await fetch('http://localhost:3000/api/fetchUserProblemDetail', {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({
+					user_email: 'user2@example.com',
+					slug: 'reverse-integer',
+				}),
+			})
+			const data = await res.json()
+			console.log(data)
+		}
+		fetchUserProblemDetails()
+	}, [])
 	function handleEditorDidMount(editor) {
 		editorRef.current = editor
 	}
