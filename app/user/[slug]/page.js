@@ -1,5 +1,5 @@
 'use client'
-import PageHeader, { UserPageHeader } from '@/components/common/PageHeader'
+import { UserPageHeader } from '@/components/common/PageHeader'
 import styles from './user.module.css'
 import NavbarLayout from '@/components/common/NavbarLayout'
 import StatCard from '@/components/common/StatCard'
@@ -8,9 +8,8 @@ import Chart from '@/components/common/Chart'
 import Solutions from '@/components/common/Solutions'
 import { useEffect, useState } from 'react'
 import Loader from '@/components/common/Loader'
-import { useParams, usePathname, useSearchParams } from 'next/navigation'
+import { useParams } from 'next/navigation'
 import { useGlobalContext } from '@/lib/utils/globalContext'
-import { useRouter } from 'next/navigation'
 
 export default function Slug() {
 	const [loader, setLoader] = useState(true)
