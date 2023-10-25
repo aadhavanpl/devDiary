@@ -49,6 +49,19 @@
 	border: 2px solid var(--black);
 }
 
+.userNameChangeContainer {
+	display: flex;
+	gap: 10px;
+	align-items: center;
+	padding: 15px 20px;
+	font-size: 16px;
+	font-weight: 500;
+	border-radius: 16px;
+	background-color: var(--black);
+	cursor: pointer;
+	color: var(--white);
+}
+
 .link {
 	text-decoration: none;
 	font-weight: 500;
