@@ -14,6 +14,8 @@ export default function Dashboard() {
 	const [loader, setLoader] = useState(true)
 	const { user } = useGlobalContext()
 	const [solutions, setSolutions] = useState()
+	const [problemCount, setProblemCount] = useState()
+	const [duration, setDuration] = useState()
 
 	useEffect(() => {
 		async function fetchCountProblems() {
@@ -26,6 +28,11 @@ export default function Dashboard() {
 			})
 			const data = await res.json()
 			setSolutions(data.countProblems)
+
+			/* problem count */
+			let count = 0
+			for (let i = 0; i < data.countProblems.length; i++) count += data.countProblems[i].count
+			setProblemCount(count)
 		}
 		fetchCountProblems()
 
@@ -38,7 +45,19 @@ export default function Dashboard() {
 				}),
 			})
 			const data = await res.json()
-			console.log('durationnssss', data)
+
+			/* duration */
+			function timeToMinutes(timeString) {
+				const [hours, minutes, seconds] = timeString.split(':').map(Number)
+				return hours * 60 + minutes + seconds / 60
+			}
+			const totalMinutes = Math.round(
+				data.tempUsers[0].durations.reduce((total, duration) => {
+					return total + timeToMinutes(duration)
+				}, 0)
+			)
+			const formattedTime = `${Math.floor(totalMinutes / 60)}h ${Math.round(totalMinutes % 60)}m`
+			setDuration(formattedTime)
 		}
 		fetchDurations()
 
@@ -65,9 +84,13 @@ export default function Dashboard() {
 					<div>
 						<SubHeading subheading='Stats' />
 						<div className={styles.stats}>
-							<StatCard icon='/svgs/problems.svg' value='207' description='Problems solved' />
+							<StatCard
+								icon='/svgs/problems.svg'
+								value={problemCount}
+								description='Problems solved'
+							/>
 							<StatCard icon='/svgs/leaderboards.svg' value='8th' description='Leaderboards' />
-							<StatCard icon='/svgs/clock.svg' value='8h 36m' description='Time spent' />
+							<StatCard icon='/svgs/clock.svg' value={duration} description='Time spent' />
 						</div>
 					</div>
 					<div>

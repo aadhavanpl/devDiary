@@ -29,7 +29,6 @@ export default function Solutions({ solutions }) {
 			const width = window.innerWidth - 356
 			const sum = data.reduce((a, b) => a + b, 0)
 			const widths = [(data[0] / sum) * width, (data[1] / sum) * width, (data[2] / sum) * width]
-			console.log(widths)
 			setWidths(widths)
 		}
 	}, [solutions])

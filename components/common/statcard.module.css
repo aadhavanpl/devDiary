@@ -22,6 +22,7 @@
 .value {
 	color: var(--black);
 	font-size: 36px;
+	height: 44px;
 }
 
 .description {
