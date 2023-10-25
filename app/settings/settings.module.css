@@ -1,43 +1,62 @@
 .container {
-    display: flex;
+	display: flex;
 }
 
-.userName {
+.nameChange {
+	display: flex;
+	gap: 40px;
+}
+
+.nameChange input {
 	display: flex;
 	flex-direction: column;
+	align-items: center;
 	box-shadow: var(--box-shadow);
 	border-radius: 16px;
-	width: 25%;
 	border: var(--border);
-}
 
-.user-wrapper {
-    display: flex;
-    gap:40px;
-}
-
-.inputWrapper {
-	display: flex;
-    flex-grow: 0;
-	padding: 14px 0 14px 18px;
-	justify-content: space-between;
-}
-
-.inputWrapper input {
 	font-size: 18px;
-	width: 100%;
+	width: 250px;
+
+	height: 50px;
+
+	padding-left: 18px;
 }
 
-.theme-wrapper{
-    margin-top: 32px;
+.theme-wrapper {
+	margin-top: 32px;
 }
 
 .themeToggleWrapper {
-    margin-top: 16px;
-    display: flex;
-    gap: 10px;
+	margin-top: 16px;
+	display: flex;
+	gap: 10px;
 }
 
 .submitButton {
-    cursor: pointer;
+	cursor: pointer;
+}
+
+/* toggle theme */
+
+.button {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 18px;
+	font-weight: 500;
+	border: 2px solid var(--black);
+	border-radius: 50%;
+	width: 40px;
+	height: 40px;
+	cursor: pointer;
+}
+
+.L {
+	background-color: var(--white);
+}
+
+.D {
+	color: var(--white);
+	background-color: var(--black);
 }

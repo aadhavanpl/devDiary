@@ -23,9 +23,12 @@ export function SignedIn({ photoURL }) {
 	)
 }
 
-export function RandomButton() {
+export function RandomButton({ size, setRandom }) {
 	return (
-		<div className={styles.randomContainer}>
+		<div
+			className={styles.randomContainer}
+			onClick={() => setRandom(Math.floor(Math.random() * (size - 1)) + 0)}
+		>
 			<img src='/svgs/random.svg' />
 			Random
 		</div>
@@ -46,6 +49,15 @@ export function AddButton() {
 		<div className={styles.randomContainer}>
 			<img src='/svgs/add.svg' />
 			Add submission
+		</div>
+	)
+}
+
+export function UserNameChangeSubmit({ onClick }) {
+	return (
+		<div className={styles.userNameChangeContainer} onClick={onClick}>
+			Submit
+			<img src='/svgs/user-tick.svg' />
 		</div>
 	)
 }

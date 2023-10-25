@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react'
 import styles from './problem.module.css'
 import { SmallTag } from './Tag'
 import { LongDifficulty, SmallDifficulty } from './Difficulty'
+import { useGlobalContext } from '@/lib/utils/globalContext'
 
 export function SmallProblem({ qno, title, tags, difficulty, border }) {
 	return (
@@ -29,6 +30,7 @@ export function SmallProblem({ qno, title, tags, difficulty, border }) {
 export function BigProblem({ qno, title, tags, difficulty, bookmark }) {
 	const [bookmarkk, setBookmark] = useState(bookmark)
 	const [change, setChange] = useState(0)
+	const { user } = useGlobalContext()
 
 	useEffect(() => {
 		if (change) {
@@ -36,7 +38,7 @@ export function BigProblem({ qno, title, tags, difficulty, bookmark }) {
 				const res = await fetch('http://localhost:3000/api/bookmark', {
 					method: 'POST',
 					headers: { 'Content-Type': 'application/json' },
-					body: JSON.stringify({ user_email: 'user2@example.com', qno: qno, bookmark: bookmarkk }),
+					body: JSON.stringify({ user_email: user?.user_email, qno: qno, bookmark: bookmarkk }),
 				})
 				await res.json()
 				setChange(0)
