@@ -8,7 +8,7 @@ export async function GET() {
 		const leaderboardsAPI = await users.aggregate([
 			{
 				$project: {
-					_id: 0,
+					_id: 1,
 					user_email: 1,
 					user_name: 1,
 					problemCount: { $size: '$problems' },

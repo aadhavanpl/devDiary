@@ -78,7 +78,7 @@ export default function Chart({ chartData }) {
 								display: false,
 							},
 							ticks: {
-								stepSize: 2,
+								stepSize: 1,
 							},
 						},
 					},

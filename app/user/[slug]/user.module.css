@@ -1,0 +1,14 @@
+.container {
+	display: flex;
+}
+
+.stats {
+	display: flex;
+	justify-content: space-between;
+}
+
+.wrapper {
+	display: flex;
+	flex-direction: column;
+	gap: 32px;
+}

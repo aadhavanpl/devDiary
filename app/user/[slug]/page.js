@@ -1,6 +1,6 @@
 'use client'
-import PageHeader from '@/components/common/PageHeader'
-import styles from './dashboard.module.css'
+import PageHeader, { UserPageHeader } from '@/components/common/PageHeader'
+import styles from './user.module.css'
 import NavbarLayout from '@/components/common/NavbarLayout'
 import StatCard from '@/components/common/StatCard'
 import SubHeading from '@/components/common/SubHeading'
@@ -8,25 +8,48 @@ import Chart from '@/components/common/Chart'
 import Solutions from '@/components/common/Solutions'
 import { useEffect, useState } from 'react'
 import Loader from '@/components/common/Loader'
+import { useParams, usePathname, useSearchParams } from 'next/navigation'
 import { useGlobalContext } from '@/lib/utils/globalContext'
+import { useRouter } from 'next/navigation'
 
-export default function Dashboard() {
+export default function Slug() {
 	const [loader, setLoader] = useState(true)
-	const { user } = useGlobalContext()
 	const [solutions, setSolutions] = useState()
 	const [problemCount, setProblemCount] = useState()
 	const [duration, setDuration] = useState()
 	const [chartData, setChartData] = useState()
 	const [position, setPosition] = useState()
+	const { user } = useGlobalContext()
+	const [name, setName] = useState()
+	const [email, setEmail] = useState()
+	const params = useParams()
 
 	useEffect(() => {
-		if (user) {
+		if (params.slug) {
+			async function fetchUserInfo() {
+				const res = await fetch('http://localhost:3000/api/fetchUser', {
+					method: 'POST',
+					headers: { 'Content-Type': 'application/json' },
+					body: JSON.stringify({
+						id: params.slug,
+					}),
+				})
+				const data = await res.json()
+				setEmail(data.tempUsers.user_email)
+				setName(data.tempUsers.user_name)
+			}
+			fetchUserInfo()
+		}
+	}, [params])
+
+	useEffect(() => {
+		if (email) {
 			async function fetchCountProblems() {
 				const res = await fetch('http://localhost:3000/api/countProblems', {
 					method: 'POST',
 					headers: { 'Content-Type': 'application/json' },
 					body: JSON.stringify({
-						user_email: user?.user_email,
+						user_email: email,
 					}),
 				})
 				const data = await res.json()
@@ -44,7 +67,7 @@ export default function Dashboard() {
 					method: 'POST',
 					headers: { 'Content-Type': 'application/json' },
 					body: JSON.stringify({
-						user_email: user?.user_email,
+						user_email: email,
 					}),
 				})
 				const data = await res.json()
@@ -69,7 +92,7 @@ export default function Dashboard() {
 					method: 'POST',
 					headers: { 'Content-Type': 'application/json' },
 					body: JSON.stringify({
-						user_email: user?.user_email,
+						user_email: email,
 					}),
 				})
 				const data = await res.json()
@@ -82,13 +105,14 @@ export default function Dashboard() {
 				const problems = await res.json()
 
 				for (let i = 0; i < problems.leaderboardsAPI.length; i++) {
-					if (problems.leaderboardsAPI[i].user_email == user?.user_email) {
+					if (problems.leaderboardsAPI[i].user_email == email) {
 						const getOrdinal = (n) => {
 							const s = ['th', 'st', 'nd', 'rd']
 							const v = n % 100
 							return n + (s[(v - 20) % 10] || s[v] || s[0])
 						}
 						setPosition(getOrdinal(i + 1))
+						setName(problems.leaderboardsAPI[i].user_name)
 						break
 					}
 				}
@@ -96,12 +120,12 @@ export default function Dashboard() {
 			fetchParticipants()
 			setLoader(false)
 		}
-	}, [user])
+	}, [email])
 
 	return (
 		<div className={styles.container}>
 			<NavbarLayout photoURL={user ? user?.user_photo : null} name={user ? user?.user_name : null}>
-				<PageHeader heading='dashboard' desc='Track your progress practicing Leetcode here!' />
+				<UserPageHeader name={name ? name : null} desc='Stalk your friends :)' />
 				<div className={styles.wrapper}>
 					<div>
 						<SubHeading subheading='Stats' />

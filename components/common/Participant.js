@@ -1,9 +1,18 @@
 import React from 'react'
 import styles from './participant.module.css'
+import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 
-export default function Participant({ position, name, problems }) {
+export default function Participant({ position, name, problems, email, id }) {
+	const router = useRouter()
+
+	function handleClick() {
+		router.push(`/user/${id}`, { id, name, email })
+	}
+
 	return (
-		<div className={styles.container}>
+		// <Link href={'/user/' + email}>
+		<div className={styles.container} onClick={handleClick}>
 			<div className={styles.leftWrapper}>
 				<div className={styles.position}>
 					{position == 1 ? (
@@ -26,5 +35,6 @@ export default function Participant({ position, name, problems }) {
 				<img src='/svgs/arrow-right.svg' />
 			</div>
 		</div>
+		// </Link>
 	)
 }
