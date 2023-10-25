@@ -9,6 +9,7 @@ export async function GET() {
 			{
 				$project: {
 					_id: 0,
+					user_email: 1,
 					user_name: 1,
 					problemCount: { $size: '$problems' },
 				},

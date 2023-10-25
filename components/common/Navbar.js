@@ -16,7 +16,7 @@ export default function Navbar({ photoURL, name }) {
 					<img src='/svgs/small-logo.svg' className={styles['logo']} alt='logo' />
 				</Link>
 				<div className={styles['profile-container']}>
-					<img src={photoURL} className={styles['profile-pic']} alt='profile-pic' />
+					<img src={photoURL} className={styles['profile-pic']} />
 					{name}
 				</div>
 			</div>

@@ -17,66 +17,86 @@ export default function Dashboard() {
 	const [problemCount, setProblemCount] = useState()
 	const [duration, setDuration] = useState()
 	const [chartData, setChartData] = useState()
+	const [position, setPosition] = useState()
 
 	useEffect(() => {
-		async function fetchCountProblems() {
-			const res = await fetch('http://localhost:3000/api/countProblems', {
-				method: 'POST',
-				headers: { 'Content-Type': 'application/json' },
-				body: JSON.stringify({
-					user_email: 'user2@example.com',
-				}),
-			})
-			const data = await res.json()
-			setSolutions(data.countProblems)
+		if (user) {
+			async function fetchCountProblems() {
+				const res = await fetch('http://localhost:3000/api/countProblems', {
+					method: 'POST',
+					headers: { 'Content-Type': 'application/json' },
+					body: JSON.stringify({
+						user_email: 'user2@example.com',
+					}),
+				})
+				const data = await res.json()
+				setSolutions(data.countProblems)
 
-			/* problem count */
-			let count = 0
-			for (let i = 0; i < data.countProblems.length; i++) count += data.countProblems[i].count
-			setProblemCount(count)
-		}
-		fetchCountProblems()
-
-		async function fetchDurations() {
-			const res = await fetch('http://localhost:3000/api/fetchDurations', {
-				method: 'POST',
-				headers: { 'Content-Type': 'application/json' },
-				body: JSON.stringify({
-					user_email: 'user2@example.com',
-				}),
-			})
-			const data = await res.json()
-
-			/* duration */
-			function timeToMinutes(timeString) {
-				const [hours, minutes, seconds] = timeString.split(':').map(Number)
-				return hours * 60 + minutes + seconds / 60
+				/* problem count */
+				let count = 0
+				for (let i = 0; i < data.countProblems.length; i++) count += data.countProblems[i].count
+				setProblemCount(count)
 			}
-			const totalMinutes = Math.round(
-				data.tempUsers[0].durations.reduce((total, duration) => {
-					return total + timeToMinutes(duration)
-				}, 0)
-			)
-			const formattedTime = `${Math.floor(totalMinutes / 60)}h ${Math.round(totalMinutes % 60)}m`
-			setDuration(formattedTime)
-		}
-		fetchDurations()
+			fetchCountProblems()
 
-		async function fetchChartValues() {
-			const res = await fetch('http://localhost:3000/api/fetchChart', {
-				method: 'POST',
-				headers: { 'Content-Type': 'application/json' },
-				body: JSON.stringify({
-					user_email: 'user2@example.com',
-				}),
-			})
-			const data = await res.json()
-			console.log('chartttt', data.countProblems)
-			setChartData(data.countProblems)
+			async function fetchDurations() {
+				const res = await fetch('http://localhost:3000/api/fetchDurations', {
+					method: 'POST',
+					headers: { 'Content-Type': 'application/json' },
+					body: JSON.stringify({
+						user_email: 'user2@example.com',
+					}),
+				})
+				const data = await res.json()
+
+				/* duration */
+				function timeToMinutes(timeString) {
+					const [hours, minutes, seconds] = timeString.split(':').map(Number)
+					return hours * 60 + minutes + seconds / 60
+				}
+				const totalMinutes = Math.round(
+					data.tempUsers[0].durations.reduce((total, duration) => {
+						return total + timeToMinutes(duration)
+					}, 0)
+				)
+				const formattedTime = `${Math.floor(totalMinutes / 60)}h ${Math.round(totalMinutes % 60)}m`
+				setDuration(formattedTime)
+			}
+			fetchDurations()
+
+			async function fetchChartValues() {
+				const res = await fetch('http://localhost:3000/api/fetchChart', {
+					method: 'POST',
+					headers: { 'Content-Type': 'application/json' },
+					body: JSON.stringify({
+						user_email: 'user2@example.com',
+					}),
+				})
+				const data = await res.json()
+				setChartData(data.countProblems)
+			}
+			fetchChartValues()
+
+			async function fetchParticipants() {
+				const res = await fetch('http://localhost:3000/api/leaderboards')
+				const problems = await res.json()
+
+				for (let i = 0; i < problems.leaderboardsAPI.length; i++) {
+					if (problems.leaderboardsAPI[i].user_email == user?.user_email) {
+						const getOrdinal = (n) => {
+							const s = ['th', 'st', 'nd', 'rd']
+							const v = n % 100
+							return n + (s[(v - 20) % 10] || s[v] || s[0])
+						}
+						setPosition(getOrdinal(i + 1))
+						break
+					}
+				}
+			}
+			fetchParticipants()
+			setLoader(false)
 		}
-		fetchChartValues()
-		setLoader(false)
-	}, [])
+	}, [user])
 
 	return (
 		<div className={styles.container}>
@@ -91,7 +111,7 @@ export default function Dashboard() {
 								value={problemCount}
 								description='Problems solved'
 							/>
-							<StatCard icon='/svgs/leaderboards.svg' value='8th' description='Leaderboards' />
+							<StatCard icon='/svgs/leaderboards.svg' value={position} description='Leaderboards' />
 							<StatCard icon='/svgs/clock.svg' value={duration} description='Time spent' />
 						</div>
 					</div>

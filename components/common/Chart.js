@@ -15,36 +15,24 @@ import { useEffect, useState } from 'react'
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip)
 
 export default function Chart({ chartData }) {
-	/*
-		get todays date
-		make labels for this week and last week
-		check for matching values and store it
-	*/
-
 	const [data, setData] = useState()
 
 	useEffect(() => {
 		if (chartData) {
 			const today = new Date()
 			const datesArray = []
+			let latestWeek = [0, 0, 0, 0, 0, 0, 0]
+			let lastWeek = [0, 0, 0, 0, 0, 0, 0]
 
 			for (let i = 0; i < 14; i++) {
 				const currentDate = new Date(today)
 				currentDate.setDate(today.getDate() - i)
 
-				const year = currentDate.getFullYear()
-				const month = (currentDate.getMonth() + 1).toString().padStart(2, '0')
-				const day = currentDate.getDate().toString().padStart(2, '0')
-
-				const formattedDate = `${year}/${month}/${day}`
+				const formattedDate = `${currentDate.getFullYear()}/${(currentDate.getMonth() + 1)
+					.toString()
+					.padStart(2, '0')}/${currentDate.getDate().toString().padStart(2, '0')}`
 				datesArray.unshift(formattedDate)
 			}
-
-			console.log(chartData)
-			console.log(datesArray)
-
-			let latestWeek = [0, 0, 0, 0, 0, 0, 0]
-			let lastWeek = [0, 0, 0, 0, 0, 0, 0]
 
 			for (let i = 0; i < datesArray.length; i++) {
 				const matchedDate = chartData.find((item) => item.date === datesArray[i])
@@ -55,10 +43,8 @@ export default function Chart({ chartData }) {
 				}
 			}
 
-			const last7Dates = datesArray.slice(-7)
-
 			const data = {
-				labels: last7Dates,
+				labels: datesArray.slice(-7),
 				datasets: [
 					{
 						label: 'Current week',
