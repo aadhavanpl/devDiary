@@ -23,9 +23,12 @@ export function SignedIn({ photoURL }) {
 	)
 }
 
-export function RandomButton() {
+export function RandomButton({ size, setRandom }) {
 	return (
-		<div className={styles.randomContainer}>
+		<div
+			className={styles.randomContainer}
+			onClick={() => setRandom(Math.floor(Math.random() * (size - 1)) + 0)}
+		>
 			<img src='/svgs/random.svg' />
 			Random
 		</div>

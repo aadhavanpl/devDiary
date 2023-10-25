@@ -35,7 +35,9 @@ export default function Settings() {
 	}
 
 	function handleSubmit() {
+		setLoader(true)
 		updateUserName(user?.user_email, userName)
+		setLoader(false)
 	}
 
 	return (

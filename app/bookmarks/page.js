@@ -11,6 +11,7 @@ import Fuse from 'fuse.js'
 import ScrollButton from '@/components/common/ScrollButton'
 import Loader from '@/components/common/Loader'
 import { useGlobalContext } from '@/lib/utils/globalContext'
+import { useRouter } from 'next/navigation'
 
 export default function Bookmarks() {
 	const [problems, setProblems] = useState()
@@ -18,6 +19,8 @@ export default function Bookmarks() {
 	const [search, setSearch] = useState('')
 	const [loader, setLoader] = useState(true)
 	const { user } = useGlobalContext()
+	const [random, setRandom] = useState()
+	const router = useRouter()
 
 	const fuseOptions = {
 		keys: ['qno', 'title', 'slug', 'difficulty', 'tags'],
@@ -25,12 +28,16 @@ export default function Bookmarks() {
 	}
 
 	useEffect(() => {
+		if (random) router.push('/problems/' + problems[random]?.slug)
+	}, [random])
+
+	useEffect(() => {
 		async function fetchProblems() {
 			const res = await fetch('http://localhost:3000/api/bookmarks', {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({
-					user_email: 'user2@example.com',
+					user_email: user?.user_email,
 				}),
 			})
 			const problems = await res.json()
@@ -58,7 +65,7 @@ export default function Bookmarks() {
 				<PageHeader heading='bookmarks' desc='Bookmarked questions' />
 				<div className={styles.searchWrapper}>
 					<SearchBar search={search} setSearch={setSearch} />
-					<RandomButton />
+					<RandomButton size={500} setRandom={setRandom} />
 				</div>
 				<div className={styles.problems}>
 					{problems?.map((problem, index) => (

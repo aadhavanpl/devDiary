@@ -10,6 +10,7 @@ import Fuse from 'fuse.js'
 import ScrollButton from '@/components/common/ScrollButton'
 import Loader from '@/components/common/Loader'
 import { useGlobalContext } from '@/lib/utils/globalContext'
+import { useRouter } from 'next/navigation'
 
 export default function Archive() {
 	const [problems, setProblems] = useState()
@@ -17,11 +18,17 @@ export default function Archive() {
 	const [search, setSearch] = useState('')
 	const [loader, setLoader] = useState(true)
 	const { user } = useGlobalContext()
+	const [random, setRandom] = useState()
+	const router = useRouter()
 
 	const fuseOptions = {
 		keys: ['qno', 'title', 'slug', 'difficulty', 'tags'],
 		threshold: 1,
 	}
+
+	useEffect(() => {
+		if (random) router.push('/problems/' + problems[random]?.slug)
+	}, [random])
 
 	useEffect(() => {
 		async function fetchProblems() {
@@ -55,7 +62,7 @@ export default function Archive() {
 				<PageHeader heading='archive' desc='Questions that you have done before' />
 				<div className={styles.searchWrapper}>
 					<SearchBar search={search} setSearch={setSearch} />
-					<RandomButton />
+					<RandomButton size={500} setRandom={setRandom} />
 				</div>
 				<div className={styles.problems}>
 					{problems?.map((problem, index) => (
