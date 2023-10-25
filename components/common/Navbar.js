@@ -3,9 +3,11 @@ import React, { useEffect } from 'react'
 import styles from './navbar.module.css'
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
+import { useGlobalContext } from '@/lib/utils/globalContext'
 
 export default function Navbar({ photoURL, name }) {
 	const pathname = usePathname()
+	const { signOut } = useGlobalContext()
 
 	return (
 		<div className={styles['container']}>
@@ -81,7 +83,7 @@ export default function Navbar({ photoURL, name }) {
 				</Link>
 			</div>
 			<div className={styles['navbar-items']}>
-				<div className={styles['button-container']}>
+				<div className={styles['button-container']} onClick={signOut}>
 					<img src='/svgs/sign-out.svg' className={styles['icon']} alt='icon' />
 					Sign out
 				</div>

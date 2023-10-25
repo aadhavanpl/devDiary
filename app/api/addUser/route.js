@@ -7,9 +7,9 @@ export async function POST(req) {
 		const { user_email, user_name, user_photo } = await req.json()
 		await connectMongoDB()
 		await users.updateOne(
-			{ user_email }, // Filter to find an existing document
+			{ user_email },
 			{
-				$setOnInsert: { user_email, user_name, user_photo }, // Data to update or insert
+				$setOnInsert: { user_email, user_name, user_photo },
 			},
 			{ upsert: true }
 		)

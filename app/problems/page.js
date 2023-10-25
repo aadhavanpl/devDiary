@@ -10,6 +10,7 @@ import SubHeading from '@/components/common/SubHeading'
 import { useEffect, useState } from 'react'
 import Fuse from 'fuse.js'
 import Loader from '@/components/common/Loader'
+import { useGlobalContext } from '@/lib/utils/globalContext'
 
 export default function Problems() {
 	const [problems, setProblems] = useState()
@@ -19,6 +20,7 @@ export default function Problems() {
 	const [mediumFilter, setMediumFilter] = useState(false)
 	const [hardFilter, setHardFilter] = useState(false)
 	const [loader, setLoader] = useState(true)
+	const { user } = useGlobalContext()
 
 	const fuseOptions = {
 		keys: ['qno', 'title', 'slug', 'difficulty', 'tags'],
@@ -88,7 +90,7 @@ export default function Problems() {
 
 	return (
 		<div className={styles.container}>
-			<NavbarLayout>
+			<NavbarLayout photoURL={user ? user?.user_photo : null} name={user ? user?.user_name : null}>
 				<PageHeader heading='problems' desc='Track your progress practicing Leetcode here!' />
 				<div className={styles.searchWrapper}>
 					<SearchBar setSearch={setSearch} search={search} />

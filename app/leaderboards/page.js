@@ -9,10 +9,12 @@ import Participant from '@/components/common/Participant'
 import styles from './leaderboard.module.css'
 import ScrollButton from '@/components/common/ScrollButton'
 import Loader from '@/components/common/Loader'
+import { useGlobalContext } from '@/lib/utils/globalContext'
 
 export default function Leaderboards() {
 	const [participants, setParticipants] = useState()
 	const [loader, setLoader] = useState(true)
+	const { user } = useGlobalContext()
 
 	useEffect(() => {
 		async function fetchParticipants() {
@@ -26,7 +28,7 @@ export default function Leaderboards() {
 
 	return (
 		<div className={styles.container}>
-			<NavbarLayout>
+			<NavbarLayout photoURL={user ? user?.user_photo : null} name={user ? user?.user_name : null}>
 				<PageHeader heading='leaderboards' desc='How you compete against others' />
 				<SubHeading subheading='Participants' />
 				<div className={styles.participants}>

@@ -75,3 +75,7 @@ select {
 select::-webkit-scrollbar {
 	width: 0;
 }
+
+a {
+	all: unset;
+}
