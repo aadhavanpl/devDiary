@@ -8,21 +8,36 @@
 	display: flex;
 }
 
-.easy {
+.easy,
+.noEasy {
 	border-top-left-radius: 16px;
 	border-bottom-left-radius: 16px;
 	background-color: var(--easy);
 	height: 26px;
 }
 
-.medium {
+.medium,
+.noMedium {
 	background-color: var(--medium);
 	height: 26px;
 }
 
-.hard {
+.hard,
+.noHard {
 	background-color: var(--hard);
 	border-top-right-radius: 16px;
 	border-bottom-right-radius: 16px;
 	height: 26px;
+}
+
+.noEasy {
+	background-color: var(--no-easy);
+}
+
+.noMedium {
+	background-color: var(--no-medium);
+}
+
+.noHard {
+	background-color: var(--no-hard);
 }

@@ -1,6 +1,4 @@
 //Dashboard chart values
-
-// dashboard stat card
 import connectMongoDB from '@/lib/mongodb'
 import { users } from '@/models/users'
 import { NextResponse } from 'next/server'
@@ -12,7 +10,7 @@ export async function POST(req) {
 		const countProblems = await users.aggregate([
 			{
 				$match: {
-					user_email: 'user2@example.com',
+					user_email: user_email,
 				},
 			},
 			{

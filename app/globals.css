@@ -20,8 +20,11 @@ body::-webkit-scrollbar {
 	--white: #ffffff;
 	--navbar: #e5eae8;
 	--easy: #3fb7a2;
+	--no-easy: rgba(74, 203, 181, 0.3);
 	--medium: #f8c00b;
+	--no-medium: rgba(248, 192, 11, 0.3);
 	--hard: #e44944;
+	--no-hard: rgba(255, 97, 97, 0.3);
 
 	--hover: rgba(0, 0, 0, 0.05);
 	--grey-10: rgba(0, 0, 0, 0.1);

@@ -13,45 +13,7 @@ import { useGlobalContext } from '@/lib/utils/globalContext'
 export default function Dashboard() {
 	const [loader, setLoader] = useState(true)
 	const { user } = useGlobalContext()
-
-	useEffect(() => {
-		console.log(user)
-	}, [user])
-
-	// useEffect(() => {
-	// 	const userData = {
-	// 		user_email: 'anaghdeebbugsdkjfn@gmail.com',
-	// 		user_name: 'Aadfaasdfasddasdfashavan',
-	// 		user_photo: 'lmaoadsfasd@google.com',
-	// 	}
-
-	// 	const problemData = {
-	// 		user_email: 'sahelnriaz@gmail.com',
-	// 		qno: 12,
-	// 		code: 'tempcode',
-	// 	}
-
-	// 	fetch('http://localhost:3000/api/users', {
-	// 		method: 'POST',
-	// 		headers: {
-	// 			'Content-Type': 'application/json',
-	// 		},
-	// 		body: JSON.stringify(problemData),
-	// 	})
-	// 		.then((response) => {
-	// 			if (!response.ok) {
-	// 				throw new Error('Failed to add the user.')
-	// 			}
-	// 			return response.json()
-	// 		})
-	// 		.then((data) => {
-	// 			console.log('User added successfully:', data)
-	// 		})
-	// 		.catch((error) => {
-	// 			console.error('Error:', error)
-	// 		})
-	// 	setLoader(false)
-	// }, [])
+	const [solutions, setSolutions] = useState()
 
 	useEffect(() => {
 		async function fetchCountProblems() {
@@ -63,12 +25,10 @@ export default function Dashboard() {
 				}),
 			})
 			const data = await res.json()
-			console.log('problemmsssss', data)
-			setLoader(false)
+			setSolutions(data.countProblems)
 		}
 		fetchCountProblems()
 
-		//For time spent stat card
 		async function fetchDurations() {
 			const res = await fetch('http://localhost:3000/api/fetchDurations', {
 				method: 'POST',
@@ -79,9 +39,7 @@ export default function Dashboard() {
 			})
 			const data = await res.json()
 			console.log('durationnssss', data)
-			setLoader(false)
 		}
-
 		fetchDurations()
 
 		async function fetchChartValues() {
@@ -94,9 +52,9 @@ export default function Dashboard() {
 			})
 			const data = await res.json()
 			console.log('chartttt', data)
-			setLoader(false)
 		}
 		fetchChartValues()
+		setLoader(false)
 	}, [])
 
 	return (
@@ -114,7 +72,7 @@ export default function Dashboard() {
 					</div>
 					<div>
 						<SubHeading subheading='Solutions' />
-						<Solutions />
+						<Solutions solutions={solutions} />
 					</div>
 					<div>
 						<SubHeading subheading='Progress' />
