@@ -65,7 +65,7 @@ export default function Bookmarks() {
 				<PageHeader heading='bookmarks' desc='Bookmarked questions' />
 				<div className={styles.searchWrapper}>
 					<SearchBar search={search} setSearch={setSearch} />
-					<RandomButton size={500} setRandom={setRandom} />
+					<RandomButton size={problems?.length} setRandom={setRandom} />
 				</div>
 				<div className={styles.problems}>
 					{problems?.map((problem, index) => (
