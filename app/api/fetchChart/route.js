@@ -59,6 +59,9 @@ export async function POST(req) {
 					countQuestions: 1,
 				},
 			},
+			{
+				$limit: 14,
+			},
 		])
 
 		return NextResponse.json(
