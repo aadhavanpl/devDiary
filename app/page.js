@@ -13,11 +13,6 @@ export default function Home() {
 	const [search, setSearch] = useState('')
 	const { user } = useGlobalContext()
 
-	useEffect(() => {
-		if (!user || !user?.length) return
-		console.log(user[0])
-	}, [user])
-
 	const fuseOptions = {
 		keys: ['qno', 'title', 'slug', 'difficulty', 'tags'],
 		shouldSort: true,
@@ -68,7 +63,7 @@ export default function Home() {
 				)}
 			</div>
 			<div className={styles.googleSignIn}>
-				{user && user?.length ? <SignedIn photoURL={user[0]?.photoURL} /> : <GoogleSignInButton />}
+				{user ? <SignedIn photoURL={user?.user_photo} /> : <GoogleSignInButton />}
 			</div>
 		</main>
 	)

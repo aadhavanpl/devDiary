@@ -6,10 +6,12 @@ import PageHeader from '@/components/common/PageHeader'
 import SubHeading from '@/components/common/SubHeading'
 import ThemeToggle from '@/components/common/ThemeToggle'
 import Loader from '@/components/common/Loader'
+import { useGlobalContext } from '@/lib/utils/globalContext'
 
 export default function Settings() {
 	const [userName, setUserName] = useState('')
 	const [loader, setLoader] = useState(true)
+	const { user } = useGlobalContext()
 
 	useEffect(() => {
 		async function fetchUserName() {
@@ -38,7 +40,7 @@ export default function Settings() {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify({
-				user_email: 'user2@example.com',
+				user_email: user?.user_email,
 				user_name: userName,
 			}),
 		})
@@ -47,7 +49,7 @@ export default function Settings() {
 
 	return (
 		<div className={styles['container']}>
-			<NavbarLayout>
+			<NavbarLayout photoURL={user ? user?.user_photo : null} name={user ? user?.user_name : null}>
 				<PageHeader heading='Settings' desc='Update your settings here' />
 				<div className={styles['wrapper']}>
 					<SubHeading subheading='User Name' />

@@ -15,8 +15,7 @@ export default function Dashboard() {
 	const { user } = useGlobalContext()
 
 	useEffect(() => {
-		if (!user || !user?.length) return
-		console.log(user[0])
+		console.log(user)
 	}, [user])
 
 	// useEffect(() => {
@@ -102,10 +101,7 @@ export default function Dashboard() {
 
 	return (
 		<div className={styles.container}>
-			<NavbarLayout
-				photoURL={user ? user[0]?.photoURL : null}
-				name={user ? user[0]?.displayName : null}
-			>
+			<NavbarLayout photoURL={user ? user?.user_photo : null} name={user ? user?.user_name : null}>
 				<PageHeader heading='dashboard' desc='Track your progress practicing Leetcode here!' />
 				<div className={styles.wrapper}>
 					<div>

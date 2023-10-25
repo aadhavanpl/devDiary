@@ -1,11 +1,12 @@
 'use client'
 import React, { useEffect, useRef, useState } from 'react'
 import styles from './slug.module.css'
-import { GoogleSignInButton, SubmitButton } from '@/components/common/Button'
+import { GoogleSignInButton, SignedIn, SubmitButton } from '@/components/common/Button'
 import { ProblemNoClick } from '@/components/common/Problem'
 import { Editor } from '@monaco-editor/react'
 import { useRouter, useParams } from 'next/navigation'
-import SubHeading from '@/components/common/SubHeading'
+import Link from 'next/link'
+import { useGlobalContext } from '@/lib/utils/globalContext'
 
 export default function Slug() {
 	const [feature, setFeature] = useState(0)
@@ -18,7 +19,7 @@ export default function Slug() {
 	const [note, setNote] = useState('Test note')
 	const [language, setLanguage] = useState('python')
 
-	useEffect(() => {}, [])
+	const { user } = useGlobalContext()
 
 	async function handleSubmit() {
 		const date = new Date()
@@ -58,8 +59,12 @@ export default function Slug() {
 	return (
 		<div className={styles.container}>
 			<div className={styles.header}>
-				<img src='/svgs/logo.svg' className={styles.logo} alt='logo' />
-				<GoogleSignInButton />
+				<Link href='/' className={styles.link}>
+					<img src='/svgs/logo.svg' className={styles.logo} alt='logo' />
+				</Link>
+				<div className={styles.googleSignIn}>
+					{user ? <SignedIn photoURL={user ? user?.user_photo : null} /> : <GoogleSignInButton />}
+				</div>
 			</div>
 			<ProblemNoClick />
 			<div className={styles.wrapper}>

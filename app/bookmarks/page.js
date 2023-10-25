@@ -10,12 +10,14 @@ import styles from './bookmarks.module.css'
 import Fuse from 'fuse.js'
 import ScrollButton from '@/components/common/ScrollButton'
 import Loader from '@/components/common/Loader'
+import { useGlobalContext } from '@/lib/utils/globalContext'
 
 export default function Bookmarks() {
 	const [problems, setProblems] = useState()
 	const [allProblems, setAllProblems] = useState()
 	const [search, setSearch] = useState('')
 	const [loader, setLoader] = useState(true)
+	const { user } = useGlobalContext()
 
 	const fuseOptions = {
 		keys: ['qno', 'title', 'slug', 'difficulty', 'tags'],
@@ -52,7 +54,7 @@ export default function Bookmarks() {
 
 	return (
 		<div className={styles.container}>
-			<NavbarLayout>
+			<NavbarLayout photoURL={user ? user?.user_photo : null} name={user ? user?.user_name : null}>
 				<PageHeader heading='bookmarks' desc='Bookmarked questions' />
 				<div className={styles.searchWrapper}>
 					<SearchBar search={search} setSearch={setSearch} />

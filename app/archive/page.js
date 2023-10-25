@@ -9,12 +9,14 @@ import styles from './archive.module.css'
 import Fuse from 'fuse.js'
 import ScrollButton from '@/components/common/ScrollButton'
 import Loader from '@/components/common/Loader'
+import { useGlobalContext } from '@/lib/utils/globalContext'
 
 export default function Archive() {
 	const [problems, setProblems] = useState()
 	const [allProblems, setAllProblems] = useState()
 	const [search, setSearch] = useState('')
 	const [loader, setLoader] = useState(true)
+	const { user } = useGlobalContext()
 
 	const fuseOptions = {
 		keys: ['qno', 'title', 'slug', 'difficulty', 'tags'],
@@ -49,7 +51,7 @@ export default function Archive() {
 
 	return (
 		<div className={styles.container}>
-			<NavbarLayout>
+			<NavbarLayout photoURL={user ? user?.user_photo : null} name={user ? user?.user_name : null}>
 				<PageHeader heading='archive' desc='Questions that you have done before' />
 				<div className={styles.searchWrapper}>
 					<SearchBar search={search} setSearch={setSearch} />
