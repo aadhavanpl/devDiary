@@ -34,8 +34,8 @@ export default function Bookmarks() {
 				}),
 			})
 			const problems = await res.json()
-			setProblems(problems.bookmarksAPI[0].problems)
-			setAllProblems(problems.bookmarksAPI[0].problems)
+			setProblems(problems.bookmarksAPI)
+			setAllProblems(problems.bookmarksAPI)
 			setLoader(false)
 		}
 		fetchProblems()
@@ -63,10 +63,10 @@ export default function Bookmarks() {
 				<div className={styles.problems}>
 					{problems?.map((problem, index) => (
 						<BigProblem
-							qno={problem.qno}
-							title={problem.title}
-							tags={problem.tags}
-							difficulty={problem.difficulty}
+							qno={problem.problems.qno}
+							title={problem.problems.title}
+							tags={problem.problems.tags}
+							difficulty={problem.problems.difficulty}
 							key={index}
 						/>
 					))}
