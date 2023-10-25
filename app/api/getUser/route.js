@@ -1,3 +1,5 @@
+//Get user info for global context
+
 import connectMongoDB from '@/lib/mongodb'
 import { users } from '@/models/users'
 import { NextResponse } from 'next/server'
