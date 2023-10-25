@@ -5,10 +5,20 @@ import styles from './problem.module.css'
 import { SmallTag } from './Tag'
 import { LongDifficulty, SmallDifficulty } from './Difficulty'
 import { useGlobalContext } from '@/lib/utils/globalContext'
+import Link from 'next/link'
 
-export function SmallProblem({ qno, title, tags, difficulty, border }) {
+export function SmallProblem({ qno, title, slug, tags, difficulty, border, user, signIn, router }) {
+	async function handleClick() {
+		if (!user) await signIn()
+		router.push(`/problems/${slug}`)
+	}
+
 	return (
-		<div className={styles.container} style={border ? { borderBottom: 'var(--border)' } : null}>
+		<div
+			className={styles.container}
+			style={border ? { borderBottom: 'var(--border)' } : null}
+			onClick={handleClick}
+		>
 			<div className={styles.leftWrapper}>
 				<div className={styles.problemNumber}>{qno}</div>
 				<div className={styles.titleWrapper}>
@@ -27,7 +37,7 @@ export function SmallProblem({ qno, title, tags, difficulty, border }) {
 	)
 }
 
-export function BigProblem({ qno, title, tags, difficulty, bookmark }) {
+export function BigProblem({ qno, title, slug, tags, difficulty, bookmark }) {
 	const [bookmarkk, setBookmark] = useState(bookmark)
 	const [change, setChange] = useState(0)
 	const { user } = useGlobalContext()
@@ -48,42 +58,44 @@ export function BigProblem({ qno, title, tags, difficulty, bookmark }) {
 	}, [bookmarkk])
 
 	return (
-		<div className={styles.container} style={{ borderBottom: 'var(--border)' }}>
-			<div className={styles.leftWrapper}>
-				<div className={styles.problemNumber}>{qno}</div>
-				<div className={styles.titleWrapper}>
-					<div className={styles.bigTitle}>{title}</div>
-					<div className={styles.bigTagsWrapper}>
-						{tags?.length > 0 &&
-							tags?.map((tag, index) => <SmallTag tag={tag} color='#FCB0BD' key={index} />)}
+		<Link href={'/problems/' + slug}>
+			<div className={styles.container} style={{ borderBottom: 'var(--border)' }}>
+				<div className={styles.leftWrapper}>
+					<div className={styles.problemNumber}>{qno}</div>
+					<div className={styles.titleWrapper}>
+						<div className={styles.bigTitle}>{title}</div>
+						<div className={styles.bigTagsWrapper}>
+							{tags?.length > 0 &&
+								tags?.map((tag, index) => <SmallTag tag={tag} color='#FCB0BD' key={index} />)}
+						</div>
 					</div>
 				</div>
+				<div className={styles.rightWrapper}>
+					<img src='/svgs/done.svg' alt='done' />
+					{bookmarkk ? (
+						<img
+							src='/svgs/bookmarked.svg'
+							onClick={() => {
+								setBookmark(!bookmarkk)
+								setChange(1)
+							}}
+							alt='bookmark'
+						/>
+					) : (
+						<img
+							src='/svgs/bookmark-empty.svg'
+							onClick={() => {
+								setBookmark(!bookmarkk)
+								setChange(1)
+							}}
+							alt='no-bookmark'
+						/>
+					)}
+					<LongDifficulty difficulty={difficulty} />
+					<img src='/svgs/arrow-right.svg' alt='arrow' />
+				</div>
 			</div>
-			<div className={styles.rightWrapper}>
-				<img src='/svgs/done.svg' alt='done' />
-				{bookmarkk ? (
-					<img
-						src='/svgs/bookmarked.svg'
-						onClick={() => {
-							setBookmark(!bookmarkk)
-							setChange(1)
-						}}
-						alt='bookmark'
-					/>
-				) : (
-					<img
-						src='/svgs/bookmark-empty.svg'
-						onClick={() => {
-							setBookmark(!bookmarkk)
-							setChange(1)
-						}}
-						alt='no-bookmark'
-					/>
-				)}
-				<LongDifficulty difficulty={difficulty} />
-				<img src='/svgs/arrow-right.svg' alt='arrow' />
-			</div>
-		</div>
+		</Link>
 	)
 }
 

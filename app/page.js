@@ -6,12 +6,14 @@ import { HomeSearchBar } from '@/components/common/SearchBar'
 import Fuse from 'fuse.js'
 import { useEffect, useState } from 'react'
 import { useGlobalContext } from '@/lib/utils/globalContext'
+import { useRouter } from 'next/navigation'
 
 export default function Home() {
 	const [problems, setProblems] = useState()
 	const [allProblems, setAllProblems] = useState()
 	const [search, setSearch] = useState('')
-	const { user } = useGlobalContext()
+	const { user, signIn } = useGlobalContext()
+	const router = useRouter()
 
 	const fuseOptions = {
 		keys: ['qno', 'title', 'slug', 'difficulty', 'tags'],
@@ -54,9 +56,13 @@ export default function Home() {
 							<SmallProblem
 								qno={problem?.qno}
 								title={problem?.title}
+								slug={problem?.slug}
 								tags={problem?.tags}
 								difficulty={problem?.difficulty}
 								key={index}
+								user={user}
+								signIn={signIn}
+								router={router}
 							/>
 						))}
 					</div>
