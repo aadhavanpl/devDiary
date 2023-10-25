@@ -16,6 +16,7 @@ export default function Dashboard() {
 	const [solutions, setSolutions] = useState()
 	const [problemCount, setProblemCount] = useState()
 	const [duration, setDuration] = useState()
+	const [chartData, setChartData] = useState()
 
 	useEffect(() => {
 		async function fetchCountProblems() {
@@ -70,7 +71,8 @@ export default function Dashboard() {
 				}),
 			})
 			const data = await res.json()
-			console.log('chartttt', data)
+			console.log('chartttt', data.countProblems)
+			setChartData(data.countProblems)
 		}
 		fetchChartValues()
 		setLoader(false)
@@ -99,7 +101,7 @@ export default function Dashboard() {
 					</div>
 					<div>
 						<SubHeading subheading='Progress' />
-						<Chart />
+						<Chart chartData={chartData} />
 					</div>
 				</div>
 			</NavbarLayout>
