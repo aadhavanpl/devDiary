@@ -69,6 +69,22 @@ export default function Dashboard() {
 		}
 		fetchCountProblems()
 
+		//For time spent stat card
+		async function fetchDurations() {
+			const res = await fetch('http://localhost:3000/api/fetchDurations', {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({
+					user_email: 'user2@example.com',
+				}),
+			})
+			const data = await res.json()
+			console.log('durationnssss', data)
+			setLoader(false)
+		}
+
+		fetchDurations()
+
 		async function fetchChartValues() {
 			const res = await fetch('http://localhost:3000/api/fetchChart', {
 				method: 'POST',
