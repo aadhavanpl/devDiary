@@ -73,6 +73,7 @@ export default function Bookmarks() {
 							qno={problem.problems.qno}
 							title={problem.problems.title}
 							tags={problem.problems.tags}
+							bookmark={problem.problems.bookmark}
 							difficulty={problem.problems.difficulty}
 							key={index}
 						/>

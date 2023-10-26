@@ -101,27 +101,31 @@ export function BigProblem({ qno, title, slug, tags, difficulty, bookmark }) {
 	)
 }
 
-export function ProblemNoClick({ data, done, bookmarked }) {
-	const [bookmarkk, setBookmark] = useState(bookmarked)
+export function ProblemNoClick({ data, done, bookmark }) {
 	const [change, setChange] = useState(0)
+	const [bookmarkk, setBookmark] = useState(bookmark)
 	const { user } = useGlobalContext()
 
 	useEffect(() => {
+		console.log(bookmarkk)
+	}, [bookmarkk])
+
+	useEffect(() => {
 		if (change) {
-			async function setBookmark() {
+			async function setBookmarkk() {
 				const res = await fetch('http://localhost:3000/api/bookmark', {
 					method: 'POST',
 					headers: { 'Content-Type': 'application/json' },
 					body: JSON.stringify({
 						user_email: user?.user_email,
 						qno: data.qno,
-						bookmark: bookmarked,
+						bookmark: bookmarkk,
 					}),
 				})
 				await res.json()
 				setChange(0)
 			}
-			setBookmark()
+			setBookmarkk()
 		}
 	}, [bookmarkk])
 
@@ -140,7 +144,7 @@ export function ProblemNoClick({ data, done, bookmarked }) {
 			</div>
 			<div className={styles.rightWrapper}>
 				{done && <img src='/svgs/done.svg' />}
-				{bookmarked ? (
+				{bookmarkk ? (
 					<img
 						src='/svgs/bookmarked.svg'
 						style={{ cursor: 'pointer' }}

@@ -7,6 +7,7 @@ import { Editor } from '@monaco-editor/react'
 import { useRouter, useParams, usePathname } from 'next/navigation'
 import Link from 'next/link'
 import { useGlobalContext } from '@/lib/utils/globalContext'
+import Loader from '@/components/common/Loader'
 
 export default function Slug() {
 	const { user } = useGlobalContext()
@@ -24,7 +25,8 @@ export default function Slug() {
 	const [currProblem, setCurrProblem] = useState('')
 	const [userProblemDetails, setUserProblemDetails] = useState('')
 	const [completionStatus, setCompletionStatus] = useState(false)
-	const [bookmarked, setBookmarked] = useState(0)
+	const [bookmark, setBookmark] = useState(0)
+	const [loader, setLoader] = useState(true)
 
 	const location = usePathname()
 	const slugg = location.slice(10)
@@ -48,7 +50,7 @@ export default function Slug() {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify({
-				user_email: 'user2@example.com',
+				user_email: user?.user_email,
 				slug: params.slug,
 				date: correctDateFormat,
 				duration: duration,
@@ -75,11 +77,11 @@ export default function Slug() {
 		fetchProblemDetails()
 
 		async function fetchUserProblemDetails() {
-			const res = await fetch('http://localhost:3000/api/fetchUserProblemDetail', {
+			const res = await fetch('http://localhost:3000/api/fetchUserProblemDetails', {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({
-					user_email: 'user2@example.com',
+					user_email: user?.user_email,
 					slug: slugg,
 				}),
 			})
@@ -89,14 +91,14 @@ export default function Slug() {
 				setUserProblemDetails(data)
 				if (data.submissions.length) {
 					setCompletionStatus(true)
-					setBookmarked(data.bookmark)
+					setBookmark(data.bookmark)
 				}
-			} else {
-				setUserProblemDetails(null)
-			}
+			} else setUserProblemDetails(null)
 		}
 		fetchUserProblemDetails()
+		setLoader(false)
 	}, [])
+
 	function handleEditorDidMount(editor) {
 		editorRef.current = editor
 	}
@@ -111,7 +113,7 @@ export default function Slug() {
 					{user ? <SignedIn photoURL={user ? user?.user_photo : null} /> : <GoogleSignInButton />}
 				</div>
 			</div>
-			<ProblemNoClick data={currProblem} done={completionStatus} bookmarked={bookmarked} />
+			<ProblemNoClick data={currProblem} done={completionStatus} bookmark={bookmark} />
 			<div className={styles.wrapper}>
 				<Editor
 					width='calc(100vw - 550px)'
@@ -172,6 +174,7 @@ export default function Slug() {
 					<SubmitButton func={handleSubmit} />
 				</div>
 			</div>
+			<Loader loader={loader} />
 		</div>
 	)
 }

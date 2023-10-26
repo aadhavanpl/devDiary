@@ -109,6 +109,7 @@ export default function Problems() {
 								qno={problem?.qno}
 								title={problem?.title}
 								tags={problem?.tags}
+								bookmark={problem?.bookmark}
 								slug={problem?.slug}
 								difficulty={problem?.difficulty}
 								key={index}
