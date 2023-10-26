@@ -13,6 +13,8 @@ import Loader from '@/components/common/Loader'
 import { useGlobalContext } from '@/lib/utils/globalContext'
 
 export default function Problems() {
+	const { user } = useGlobalContext()
+
 	const [problems, setProblems] = useState()
 	const [allProblems, setAllProblems] = useState()
 	const [search, setSearch] = useState('')
@@ -20,7 +22,6 @@ export default function Problems() {
 	const [mediumFilter, setMediumFilter] = useState(false)
 	const [hardFilter, setHardFilter] = useState(false)
 	const [loader, setLoader] = useState(true)
-	const { user } = useGlobalContext()
 
 	const fuseOptions = {
 		keys: ['qno', 'title', 'slug', 'difficulty', 'tags'],

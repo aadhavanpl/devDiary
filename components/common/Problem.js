@@ -99,23 +99,24 @@ export function BigProblem({ qno, title, slug, tags, difficulty, bookmark }) {
 	)
 }
 
-export function ProblemNoClick() {
+export function ProblemNoClick({ data }) {
 	return (
 		<div className={styles.containerNoClick}>
 			<div className={styles.leftWrapper}>
-				<div className={styles.problemNumber}>512</div>
+				<div className={styles.problemNumber}>{data.qno}</div>
 				<div className={styles.titleWrapper}>
-					<div className={styles.title}>Remove Palindromic Subsequences</div>
+					<div className={styles.title}>{data.title}</div>
 					<div className={styles.tagsWrapper}>
-						<SmallTag tag='String' color='#FCB0BD' />
-						<SmallTag tag='Array' color='#B1DCC9' />
+						{data.tags?.map((tag, index) => (
+							<SmallTag tag={tag} color='#FCB0BD' key={index} />
+						))}
 					</div>
 				</div>
 			</div>
 			<div className={styles.rightWrapper}>
 				<img src='/svgs/done.svg' />
 				<img src='/svgs/bookmarked.svg' />
-				<LongDifficulty difficulty='Easy' />
+				<LongDifficulty difficulty={data.difficulty} />
 			</div>
 		</div>
 	)

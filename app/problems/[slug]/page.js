@@ -4,12 +4,13 @@ import styles from './slug.module.css'
 import { GoogleSignInButton, SignedIn, SubmitButton } from '@/components/common/Button'
 import { ProblemNoClick } from '@/components/common/Problem'
 import { Editor } from '@monaco-editor/react'
-import { useRouter, useParams } from 'next/navigation'
+import { useRouter, useParams, usePathname } from 'next/navigation'
 import Link from 'next/link'
 import { useGlobalContext } from '@/lib/utils/globalContext'
 
 export default function Slug() {
-	const [feature, setFeature] = useState(0)
+	const { user } = useGlobalContext()
+
 	const router = useRouter()
 	const params = useParams()
 	const editorRef = useRef(null)
@@ -18,8 +19,11 @@ export default function Slug() {
 	const [duration, setDuration] = useState('00:23:12')
 	const [note, setNote] = useState('Test note')
 	const [language, setLanguage] = useState('python')
+	const [feature, setFeature] = useState(0)
+	const [currProblem, setCurrProblem] = useState('')
 
-	const { user } = useGlobalContext()
+	const location = usePathname()
+	const slugg = location.slice(10)
 
 	async function handleSubmit() {
 		const date = new Date()
@@ -58,11 +62,12 @@ export default function Slug() {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({
-					slug: 'reverse-integer',
+					slug: slugg,
 				}),
 			})
 			const data = await res.json()
-			console.log(data)
+			console.log(data.tempProblems[0])
+			setCurrProblem(data.tempProblems[0])
 		}
 		fetchProblemDetails()
 
@@ -76,7 +81,7 @@ export default function Slug() {
 				}),
 			})
 			const data = await res.json()
-			console.log(data)
+			// console.log(data)
 		}
 		fetchUserProblemDetails()
 	}, [])
@@ -94,7 +99,7 @@ export default function Slug() {
 					{user ? <SignedIn photoURL={user ? user?.user_photo : null} /> : <GoogleSignInButton />}
 				</div>
 			</div>
-			<ProblemNoClick />
+			<ProblemNoClick data={currProblem} />
 			<div className={styles.wrapper}>
 				<Editor
 					width='calc(100vw - 550px)'
