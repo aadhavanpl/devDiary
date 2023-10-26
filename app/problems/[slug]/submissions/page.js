@@ -1,15 +1,21 @@
 'use client'
 import React, { useEffect, useState } from 'react'
 import styles from '../slug.module.css'
-import { GoogleSignInButton, SubmitButton } from '@/components/common/Button'
+import { GoogleSignInButton, SignedIn, SubmitButton } from '@/components/common/Button'
 import { ProblemNoClick } from '@/components/common/Problem'
 import SubHeading from '@/components/common/SubHeading'
 import Submission from '@/components/common/Submission'
-import { useParams } from 'next/navigation'
+import { useParams, usePathname } from 'next/navigation'
+import Link from 'next/link'
+import { useGlobalContext } from '@/lib/utils/globalContext'
+import Loader from '@/components/common/Loader'
 
 export default function Submissions() {
 	const params = useParams()
 	const [submissions, setSubmissions] = useState()
+	const { user } = useGlobalContext()
+	const pathname = usePathname()
+	const [loader, setLoader] = useState(true)
 
 	useEffect(() => {
 		async function fetchSubmissions() {
@@ -22,8 +28,8 @@ export default function Submissions() {
 				}),
 			})
 			const data = await res.json()
-			console.log(data.submissionsAPI[0].problems[0].submissions)
 			setSubmissions(data.submissionsAPI[0].problems[0].submissions)
+			setLoader(false)
 		}
 		fetchSubmissions()
 	}, [])
@@ -31,8 +37,12 @@ export default function Submissions() {
 	return (
 		<div className={styles.container}>
 			<div className={styles.header}>
-				<img src='/svgs/logo.svg' className={styles.logo} />
-				<GoogleSignInButton />
+				<Link href='/' className={styles.link}>
+					<img src='/svgs/logo.svg' className={styles.logo} alt='logo' />
+				</Link>
+				<div className={styles.googleSignIn}>
+					{user ? <SignedIn photoURL={user ? user?.user_photo : null} /> : <GoogleSignInButton />}
+				</div>
 			</div>
 			<ProblemNoClick />
 			<div className={styles.previousSubmissionWrapper}>
@@ -44,10 +54,13 @@ export default function Submissions() {
 								date={submission.date}
 								duration={submission.duration}
 								key={index + 1}
+								pathname={pathname}
+								id={submission._id}
 							/>
 					  ))
 					: null}
 			</div>
+			<Loader loader={loader} />
 		</div>
 	)
 }

@@ -14,6 +14,7 @@ export default function Slug() {
 	const router = useRouter()
 	const params = useParams()
 	const editorRef = useRef(null)
+	const pathname = usePathname()
 
 	const [code, setCode] = useState('')
 	const [duration, setDuration] = useState('00:23:12')
@@ -114,7 +115,7 @@ export default function Slug() {
 			<div className={styles.wrapper}>
 				<Editor
 					width='calc(100vw - 550px)'
-					height='calc(100vh - 252px)'
+					height='calc(100vh - 256px)'
 					theme='vs-dark'
 					className={styles.editor}
 					onChange={() => setCode(editorRef.current.getValue())}
@@ -122,11 +123,11 @@ export default function Slug() {
 					defaultValue='hello = "value"'
 					language={language}
 					options={{
-						fontSize: 16, // Set your desired font size here
+						fontSize: 16,
 					}}
 				/>
 				<div className={styles.features}>
-					<LanguageSelector />
+					<LanguageSelector language={language} setLanguage={setLanguage} />
 					<div className={styles.topWrapper}>
 						<div className={styles.toggleWrapper}>
 							<div className={styles.linksWrapper}>
@@ -147,7 +148,7 @@ export default function Slug() {
 							</div>
 							<div
 								className={styles.submissions}
-								onClick={() => router.push(pathname + '/history')}
+								onClick={() => router.push(pathname + '/submissions')}
 							>
 								Submissions
 								<img src='/svgs/arrow-up-right.svg' />
@@ -176,16 +177,86 @@ export default function Slug() {
 }
 
 function Stopwatch() {
-	return <div className={styles.stopwatchContainer}>{elapsedFormatted}</div>
+	const [time, setTime] = useState(0)
+	const [running, setRunning] = useState(false)
+	const intervalRef = useRef(null)
+
+	function startStopwatch() {
+		setRunning(!running)
+	}
+
+	function resetStopwatch() {
+		setTime(0)
+		if (running) setRunning(false)
+	}
+
+	useEffect(() => {
+		if (running) {
+			intervalRef.current = setInterval(() => {
+				setTime((prevTime) => prevTime + 1)
+			}, 1000)
+		} else clearInterval(intervalRef.current)
+
+		return () => clearInterval(intervalRef.current)
+	}, [running])
+
+	const secondDeg = (time % 60) * 6
+	const minuteDeg = ((time / 60) % 60) * 6
+	const hourDeg = ((time / 3600) % 12) * 30
+
+	const formattedTime = new Date(time * 1000).toISOString().substr(11, 8)
+
+	return (
+		<div className={styles.analog}>
+			<svg width='200' height='200'>
+				<circle cx='100' cy='100' r='90' fill='none' strokeWidth='4' stroke='black' />
+				<line
+					x1='100'
+					y1='100'
+					x2='100'
+					y2='10'
+					strokeWidth='4'
+					stroke='black'
+					transform={`rotate(${hourDeg}, 100, 100)`}
+				/>
+				<line
+					x1='100'
+					y1='100'
+					x2='100'
+					y2='20'
+					strokeWidth='2'
+					stroke='black'
+					transform={`rotate(${minuteDeg}, 100, 100)`}
+				/>
+				<line
+					x1='100'
+					y1='100'
+					x2='100'
+					y2='30'
+					stroke='red'
+					transform={`rotate(${secondDeg}, 100, 100)`}
+				/>
+			</svg>
+
+			<div className={digital}>
+				<div>{formattedTime}</div>
+			</div>
+
+			<div className={clockButtons}>
+				<button onClick={startStopwatch}>{running ? 'Stop' : 'Start'}</button>
+				<button onClick={resetStopwatch}>Reset</button>
+			</div>
+		</div>
+	)
 }
 
-function LanguageSelector() {
+function LanguageSelector({ language, setLanguage }) {
 	return (
 		<div className={styles.selectWrapper}>
 			Language:
 			<select
 				className={styles.selectBox}
-				defaultValue='python'
+				defaultValue={language}
 				onChange={(e) => setLanguage(e.target.value)}
 			>
 				<option value='python'>Python</option>

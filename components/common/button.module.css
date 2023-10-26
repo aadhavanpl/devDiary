@@ -43,8 +43,8 @@
 }
 
 .signedInContainer img {
-	height: 50px;
-	width: 50px;
+	height: 46px;
+	width: 46px;
 	border-radius: 50%;
 	border: 2px solid var(--black);
 }
