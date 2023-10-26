@@ -75,6 +75,7 @@ export function BigProblem({ qno, title, slug, tags, difficulty, bookmark }) {
 					{bookmarkk ? (
 						<img
 							src='/svgs/bookmarked.svg'
+							style={{ cursor: 'pointer' }}
 							onClick={() => {
 								setBookmark(!bookmarkk)
 								setChange(1)
@@ -84,6 +85,7 @@ export function BigProblem({ qno, title, slug, tags, difficulty, bookmark }) {
 					) : (
 						<img
 							src='/svgs/bookmark-empty.svg'
+							style={{ cursor: 'pointer' }}
 							onClick={() => {
 								setBookmark(!bookmarkk)
 								setChange(1)
@@ -99,7 +101,30 @@ export function BigProblem({ qno, title, slug, tags, difficulty, bookmark }) {
 	)
 }
 
-export function ProblemNoClick({ data }) {
+export function ProblemNoClick({ data, done, bookmarked }) {
+	const [bookmarkk, setBookmark] = useState(bookmarked)
+	const [change, setChange] = useState(0)
+	const { user } = useGlobalContext()
+
+	useEffect(() => {
+		if (change) {
+			async function setBookmark() {
+				const res = await fetch('http://localhost:3000/api/bookmark', {
+					method: 'POST',
+					headers: { 'Content-Type': 'application/json' },
+					body: JSON.stringify({
+						user_email: user?.user_email,
+						qno: data.qno,
+						bookmark: bookmarked,
+					}),
+				})
+				await res.json()
+				setChange(0)
+			}
+			setBookmark()
+		}
+	}, [bookmarkk])
+
 	return (
 		<div className={styles.containerNoClick}>
 			<div className={styles.leftWrapper}>
@@ -114,8 +139,28 @@ export function ProblemNoClick({ data }) {
 				</div>
 			</div>
 			<div className={styles.rightWrapper}>
-				<img src='/svgs/done.svg' />
-				<img src='/svgs/bookmarked.svg' />
+				{done && <img src='/svgs/done.svg' />}
+				{bookmarked ? (
+					<img
+						src='/svgs/bookmarked.svg'
+						style={{ cursor: 'pointer' }}
+						onClick={() => {
+							setBookmark(!bookmarkk)
+							setChange(1)
+						}}
+						alt='bookmark'
+					/>
+				) : (
+					<img
+						src='/svgs/bookmark-empty.svg'
+						style={{ cursor: 'pointer' }}
+						onClick={() => {
+							setBookmark(!bookmarkk)
+							setChange(1)
+						}}
+						alt='no-bookmark'
+					/>
+				)}
 				<LongDifficulty difficulty={data.difficulty} />
 			</div>
 		</div>

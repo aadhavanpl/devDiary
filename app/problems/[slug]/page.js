@@ -21,6 +21,9 @@ export default function Slug() {
 	const [language, setLanguage] = useState('python')
 	const [feature, setFeature] = useState(0)
 	const [currProblem, setCurrProblem] = useState('')
+	const [userProblemDetails, setUserProblemDetails] = useState('')
+	const [completionStatus, setCompletionStatus] = useState(false)
+	const [bookmarked, setBookmarked] = useState(0)
 
 	const location = usePathname()
 	const slugg = location.slice(10)
@@ -66,7 +69,6 @@ export default function Slug() {
 				}),
 			})
 			const data = await res.json()
-			console.log(data.tempProblems[0])
 			setCurrProblem(data.tempProblems[0])
 		}
 		fetchProblemDetails()
@@ -77,11 +79,20 @@ export default function Slug() {
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({
 					user_email: 'user2@example.com',
-					slug: 'reverse-integer',
+					slug: slugg,
 				}),
 			})
-			const data = await res.json()
-			// console.log(data)
+			const tempData = await res.json()
+			const data = tempData.userProblems[0].problems
+			if (data) {
+				setUserProblemDetails(data)
+				if (data.submissions.length) {
+					setCompletionStatus(true)
+					setBookmarked(data.bookmark)
+				}
+			} else {
+				setUserProblemDetails(null)
+			}
 		}
 		fetchUserProblemDetails()
 	}, [])
@@ -99,7 +110,7 @@ export default function Slug() {
 					{user ? <SignedIn photoURL={user ? user?.user_photo : null} /> : <GoogleSignInButton />}
 				</div>
 			</div>
-			<ProblemNoClick data={currProblem} />
+			<ProblemNoClick data={currProblem} done={completionStatus} bookmarked={bookmarked} />
 			<div className={styles.wrapper}>
 				<Editor
 					width='calc(100vw - 550px)'
