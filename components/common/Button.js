@@ -53,11 +53,11 @@ export function AddButton() {
 	)
 }
 
-export function UserNameChangeSubmit({ onClick }) {
+export function UserNameChangeSubmit({ onClick, svg, title }) {
 	return (
 		<div className={styles.userNameChangeContainer} onClick={onClick}>
-			Submit
-			<img src='/svgs/user-tick.svg' />
+			{title}
+			<img src={svg} />
 		</div>
 	)
 }

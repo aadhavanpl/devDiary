@@ -147,3 +147,22 @@
 	text-decoration: none;
 	cursor: pointer;
 }
+
+/* stopwatch */
+.clockContainer {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+	height: 100%;
+}
+
+.digital {
+	font-size: 32px;
+}
+
+.clockButtons {
+	display: flex;
+	gap: 12px;
+	margin-top: 12px;
+}

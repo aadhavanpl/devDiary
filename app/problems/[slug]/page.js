@@ -1,7 +1,12 @@
 'use client'
 import React, { useEffect, useRef, useState } from 'react'
 import styles from './slug.module.css'
-import { GoogleSignInButton, SignedIn, SubmitButton } from '@/components/common/Button'
+import {
+	GoogleSignInButton,
+	SignedIn,
+	SubmitButton,
+	UserNameChangeSubmit,
+} from '@/components/common/Button'
 import { ProblemNoClick } from '@/components/common/Problem'
 import { Editor } from '@monaco-editor/react'
 import { useRouter, useParams, usePathname } from 'next/navigation'
@@ -18,15 +23,17 @@ export default function Slug() {
 	const pathname = usePathname()
 
 	const [code, setCode] = useState('')
-	const [duration, setDuration] = useState('00:23:12')
-	const [note, setNote] = useState('Test note')
+	const [time, setTime] = useState(0)
+	const [notes, setNotes] = useState('')
 	const [language, setLanguage] = useState('python')
-	const [feature, setFeature] = useState(0)
+	const [feature, setFeature] = useState(1)
 	const [currProblem, setCurrProblem] = useState('')
 	const [userProblemDetails, setUserProblemDetails] = useState('')
 	const [completionStatus, setCompletionStatus] = useState(false)
 	const [bookmark, setBookmark] = useState(0)
 	const [loader, setLoader] = useState(true)
+
+	const [stopwatchRunning, setStopwatchRunning] = useState(false)
 
 	const location = usePathname()
 	const slugg = location.slice(10)
@@ -54,7 +61,7 @@ export default function Slug() {
 				slug: params.slug,
 				date: correctDateFormat,
 				duration: duration,
-				note: note,
+				note: notes,
 				code: code,
 				language: language,
 			}),
@@ -102,6 +109,32 @@ export default function Slug() {
 	function handleEditorDidMount(editor) {
 		editorRef.current = editor
 	}
+
+	function startStopwatch() {
+		setStopwatchRunning(!stopwatchRunning)
+	}
+
+	function resetStopwatch() {
+		setTime(0)
+		setStopwatchRunning(false)
+	}
+
+	useEffect(() => {
+		localStorage.setItem('stopwatchTime', time.toString())
+	}, [time])
+
+	useEffect(() => {
+		const savedNotes = localStorage.getItem('notes')
+		if (savedNotes) setNotes(savedNotes)
+		const timeInterval = setInterval(() => {
+			if (stopwatchRunning) setTime((prevTime) => prevTime + 1)
+		}, 1000)
+		return () => clearInterval(timeInterval)
+	}, [stopwatchRunning])
+
+	useEffect(() => {
+		localStorage.setItem('notes', notes)
+	}, [notes])
 
 	return (
 		<div className={styles.container}>
@@ -159,13 +192,20 @@ export default function Slug() {
 						<div className={styles.feature}>
 							{feature ? (
 								<div className={styles.stopwatch}>
-									<Stopwatch />
+									<Stopwatch
+										time={time}
+										running={stopwatchRunning}
+										startStopwatch={startStopwatch}
+										resetStopwatch={resetStopwatch}
+									/>
 								</div>
 							) : (
 								<div className={styles.notes}>
 									<textarea
 										className={styles.textarea}
 										placeholder='Enter your notes here'
+										value={notes}
+										onChange={(e) => setNotes(e.target.value)}
 									></textarea>
 								</div>
 							)}
@@ -179,30 +219,7 @@ export default function Slug() {
 	)
 }
 
-function Stopwatch() {
-	const [time, setTime] = useState(0)
-	const [running, setRunning] = useState(false)
-	const intervalRef = useRef(null)
-
-	function startStopwatch() {
-		setRunning(!running)
-	}
-
-	function resetStopwatch() {
-		setTime(0)
-		if (running) setRunning(false)
-	}
-
-	useEffect(() => {
-		if (running) {
-			intervalRef.current = setInterval(() => {
-				setTime((prevTime) => prevTime + 1)
-			}, 1000)
-		} else clearInterval(intervalRef.current)
-
-		return () => clearInterval(intervalRef.current)
-	}, [running])
-
+function Stopwatch({ time, running, startStopwatch, resetStopwatch }) {
 	const secondDeg = (time % 60) * 6
 	const minuteDeg = ((time / 60) % 60) * 6
 	const hourDeg = ((time / 3600) % 12) * 30
@@ -210,44 +227,46 @@ function Stopwatch() {
 	const formattedTime = new Date(time * 1000).toISOString().substr(11, 8)
 
 	return (
-		<div className={styles.analog}>
-			<svg width='200' height='200'>
-				<circle cx='100' cy='100' r='90' fill='none' strokeWidth='4' stroke='black' />
-				<line
-					x1='100'
-					y1='100'
-					x2='100'
-					y2='10'
-					strokeWidth='4'
-					stroke='black'
-					transform={`rotate(${hourDeg}, 100, 100)`}
-				/>
-				<line
-					x1='100'
-					y1='100'
-					x2='100'
-					y2='20'
-					strokeWidth='2'
-					stroke='black'
-					transform={`rotate(${minuteDeg}, 100, 100)`}
-				/>
-				<line
-					x1='100'
-					y1='100'
-					x2='100'
-					y2='30'
-					stroke='red'
-					transform={`rotate(${secondDeg}, 100, 100)`}
-				/>
-			</svg>
-
-			<div className={digital}>
-				<div>{formattedTime}</div>
+		<div className={styles.clockContainer}>
+			<div className={styles.analog}>
+				<svg width='150' height='150'>
+					<circle cx='75' cy='75' r='65' fill='none' strokeWidth='3' stroke='black' />
+					<line
+						x1='75'
+						y1='75'
+						x2='75'
+						y2='15'
+						strokeWidth='3'
+						stroke='black'
+						transform={`rotate(${hourDeg}, 75, 75)`}
+					/>
+					<line
+						x1='75'
+						y1='75'
+						x2='75'
+						y2='25'
+						strokeWidth='1.5'
+						stroke='black'
+						transform={`rotate(${minuteDeg}, 75, 75)`}
+					/>
+					<line
+						x1='75'
+						y1='75'
+						x2='75'
+						y2='35'
+						stroke='red'
+						transform={`rotate(${secondDeg}, 75, 75)`}
+					/>
+				</svg>
 			</div>
-
-			<div className={clockButtons}>
-				<button onClick={startStopwatch}>{running ? 'Stop' : 'Start'}</button>
-				<button onClick={resetStopwatch}>Reset</button>
+			<div className={styles.digital}>{formattedTime}</div>
+			<div className={styles.clockButtons}>
+				<UserNameChangeSubmit
+					onClick={startStopwatch}
+					title={running ? 'Pause' : 'Start'}
+					svg={running ? '/svgs/pause.svg' : '/svgs/play.svg'}
+				/>
+				<UserNameChangeSubmit onClick={resetStopwatch} title='Reset' svg='/svgs/reset.svg' />
 			</div>
 		</div>
 	)
