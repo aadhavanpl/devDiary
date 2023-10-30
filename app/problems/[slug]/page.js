@@ -99,7 +99,6 @@ export default function Slug() {
 			})
 			const tempData = await res.json()
 			const data = tempData?.userProblems[0]?.problems
-			console.log(data)
 			if (data) {
 				if (data.submissions.length) setCompletionStatus(true)
 				setBookmark(data.bookmark)

@@ -48,7 +48,7 @@ export default function Settings() {
 					<SubHeading subheading='User Name' />
 					<div className={styles.nameChange}>
 						<input defaultValue={userName} maxLength='20' onChange={handleChange} />
-						<UserNameChangeSubmit onClick={handleSubmit} svg='/svgs/user-tick.svg' />
+						<UserNameChangeSubmit onClick={handleSubmit} svg='/svgs/user-tick.svg' title='Submit' />
 					</div>
 					<div className={styles['theme-wrapper']}>
 						<SubHeading subheading='Theme' />
