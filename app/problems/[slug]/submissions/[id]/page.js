@@ -7,6 +7,7 @@ import { Editor } from '@monaco-editor/react'
 import { useRouter, useParams } from 'next/navigation'
 import { useGlobalContext } from '@/lib/utils/globalContext'
 import Link from 'next/link'
+import Loader from '@/components/common/Loader'
 
 export default function SubmissionSlug() {
 	const [feature, setFeature] = useState(0)
@@ -14,10 +15,15 @@ export default function SubmissionSlug() {
 	const params = useParams()
 	const editorRef = useRef(null)
 	const { user } = useGlobalContext()
+	const [currProblem, setCurrProblem] = useState()
+	const [completionStatus, setCompletionStatus] = useState(false)
+	const [bookmark, setBookmark] = useState(0)
 
 	const [duration, setDuration] = useState('00:23:12')
 	const [note, setNote] = useState('Test note')
 	const [language, setLanguage] = useState('Python')
+	const [loader, setLoader] = useState(true)
+	const [submissionData, setSubmissionData] = useState()
 
 	function handleEditorDidMount(editor) {
 		editorRef.current = editor
@@ -25,6 +31,39 @@ export default function SubmissionSlug() {
 
 	useEffect(() => {
 		if (!user) return
+		async function fetchProblemDetails() {
+			const res = await fetch('http://localhost:3000/api/fetchProblem', {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({
+					slug: params?.slug,
+				}),
+			})
+			const data = await res.json()
+			console.log(data)
+			if (data.tempProblems.length == 0) router.push('/problems')
+			setCurrProblem(data.tempProblems[0])
+		}
+		fetchProblemDetails()
+
+		async function fetchUserProblemDetails() {
+			const res = await fetch('http://localhost:3000/api/fetchUserProblemDetails', {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({
+					user_email: user?.user_email,
+					slug: params?.slug,
+				}),
+			})
+			const tempData = await res.json()
+			const data = tempData?.userProblems[0]?.problems
+			if (data) {
+				if (data.submissions.length) setCompletionStatus(true)
+				setBookmark(data.bookmark)
+			}
+		}
+		fetchUserProblemDetails()
+
 		async function fetchSubmission() {
 			const res = await fetch('http://localhost:3000/api/submission', {
 				method: 'POST',
@@ -36,9 +75,11 @@ export default function SubmissionSlug() {
 				}),
 			})
 			const data = await res.json()
-			setCurrProblem(data)
+			console.log(data.submissionAPI[0].problems.submissions[0])
+			setSubmissionData(data.submissionAPI[0].problems.submissions[0])
 		}
 		fetchSubmission()
+		setLoader(false)
 	}, [user])
 
 	return (
@@ -51,7 +92,7 @@ export default function SubmissionSlug() {
 					{user ? <SignedIn photoURL={user ? user?.user_photo : null} /> : <GoogleSignInButton />}
 				</div>
 			</div>
-			<ProblemNoClick />
+			<ProblemNoClick data={currProblem} />
 			<div className={styles.wrapper}>
 				<Editor
 					width='calc(100vw - 550px)'
@@ -59,9 +100,9 @@ export default function SubmissionSlug() {
 					theme='vs-dark'
 					className={styles.editor}
 					onMount={handleEditorDidMount}
-					defaultValue='hello'
-					language={language}
-					options={{ domReadOnly: true, readOnly: true }}
+					value={submissionData?.code}
+					language={submissionData?.language}
+					options={{ domReadOnly: true, readOnly: true, fontSize: 17 }}
 				/>
 				<div className={styles.features}>
 					<LanguageSelector />
@@ -93,7 +134,7 @@ export default function SubmissionSlug() {
 								<div className={styles.notes}>
 									<textarea
 										className={styles.textarea}
-										defaultValue='hello world'
+										defaultValue={submissionData?.note}
 										placeholder='Enter your notes here'
 										disabled
 									></textarea>
@@ -103,6 +144,7 @@ export default function SubmissionSlug() {
 					</div>
 				</div>
 			</div>
+			<Loader loader={loader} />
 		</div>
 	)
 }

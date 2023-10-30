@@ -16,10 +16,44 @@ export default function Submissions() {
 	const { user } = useGlobalContext()
 	const pathname = usePathname()
 	const [loader, setLoader] = useState(true)
-	console.log(params)
+	const [currProblem, setCurrProblem] = useState('')
+	const [completionStatus, setCompletionStatus] = useState(false)
+	const [bookmark, setBookmark] = useState(0)
 
 	useEffect(() => {
 		if (!user) return
+		async function fetchProblemDetails() {
+			const res = await fetch('http://localhost:3000/api/fetchProblem', {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({
+					slug: params?.slug,
+				}),
+			})
+			const data = await res.json()
+			if (data.tempProblems.length == 0) router.push('/problems')
+			setCurrProblem(data.tempProblems[0])
+		}
+		fetchProblemDetails()
+
+		async function fetchUserProblemDetails() {
+			const res = await fetch('http://localhost:3000/api/fetchUserProblemDetails', {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({
+					user_email: user?.user_email,
+					slug: params?.slug,
+				}),
+			})
+			const tempData = await res.json()
+			const data = tempData?.userProblems[0]?.problems
+			if (data) {
+				if (data.submissions.length) setCompletionStatus(true)
+				setBookmark(data.bookmark)
+			}
+		}
+		fetchUserProblemDetails()
+
 		async function fetchSubmissions() {
 			const res = await fetch('http://localhost:3000/api/submissions', {
 				method: 'POST',
@@ -30,10 +64,11 @@ export default function Submissions() {
 				}),
 			})
 			const data = await res.json()
-			setSubmissions(data?.submissionsAPI[0]?.problems[0].submissions)
-			setLoader(false)
+			console.log(data?.submissionsAPI)
+			setSubmissions(data?.submissionsAPI)
 		}
 		fetchSubmissions()
+		setLoader(false)
 	}, [user])
 
 	return (
@@ -46,7 +81,7 @@ export default function Submissions() {
 					{user ? <SignedIn photoURL={user ? user?.user_photo : null} /> : <GoogleSignInButton />}
 				</div>
 			</div>
-			<ProblemNoClick />
+			<ProblemNoClick data={currProblem} done={completionStatus} bookmark={bookmark} />
 			<div className={styles.previousSubmissionWrapper}>
 				<SubHeading subheading='Previous submissions' />
 				{submissions?.length > 0 && submissions

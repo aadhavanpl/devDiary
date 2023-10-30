@@ -152,6 +152,7 @@
 .clockContainer {
 	display: flex;
 	flex-direction: column;
+	gap: 50px;
 	justify-content: space-between;
 	align-items: center;
 	height: 100%;

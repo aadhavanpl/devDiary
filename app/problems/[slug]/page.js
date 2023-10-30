@@ -108,6 +108,13 @@ export default function Slug() {
 		setLoader(false)
 	}, [user])
 
+	function clearLocalStorage() {
+		localStorage.removeItem('notes')
+		localStorage.removeItem('stopwatchTime')
+	}
+
+	window.onbeforeunload = clearLocalStorage
+
 	function handleEditorDidMount(editor) {
 		editorRef.current = editor
 	}
@@ -157,10 +164,10 @@ export default function Slug() {
 					className={styles.editor}
 					onChange={() => setCode(editorRef.current.getValue())}
 					onMount={handleEditorDidMount}
-					defaultValue='hello = "value"'
+					defaultValue=''
 					language={language}
 					options={{
-						fontSize: 16,
+						fontSize: 17,
 					}}
 				/>
 				<div className={styles.features}>

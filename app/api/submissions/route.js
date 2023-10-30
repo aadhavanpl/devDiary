@@ -6,13 +6,31 @@ export async function POST(req) {
 	try {
 		const { user_email, slug } = await req.json()
 		await connectMongoDB()
-		const submissionsAPI = await users.find(
+		const submissionsAPI = await users.aggregate([
 			{
-				user_email: user_email,
-				'problems.slug': slug,
+				$match: {
+					user_email: user_email,
+				},
 			},
-			{ _id: 0, 'problems.submissions.$': 1 }
-		)
+			{
+				$unwind: '$problems',
+			},
+			{
+				$match: {
+					'problems.slug': slug,
+				},
+			},
+			{
+				$unwind: '$problems.submissions',
+			},
+			{
+				$project: {
+					_id: '$problems.submissions._id',
+					date: '$problems.submissions.date',
+					duration: '$problems.submissions.duration',
+				},
+			},
+		])
 		return NextResponse.json(
 			{ submissionsAPI },
 			{ message: 'Submissions fetched' },
