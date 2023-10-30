@@ -46,7 +46,7 @@ export default function Slug() {
 			date.getMonth() +
 			'/' +
 			date.getFullYear() +
-			'-' +
+			' - ' +
 			date.getHours() +
 			':' +
 			date.getMinutes() +
@@ -58,18 +58,25 @@ export default function Slug() {
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify({
 				user_email: user?.user_email,
+				qno: currProblem?.qno,
+				title: currProblem?.title,
+				tags: currProblem?.tags,
 				slug: params.slug,
+				difficulty: currProblem?.difficulty,
 				date: correctDateFormat,
-				duration: duration,
+				duration: time,
 				note: notes,
 				code: code,
 				language: language,
 			}),
 		})
+
 		await res.json()
+		router.push(pathname + '/submissions')
 	}
 
 	useEffect(() => {
+		if (!user) return
 		async function fetchProblemDetails() {
 			const res = await fetch('http://localhost:3000/api/fetchProblem', {
 				method: 'POST',
@@ -93,7 +100,7 @@ export default function Slug() {
 				}),
 			})
 			const tempData = await res.json()
-			const data = tempData.userProblems[0].problems
+			const data = tempData.userProblems[0]?.problems
 			if (data) {
 				setUserProblemDetails(data)
 				if (data.submissions.length) {
@@ -104,7 +111,7 @@ export default function Slug() {
 		}
 		fetchUserProblemDetails()
 		setLoader(false)
-	}, [])
+	}, [user])
 
 	function handleEditorDidMount(editor) {
 		editorRef.current = editor

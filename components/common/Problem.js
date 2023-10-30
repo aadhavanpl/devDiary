@@ -108,10 +108,6 @@ export function ProblemNoClick({ data, done, bookmark }) {
 	const { user } = useGlobalContext()
 
 	useEffect(() => {
-		console.log(bookmarkk)
-	}, [bookmarkk])
-
-	useEffect(() => {
 		if (change) {
 			async function setBookmarkk() {
 				const res = await fetch('http://localhost:3000/api/bookmark', {
@@ -133,11 +129,11 @@ export function ProblemNoClick({ data, done, bookmark }) {
 	return (
 		<div className={styles.containerNoClick}>
 			<div className={styles.leftWrapper}>
-				<div className={styles.problemNumber}>{data.qno}</div>
+				<div className={styles.problemNumber}>{data?.qno}</div>
 				<div className={styles.titleWrapper}>
-					<div className={styles.title}>{data.title}</div>
+					<div className={styles.title}>{data?.title}</div>
 					<div className={styles.tagsWrapper}>
-						{data.tags?.map((tag, index) => (
+						{data?.tags?.map((tag, index) => (
 							<SmallTag tag={tag} color='#FCB0BD' key={index} />
 						))}
 					</div>
@@ -166,7 +162,7 @@ export function ProblemNoClick({ data, done, bookmark }) {
 						alt='no-bookmark'
 					/>
 				)}
-				<LongDifficulty difficulty={data.difficulty} />
+				<LongDifficulty difficulty={data?.difficulty} />
 			</div>
 		</div>
 	)

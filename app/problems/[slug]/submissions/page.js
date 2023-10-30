@@ -18,21 +18,22 @@ export default function Submissions() {
 	const [loader, setLoader] = useState(true)
 
 	useEffect(() => {
+		if (!user) return
 		async function fetchSubmissions() {
 			const res = await fetch('http://localhost:3000/api/submissions', {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({
-					user_email: 'user2@example.com',
-					slug: 'longest-substring-without-repeating-characters',
+					user_email: user?.user_email,
+					slug: 'two-sum',
 				}),
 			})
 			const data = await res.json()
-			setSubmissions(data.submissionsAPI[0].problems[0].submissions)
+			setSubmissions(data?.submissionsAPI[0]?.problems[0].submissions)
 			setLoader(false)
 		}
 		fetchSubmissions()
-	}, [])
+	}, [user])
 
 	return (
 		<div className={styles.container}>
@@ -47,15 +48,15 @@ export default function Submissions() {
 			<ProblemNoClick />
 			<div className={styles.previousSubmissionWrapper}>
 				<SubHeading subheading='Previous submissions' />
-				{submissions
-					? submissions.map((submission, index) => (
+				{submissions?.length > 0 && submissions
+					? submissions?.map((submission, index) => (
 							<Submission
 								number={index + 1}
-								date={submission.date}
-								duration={submission.duration}
+								date={submission?.date}
+								duration={submission?.duration}
 								key={index + 1}
 								pathname={pathname}
-								id={submission._id}
+								id={submission?._id}
 							/>
 					  ))
 					: null}

@@ -37,7 +37,7 @@ export default function Solutions({ solutions }) {
 		<div className={styles.container}>
 			<div className={styles.wrapper}>
 				{widths ? (
-					<>
+					<div>
 						<div
 							className={noEasy ? styles.noEasy : styles.easy}
 							style={{ width: widths[0] }}
@@ -50,7 +50,7 @@ export default function Solutions({ solutions }) {
 							className={noHard ? styles.noHard : styles.hard}
 							style={{ width: widths[2] }}
 						></div>
-					</>
+					</div>
 				) : null}
 			</div>
 		</div>

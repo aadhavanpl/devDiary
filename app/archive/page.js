@@ -31,11 +31,12 @@ export default function Archive() {
 	}, [random])
 
 	useEffect(() => {
+		if (!user || user.length) return
 		async function fetchProblems() {
 			const res = await fetch('http://localhost:3000/api/archive', {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
-				body: JSON.stringify({ user_email: 'user2@example.com' }),
+				body: JSON.stringify({ user_email: user?.user_email }),
 			})
 			const problems = await res.json()
 			setProblems(problems.archiveAPI[0].problems)
@@ -43,7 +44,7 @@ export default function Archive() {
 			setLoader(false)
 		}
 		fetchProblems()
-	}, [])
+	}, [user])
 
 	useEffect(() => {
 		if (search != '') {
