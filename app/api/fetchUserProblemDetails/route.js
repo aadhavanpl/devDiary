@@ -17,23 +17,17 @@ export async function POST(req) {
 				},
 			},
 			{
+				$unwind: '$problems',
+			},
+			{
+				$match: {
+					'problems.slug': slug,
+				},
+			},
+			{
 				$project: {
-					_id: 0,
-					user_email: 1,
-					user_name: 1,
-					user_photo: 1,
-					problems: {
-						$arrayElemAt: [
-							{
-								$filter: {
-									input: '$problems',
-									as: 'problem',
-									cond: { $eq: ['$$problem.slug', slug] },
-								},
-							},
-							0,
-						],
-					},
+					'problems.bookmark': 1,
+					'problems.submissions': 1,
 				},
 			},
 		])

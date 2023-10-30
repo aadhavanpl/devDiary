@@ -16,6 +16,7 @@ export default function Submissions() {
 	const { user } = useGlobalContext()
 	const pathname = usePathname()
 	const [loader, setLoader] = useState(true)
+	console.log(params)
 
 	useEffect(() => {
 		if (!user) return
@@ -25,7 +26,7 @@ export default function Submissions() {
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({
 					user_email: user?.user_email,
-					slug: 'two-sum',
+					slug: params?.slug,
 				}),
 			})
 			const data = await res.json()

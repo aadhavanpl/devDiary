@@ -23,6 +23,24 @@ export default function SubmissionSlug() {
 		editorRef.current = editor
 	}
 
+	useEffect(() => {
+		if (!user) return
+		async function fetchSubmission() {
+			const res = await fetch('http://localhost:3000/api/submission', {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({
+					user_email: user?.user_email,
+					slug: params?.slug,
+					id: params?.id,
+				}),
+			})
+			const data = await res.json()
+			setCurrProblem(data)
+		}
+		fetchSubmission()
+	}, [user])
+
 	return (
 		<div className={styles.container}>
 			<div className={styles.header}>

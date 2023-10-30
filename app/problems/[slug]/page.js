@@ -28,15 +28,11 @@ export default function Slug() {
 	const [language, setLanguage] = useState('python')
 	const [feature, setFeature] = useState(1)
 	const [currProblem, setCurrProblem] = useState('')
-	const [userProblemDetails, setUserProblemDetails] = useState('')
 	const [completionStatus, setCompletionStatus] = useState(false)
 	const [bookmark, setBookmark] = useState(0)
 	const [loader, setLoader] = useState(true)
 
 	const [stopwatchRunning, setStopwatchRunning] = useState(false)
-
-	const location = usePathname()
-	const slugg = location.slice(10)
 
 	async function handleSubmit() {
 		const date = new Date()
@@ -82,10 +78,12 @@ export default function Slug() {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({
-					slug: slugg,
+					slug: params?.slug,
 				}),
 			})
 			const data = await res.json()
+			console.log(data)
+			if (data.tempProblems.length == 0) router.push('/problems')
 			setCurrProblem(data.tempProblems[0])
 		}
 		fetchProblemDetails()
@@ -96,18 +94,16 @@ export default function Slug() {
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({
 					user_email: user?.user_email,
-					slug: slugg,
+					slug: params?.slug,
 				}),
 			})
 			const tempData = await res.json()
-			const data = tempData.userProblems[0]?.problems
+			const data = tempData?.userProblems[0]?.problems
+			console.log(data)
 			if (data) {
-				setUserProblemDetails(data)
-				if (data.submissions.length) {
-					setCompletionStatus(true)
-					setBookmark(data.bookmark)
-				}
-			} else setUserProblemDetails(null)
+				if (data.submissions.length) setCompletionStatus(true)
+				setBookmark(data.bookmark)
+			}
 		}
 		fetchUserProblemDetails()
 		setLoader(false)
