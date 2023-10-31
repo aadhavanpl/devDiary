@@ -1,13 +1,16 @@
 'use client'
 import React, { useEffect, useRef, useState } from 'react'
-import styles from '../../slug.module.css'
-import { GoogleSignInButton, SignedIn } from '@/components/common/Button'
-import { ProblemNoClick } from '@/components/common/Problem'
+import Link from 'next/link'
 import { Editor } from '@monaco-editor/react'
 import { useRouter, useParams } from 'next/navigation'
+
 import { useGlobalContext } from '@/lib/utils/globalContext'
-import Link from 'next/link'
+import { GoogleSignInButton, SignedIn } from '@/components/common/Button'
+import { ProblemNoClick } from '@/components/common/Problem'
 import Loader from '@/components/common/Loader'
+import LanguageSelector from '@/components/common/LanguageSelector'
+
+import styles from '../../slug.module.css'
 
 export default function SubmissionSlug() {
 	const [feature, setFeature] = useState(0)
@@ -19,9 +22,6 @@ export default function SubmissionSlug() {
 	const [completionStatus, setCompletionStatus] = useState(false)
 	const [bookmark, setBookmark] = useState(0)
 
-	const [duration, setDuration] = useState('00:23:12')
-	const [note, setNote] = useState('Test note')
-	const [language, setLanguage] = useState('Python')
 	const [loader, setLoader] = useState(true)
 	const [submissionData, setSubmissionData] = useState()
 
@@ -40,7 +40,6 @@ export default function SubmissionSlug() {
 				}),
 			})
 			const data = await res.json()
-			console.log(data)
 			if (data.tempProblems.length == 0) router.push('/problems')
 			setCurrProblem(data.tempProblems[0])
 		}
@@ -74,8 +73,21 @@ export default function SubmissionSlug() {
 					id: params?.id,
 				}),
 			})
-			const data = await res.json()
-			console.log(data.submissionAPI[0].problems.submissions[0])
+			let data = await res.json()
+
+			function secondsToHMS(seconds) {
+				const hours = Math.floor(seconds / 3600)
+				seconds %= 3600
+				const minutes = Math.floor(seconds / 60)
+				seconds %= 60
+				return `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(
+					seconds
+				).padStart(2, '0')}`
+			}
+
+			data.submissionAPI[0].problems.submissions[0].duration = secondsToHMS(
+				data.submissionAPI[0].problems.submissions[0].duration
+			)
 			setSubmissionData(data.submissionAPI[0].problems.submissions[0])
 		}
 		fetchSubmission()
@@ -89,10 +101,10 @@ export default function SubmissionSlug() {
 					<img src='/svgs/logo.svg' className={styles.logo} alt='logo' />
 				</Link>
 				<div className={styles.googleSignIn}>
-					{user ? <SignedIn photoURL={user ? user?.user_photo : null} /> : <GoogleSignInButton />}
+					{user ? <SignedIn photoURL={user?.user_photo} /> : <GoogleSignInButton />}
 				</div>
 			</div>
-			<ProblemNoClick data={currProblem} />
+			<ProblemNoClick data={currProblem} bookmark={bookmark} done={completionStatus} />
 			<div className={styles.wrapper}>
 				<Editor
 					width='calc(100vw - 550px)'
@@ -105,7 +117,7 @@ export default function SubmissionSlug() {
 					options={{ domReadOnly: true, readOnly: true, fontSize: 17 }}
 				/>
 				<div className={styles.features}>
-					<LanguageSelector />
+					<LanguageSelector language={submissionData?.language} disabled />
 					<div className={styles.topWrapper}>
 						<div className={styles.toggleWrapper}>
 							<div className={styles.linksWrapper}>
@@ -114,7 +126,7 @@ export default function SubmissionSlug() {
 									style={{ borderBottom: feature ? '4px solid #b235ff' : '' }}
 									onClick={() => setFeature(1)}
 								>
-									Stopwatch
+									Time taken
 								</div>
 								<div
 									className={styles.toggle}
@@ -127,8 +139,10 @@ export default function SubmissionSlug() {
 						</div>
 						<div className={styles.feature}>
 							{feature ? (
-								<div className={styles.stopwatch}>
-									<Stopwatch />
+								<div className={styles.timeTaken}>
+									<img src='/svgs/time-taken.svg' />
+									<div className={styles.timeTakenHeading}>Time taken</div>
+									{submissionData?.duration}
 								</div>
 							) : (
 								<div className={styles.notes}>
@@ -145,55 +159,6 @@ export default function SubmissionSlug() {
 				</div>
 			</div>
 			<Loader loader={loader} />
-		</div>
-	)
-}
-
-function Stopwatch() {
-	return <div className={styles.stopwatchContainer}>{elapsedFormatted}</div>
-}
-
-function LanguageSelector() {
-	return (
-		<div className={styles.selectWrapper}>
-			Language:
-			<select
-				className={styles.selectBox}
-				defaultValue='python'
-				onChange={(e) => setLanguage(e.target.value)}
-				disabled
-			>
-				<option value='python'>Python</option>
-				<option value='cpp'>C++</option>
-				<option value='c'>C</option>
-				<option value='javascript'>JavaScript</option>
-				<option value='typescript'>TypeScript</option>
-				<option value='java'>Java</option>
-				<option value='sql'>SQL</option>
-				<option value='ruby'>Ruby</option>
-				<option value='php'>PHP</option>
-				<option value='go'>Go</option>
-				<option value='rust'>Rust</option>
-				<option value='swift'>Swift</option>
-				<option value='powershell'>PowerShell</option>
-				<option value='perl'>Perl</option>
-				<option value='kotlin'>Kotlin</option>
-				<option value='json'>JSON</option>
-				<option value='xml'>XML</option>
-				<option value='markdown'>Markdown</option>
-				<option value='yaml'>YAML</option>
-				<option value='dockerfile'>Dockerfile</option>
-				<option value='shell'>Shell Script</option>
-				<option value='html'>HTML</option>
-				<option value='css'>CSS</option>
-				<option value='r'>R</option>
-				<option value='scala'>Scala</option>
-				<option value='perl6'>Perl 6</option>
-				<option value='groovy'>Groovy</option>
-				<option value='lua'>Lua</option>
-				<option value='matlab'>Matlab</option>
-				<option value='fortran'>Fortran</option>
-			</select>
 		</div>
 	)
 }

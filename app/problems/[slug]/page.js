@@ -1,18 +1,15 @@
 'use client'
 import React, { useEffect, useRef, useState } from 'react'
 import styles from './slug.module.css'
-import {
-	GoogleSignInButton,
-	SignedIn,
-	SubmitButton,
-	UserNameChangeSubmit,
-} from '@/components/common/Button'
+import { GoogleSignInButton, SignedIn, SubmitButton } from '@/components/common/Button'
 import { ProblemNoClick } from '@/components/common/Problem'
 import { Editor } from '@monaco-editor/react'
 import { useRouter, useParams, usePathname } from 'next/navigation'
 import Link from 'next/link'
 import { useGlobalContext } from '@/lib/utils/globalContext'
 import Loader from '@/components/common/Loader'
+import Stopwatch from '@/components/common/Stopwatch'
+import LanguageSelector from '@/components/common/LanguageSelector'
 
 export default function Slug() {
 	const { user } = useGlobalContext()
@@ -82,7 +79,6 @@ export default function Slug() {
 				}),
 			})
 			const data = await res.json()
-			console.log(data)
 			if (data.tempProblems.length == 0) router.push('/problems')
 			setCurrProblem(data.tempProblems[0])
 		}
@@ -108,12 +104,10 @@ export default function Slug() {
 		setLoader(false)
 	}, [user])
 
-	function clearLocalStorage() {
+	useEffect(() => {
 		localStorage.removeItem('notes')
 		localStorage.removeItem('stopwatchTime')
-	}
-
-	window.onbeforeunload = clearLocalStorage
+	}, [])
 
 	function handleEditorDidMount(editor) {
 		editorRef.current = editor
@@ -200,14 +194,12 @@ export default function Slug() {
 						</div>
 						<div className={styles.feature}>
 							{feature ? (
-								<div className={styles.stopwatch}>
-									<Stopwatch
-										time={time}
-										running={stopwatchRunning}
-										startStopwatch={startStopwatch}
-										resetStopwatch={resetStopwatch}
-									/>
-								</div>
+								<Stopwatch
+									time={time}
+									running={stopwatchRunning}
+									startStopwatch={startStopwatch}
+									resetStopwatch={resetStopwatch}
+								/>
 							) : (
 								<div className={styles.notes}>
 									<textarea
@@ -224,103 +216,6 @@ export default function Slug() {
 				</div>
 			</div>
 			<Loader loader={loader} />
-		</div>
-	)
-}
-
-function Stopwatch({ time, running, startStopwatch, resetStopwatch }) {
-	const secondDeg = (time % 60) * 6
-	const minuteDeg = ((time / 60) % 60) * 6
-	const hourDeg = ((time / 3600) % 12) * 30
-
-	const formattedTime = new Date(time * 1000).toISOString().substr(11, 8)
-
-	return (
-		<div className={styles.clockContainer}>
-			<div className={styles.analog}>
-				<svg width='150' height='150'>
-					<circle cx='75' cy='75' r='65' fill='none' strokeWidth='3' stroke='black' />
-					<line
-						x1='75'
-						y1='75'
-						x2='75'
-						y2='15'
-						strokeWidth='3'
-						stroke='black'
-						transform={`rotate(${hourDeg}, 75, 75)`}
-					/>
-					<line
-						x1='75'
-						y1='75'
-						x2='75'
-						y2='25'
-						strokeWidth='1.5'
-						stroke='black'
-						transform={`rotate(${minuteDeg}, 75, 75)`}
-					/>
-					<line
-						x1='75'
-						y1='75'
-						x2='75'
-						y2='35'
-						stroke='red'
-						transform={`rotate(${secondDeg}, 75, 75)`}
-					/>
-				</svg>
-			</div>
-			<div className={styles.digital}>{formattedTime}</div>
-			<div className={styles.clockButtons}>
-				<UserNameChangeSubmit
-					onClick={startStopwatch}
-					title={running ? 'Pause' : 'Start'}
-					svg={running ? '/svgs/pause.svg' : '/svgs/play.svg'}
-				/>
-				<UserNameChangeSubmit onClick={resetStopwatch} title='Reset' svg='/svgs/reset.svg' />
-			</div>
-		</div>
-	)
-}
-
-function LanguageSelector({ language, setLanguage }) {
-	return (
-		<div className={styles.selectWrapper}>
-			Language:
-			<select
-				className={styles.selectBox}
-				defaultValue={language}
-				onChange={(e) => setLanguage(e.target.value)}
-			>
-				<option value='python'>Python</option>
-				<option value='cpp'>C++</option>
-				<option value='c'>C</option>
-				<option value='javascript'>JavaScript</option>
-				<option value='typescript'>TypeScript</option>
-				<option value='java'>Java</option>
-				<option value='sql'>SQL</option>
-				<option value='ruby'>Ruby</option>
-				<option value='php'>PHP</option>
-				<option value='go'>Go</option>
-				<option value='rust'>Rust</option>
-				<option value='swift'>Swift</option>
-				<option value='powershell'>PowerShell</option>
-				<option value='perl'>Perl</option>
-				<option value='kotlin'>Kotlin</option>
-				<option value='json'>JSON</option>
-				<option value='xml'>XML</option>
-				<option value='markdown'>Markdown</option>
-				<option value='yaml'>YAML</option>
-				<option value='dockerfile'>Dockerfile</option>
-				<option value='shell'>Shell Script</option>
-				<option value='html'>HTML</option>
-				<option value='css'>CSS</option>
-				<option value='r'>R</option>
-				<option value='scala'>Scala</option>
-				<option value='perl6'>Perl 6</option>
-				<option value='groovy'>Groovy</option>
-				<option value='lua'>Lua</option>
-				<option value='matlab'>Matlab</option>
-				<option value='fortran'>Fortran</option>
-			</select>
 		</div>
 	)
 }
