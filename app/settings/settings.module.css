@@ -1,7 +1,6 @@
 .container {
     display: flex;
 }
-
 .userName {
 	display: flex;
 	flex-direction: column;
@@ -26,6 +25,7 @@
 .inputWrapper input {
 	font-size: 18px;
 	width: 100%;
+	background-color: var(--white);
 }
 
 .theme-wrapper{
@@ -40,4 +40,5 @@
 
 .submitButton {
     cursor: pointer;
+	/* background-color: var(--black); */
 }

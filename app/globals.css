@@ -15,7 +15,7 @@ body::-webkit-scrollbar {
 	display: none;
 }
 
-:root {
+:root:not(.dark) {
 	--black: #000000;
 	--white: #ffffff;
 	--navbar: #e5eae8;
@@ -23,8 +23,8 @@ body::-webkit-scrollbar {
 	--medium: #f8c00b;
 	--hard: #e44944;
 
-	--hover: rgba(0, 0, 0, 0.05);
-	--grey-10: rgba(0, 0, 0, 0.1);
+	--hover: rgba(0, 0, 0, 0.051);
+	--grey-10: rgba(0, 0, 0, 0.102);
 	--grey-20: rgba(0, 0, 0, 0.2);
 	--grey-30: rgba(0, 0, 0, 0.3);
 	--grey-50: rgba(0, 0, 0, 0.5);
@@ -33,6 +33,23 @@ body::-webkit-scrollbar {
 	--box-shadow: 0px 1px 10px 0px var(--grey-10);
 }
 
+.dark{
+	--black: #ffffff;
+	--white: #000000;
+	--navbar: #eae6e5;
+	--easy: #3fb7a2;
+	--medium: #f8c00b;
+	--hard: #e44944;
+
+	--hover: #fefbfbfa;
+	--grey-10: #ffffffcb;
+	--grey-20: #f7f7f7ba;
+	--grey-30: #f7f7f792;
+	--grey-50: #d7d4d480;
+
+	--border: 1px solid var(--grey-20);
+	--box-shadow: 0px 1px 10px 0px var(--grey-10);
+}
 input:focus,
 textarea:focus {
 	outline: none;

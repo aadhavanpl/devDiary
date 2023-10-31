@@ -45,6 +45,18 @@ export default function Settings() {
 		setLoader(false)
 	}
 
+	function themeToLight(){
+		localStorage.setItem('darkmode',false);
+		var element = document.body;
+		document.body.classList.remove('dark');
+	}
+
+	function themeToDark(){
+		localStorage.setItem('darkmode',true);
+		var element = document.body;
+		document.body.classList.add('dark');
+	}
+
 	return (
 		<div className={styles['container']}>
 			<NavbarLayout>
@@ -62,13 +74,13 @@ export default function Settings() {
 					<div className={styles['theme-wrapper']}>
 						<SubHeading subheading='Theme' />
 						<div className={styles['themeToggleWrapper']}>
-							<ThemeToggle theme='L' />
-							<ThemeToggle theme='D' />
+							<button onClick={themeToLight}> <ThemeToggle theme='L' /></button>
+							<button onClick={themeToDark}><ThemeToggle theme='D' /></button>
 						</div>
 					</div>
 				</div>
 			</NavbarLayout>
-			<Loader loader={loader} />
+			{/* <Loader loader={loader} /> */}
 		</div>
 	)
 }

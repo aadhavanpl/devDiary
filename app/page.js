@@ -6,6 +6,9 @@ import { HomeSearchBar } from '@/components/common/SearchBar'
 import Fuse from 'fuse.js'
 import { useEffect, useState } from 'react'
 import Loader from '@/components/common/Loader'
+import Problems from './problems/page'
+import Dashboard from './dashboard/page'
+import Settings from './settings/page'
 
 export default function Home() {
 	const [problems, setProblems] = useState()
@@ -31,7 +34,7 @@ export default function Home() {
 	useEffect(() => {
 		if (search != '') {
 			let fuseInstance = new Fuse(problems, fuseOptions)
-			const res = fuseInstance.search(search)
+			const res = fuseInstance.search(search) ?? fuseInstance.search('');
 			let tempProblems = []
 			for (let i = 0; i < res.length; i++) tempProblems.push(res[i].item)
 			setProblems(tempProblems)
@@ -41,7 +44,7 @@ export default function Home() {
 
 	return (
 		<main className={styles.main}>
-			<picture>
+			{/* <picture>
 				<img src='/svgs/logo.svg' className={styles.logo} alt='logo' />
 			</picture>
 			<div className={search ? styles.containerWithSearch : styles.containerWithoutSearch}>
@@ -63,7 +66,10 @@ export default function Home() {
 			</div>
 			<div className={styles.googleSignIn}>
 				<GoogleSignInButton />
-			</div>
+			</div> */}
+			{/* <Dashboard/> */}
+			<Settings/>
+			{/* <Problems/> */}
 		</main>
 	)
 }
