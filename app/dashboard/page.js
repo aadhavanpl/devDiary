@@ -50,17 +50,14 @@ export default function Dashboard() {
 				const data = await res.json()
 
 				/* duration */
-				function timeToMinutes(timeString) {
-					const [hours, minutes, seconds] = timeString.split(':').map(Number)
-					return hours * 60 + minutes + seconds / 60
+				function secondsToHoursMinutes(seconds) {
+					const hours = Math.floor(seconds / 3600)
+					const minutes = Math.floor((seconds % 3600) / 60)
+					return [hours, minutes]
 				}
-				const totalMinutes = Math.round(
-					data.tempUsers[0].durations.reduce((total, duration) => {
-						return total + timeToMinutes(duration)
-					}, 0)
-				)
-				const formattedTime = `${Math.floor(totalMinutes / 60)}h ${Math.round(totalMinutes % 60)}m`
-				setDuration(formattedTime)
+				const totalSeconds = data.tempUsers[0].durations.reduce((total, time) => total + time, 0)
+				const [hours, minutes] = secondsToHoursMinutes(totalSeconds)
+				setDuration(`${hours}h ${minutes}m`)
 			}
 			fetchDurations()
 
@@ -73,6 +70,7 @@ export default function Dashboard() {
 					}),
 				})
 				const data = await res.json()
+				console.log(data.countProblems[0])
 				setChartData(data.countProblems)
 			}
 			fetchChartValues()

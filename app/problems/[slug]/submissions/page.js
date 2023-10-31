@@ -89,6 +89,7 @@ export default function Submissions() {
 							<Submission
 								number={index + 1}
 								date={submission?.date}
+								time={submission?.time}
 								duration={submission?.duration}
 								key={index + 1}
 								pathname={pathname}

@@ -16,6 +16,7 @@ const userSchema = new Schema(
 				submissions: [
 					{
 						date: String,
+						time: String,
 						duration: String,
 						note: String,
 						code: String,

@@ -34,17 +34,17 @@ export default function Slug() {
 	async function handleSubmit() {
 		const date = new Date()
 		const correctDateFormat =
-			date.getDate() +
-			'/' +
-			date.getMonth() +
-			'/' +
 			date.getFullYear() +
-			' - ' +
-			date.getHours() +
+			'/' +
+			(date.getMonth() + 1).toString().padStart(2, '0') +
+			'/' +
+			date.getDate().toString().padStart(2, '0')
+		const correctTimeFormat =
+			date.getHours().toString().padStart(2, '0') +
 			':' +
-			date.getMinutes() +
+			date.getMinutes().toString().padStart(2, '0') +
 			':' +
-			date.getSeconds()
+			date.getSeconds().toString().padStart(2, '0')
 
 		const res = await fetch('http://localhost:3000/api/problem', {
 			method: 'POST',
@@ -57,6 +57,7 @@ export default function Slug() {
 				slug: params.slug,
 				difficulty: currProblem?.difficulty,
 				date: correctDateFormat,
+				time: correctTimeFormat,
 				duration: time,
 				note: notes,
 				code: code,

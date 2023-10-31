@@ -38,8 +38,8 @@ export default function Chart({ chartData }) {
 				const matchedDate = chartData.find((item) => item.date === datesArray[i])
 				if (matchedDate) {
 					const index = i < 7 ? i : i - 7
-					if (i < 7) lastWeek[index] = matchedDate.countQuestions
-					else latestWeek[index] = matchedDate.countQuestions
+					if (i < 7) lastWeek[index] = matchedDate.questionsSolved
+					else latestWeek[index] = matchedDate.questionsSolved
 				}
 			}
 

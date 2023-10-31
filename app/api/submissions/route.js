@@ -27,6 +27,7 @@ export async function POST(req) {
 				$project: {
 					_id: '$problems.submissions._id',
 					date: '$problems.submissions.date',
+					time: '$problems.submissions.time',
 					duration: '$problems.submissions.duration',
 				},
 			},

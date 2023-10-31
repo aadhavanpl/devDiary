@@ -4,8 +4,20 @@ import { NextResponse } from 'next/server'
 
 export async function POST(req) {
 	try {
-		const { user_email, qno, title, tags, slug, difficulty, date, duration, note, code, language } =
-			await req.json()
+		const {
+			user_email,
+			qno,
+			title,
+			tags,
+			slug,
+			difficulty,
+			date,
+			time,
+			duration,
+			note,
+			code,
+			language,
+		} = await req.json()
 		await connectMongoDB()
 
 		const res = await users.find(
@@ -28,6 +40,7 @@ export async function POST(req) {
 					$push: {
 						'problems.$.submissions': {
 							date: date,
+							time: time,
 							duration: duration,
 							note: note,
 							code: code,
@@ -51,6 +64,7 @@ export async function POST(req) {
 							submissions: [
 								{
 									date: date,
+									time: time,
 									duration: duration,
 									note: note,
 									code: code,
