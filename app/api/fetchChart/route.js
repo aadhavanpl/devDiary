@@ -20,41 +20,21 @@ export async function POST(req) {
 				$unwind: '$problems.submissions',
 			},
 			{
-				$project: {
-					date: { $dateFromString: { dateString: '$problems.submissions.date' } },
-					qno: '$problems.qno',
-				},
-			},
-			{
 				$group: {
-					_id: {
-						date: {
-							$dateFromParts: {
-								year: { $year: '$date' },
-								month: { $month: '$date' },
-								day: { $dayOfMonth: '$date' },
-							},
-						},
-					},
-					countQuestions: { $addToSet: '$qno' },
-				},
-			},
-			{
-				$project: {
-					date: { $dateToString: { format: '%Y/%m/%d', date: '$_id.date' } },
-					countQuestions: { $size: '$countQuestions' },
-				},
-			},
-			{
-				$sort: {
-					date: 1,
+					_id: '$problems.submissions.date',
+					questionsSolved: { $sum: 1 },
 				},
 			},
 			{
 				$project: {
 					_id: 0,
-					date: 1,
-					countQuestions: 1,
+					date: '$_id',
+					questionsSolved: 1,
+				},
+			},
+			{
+				$sort: {
+					date: -1,
 				},
 			},
 			{
