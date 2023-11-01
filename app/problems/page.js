@@ -11,6 +11,7 @@ import { useEffect, useState } from 'react'
 import Fuse from 'fuse.js'
 import Loader from '@/components/common/Loader'
 import { useGlobalContext } from '@/lib/utils/globalContext'
+import { RandomButton } from '@/components/common/Button'
 
 export default function Problems() {
 	const { user } = useGlobalContext()
@@ -18,10 +19,8 @@ export default function Problems() {
 	const [problems, setProblems] = useState()
 	const [allProblems, setAllProblems] = useState()
 	const [search, setSearch] = useState('')
-	const [easyFilter, setEasyFilter] = useState(false)
-	const [mediumFilter, setMediumFilter] = useState(false)
-	const [hardFilter, setHardFilter] = useState(false)
 	const [loader, setLoader] = useState(true)
+	const [random, setRandom] = useState()
 
 	const fuseOptions = {
 		keys: ['qno', 'title', 'slug', 'difficulty', 'tags'],
@@ -45,61 +44,13 @@ export default function Problems() {
 		fetchProblems()
 	}, [])
 
-	useEffect(() => {
-		if (search != '') {
-			let fuseInstance = new Fuse(problems, fuseOptions)
-			const res = fuseInstance.search(search)
-			let tempProblems = []
-			for (let i = 0; i < res.length; i++) tempProblems.push(res[i].item)
-
-			let easyProblems = []
-			if (easyFilter) {
-				let newFuseInstance = new Fuse(tempProblems, fuseDifficultyOptions)
-				const easyRes = newFuseInstance.search('Easy')
-				for (let i = 0; i < easyRes.length; i++) easyProblems.push(easyRes[i].item)
-			}
-
-			let mediumProblems = []
-			if (mediumFilter) {
-				let newFuseInstance = new Fuse(tempProblems, fuseDifficultyOptions)
-				const mediumRes = newFuseInstance.search('Medium')
-				for (let i = 0; i < mediumRes.length; i++) mediumProblems.push(mediumRes[i].item)
-			}
-
-			let hardProblems = []
-			if (hardFilter) {
-				let newFuseInstance = new Fuse(tempProblems, fuseDifficultyOptions)
-				const hardRes = newFuseInstance.search('Hard')
-				for (let i = 0; i < hardRes.length; i++) hardProblems.push(hardRes[i].item)
-			}
-
-			if (!easyFilter && !mediumFilter && !hardFilter) setProblems(tempProblems)
-			else {
-				let finalProblems = easyProblems.concat(mediumProblems, hardProblems)
-				console.log('easyProblems')
-				console.log(easyProblems)
-				console.log('mediumProblems')
-				console.log(mediumProblems)
-				console.log('hardProblems')
-				console.log(hardProblems)
-				console.log(finalProblems)
-				setProblems(finalProblems)
-			}
-		}
-		if (search == '') setProblems(allProblems)
-	}, [search, easyFilter, mediumFilter, hardFilter])
-
 	return (
 		<div className={styles.container}>
 			<NavbarLayout photoURL={user ? user?.user_photo : null} name={user ? user?.user_name : null}>
 				<PageHeader heading='problems' desc='Track your progress practicing Leetcode here!' />
 				<div className={styles.searchWrapper}>
 					<SearchBar setSearch={setSearch} search={search} />
-					<div className={styles.difficultyWrapper}>
-						<BigDifficulty difficulty='E' filter={easyFilter} setFilter={setEasyFilter} />
-						<BigDifficulty difficulty='M' filter={mediumFilter} setFilter={setMediumFilter} />
-						<BigDifficulty difficulty='H' filter={hardFilter} setFilter={setHardFilter} />
-					</div>
+					<RandomButton size={problems?.length} setRandom={setRandom} />
 				</div>
 				<div className={styles.problemsWrapper}>
 					<SubHeading subheading='Problems' />

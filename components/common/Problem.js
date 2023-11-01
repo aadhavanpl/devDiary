@@ -45,7 +45,6 @@ export function BigProblem({ qno, title, slug, tags, difficulty, bookmark }) {
 	useEffect(() => {
 		if (change) {
 			async function setBookmark() {
-				console.log()
 				const res = await fetch('http://localhost:3000/api/bookmark', {
 					method: 'POST',
 					headers: { 'Content-Type': 'application/json' },

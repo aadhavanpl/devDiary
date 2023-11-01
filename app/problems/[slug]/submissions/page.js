@@ -64,7 +64,6 @@ export default function Submissions() {
 				}),
 			})
 			const data = await res.json()
-			console.log(data?.submissionsAPI)
 			setSubmissions(data?.submissionsAPI)
 		}
 		fetchSubmissions()
