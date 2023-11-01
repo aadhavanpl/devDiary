@@ -6,18 +6,33 @@ export async function POST(req) {
 	try {
 		const { user_email } = await req.json()
 		await connectMongoDB()
-		const archiveAPI = await users.find(
-			{ user_email: user_email },
+		const archiveAPI = await users.aggregate([
 			{
-				_id: 0,
-				'problems.qno': 1,
-				'problems.title': 1,
-				'problems.tags': 1,
-				'problems.slug': 1,
-				'problems.difficulty': 1,
-				'problems.bookmark': 1,
-			}
-		)
+				$match: {
+					user_email: user_email,
+				},
+			},
+			{
+				$unwind: '$problems',
+			},
+			{
+				$match: {
+					'problems.submissions': { $not: { $size: 0 } },
+				},
+			},
+			{
+				$group: {
+					_id: null,
+					problems: { $push: '$problems' },
+				},
+			},
+			{
+				$project: {
+					_id: 0,
+					problems: 1,
+				},
+			},
+		])
 		return NextResponse.json({ archiveAPI }, { message: 'Archive fetched' }, { status: 201 })
 	} catch (error) {
 		console.error('Error:', error)

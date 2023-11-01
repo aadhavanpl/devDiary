@@ -74,6 +74,7 @@ export default function Archive() {
 							difficulty={problem.difficulty}
 							bookmark={problem.bookmark}
 							key={index}
+							done={1}
 						/>
 					))}
 				</div>

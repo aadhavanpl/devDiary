@@ -24,6 +24,7 @@ export default function Bookmarks() {
 
 	const fuseOptions = {
 		keys: ['qno', 'title', 'slug', 'difficulty', 'tags'],
+		shouldSort: true,
 		threshold: 1,
 	}
 
@@ -32,7 +33,15 @@ export default function Bookmarks() {
 	}, [random])
 
 	useEffect(() => {
+		if (!user || user.length) return
 		async function fetchProblems() {
+			const archiveRes = await fetch('http://localhost:3000/api/fetchCompletedQno', {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({ user_email: user?.user_email }),
+			})
+			const archiveProblems = await archiveRes.json()
+
 			const res = await fetch('http://localhost:3000/api/bookmarks', {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
@@ -41,12 +50,21 @@ export default function Bookmarks() {
 				}),
 			})
 			const problems = await res.json()
-			setProblems(problems.bookmarksAPI)
-			setAllProblems(problems.bookmarksAPI)
+
+			let problemsWithCompletion = []
+			for (let i = 0; i < problems.bookmarksAPI.length; i++) {
+				console.log(problems.bookmarksAPI[i].problems)
+				if (archiveProblems.archiveAPI[0].qno.includes(problems.bookmarksAPI[i].problems.qno))
+					problems.bookmarksAPI[i].problems.done = 1
+				problemsWithCompletion.push(problems.bookmarksAPI[i].problems)
+			}
+
+			setProblems(problemsWithCompletion)
+			setAllProblems(problemsWithCompletion)
 			setLoader(false)
 		}
 		fetchProblems()
-	}, [])
+	}, [user])
 
 	useEffect(() => {
 		if (search != '') {
@@ -70,11 +88,13 @@ export default function Bookmarks() {
 				<div className={styles.problems}>
 					{problems?.map((problem, index) => (
 						<BigProblem
-							qno={problem.problems.qno}
-							title={problem.problems.title}
-							tags={problem.problems.tags}
-							bookmark={problem.problems.bookmark}
-							difficulty={problem.problems.difficulty}
+							qno={problem?.qno}
+							title={problem?.title}
+							tags={problem?.tags}
+							slug={problem?.slug}
+							done={problem?.done}
+							bookmark={problem?.bookmark}
+							difficulty={problem?.difficulty}
 							key={index}
 						/>
 					))}
