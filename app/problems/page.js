@@ -21,6 +21,7 @@ export default function Problems() {
 	const [search, setSearch] = useState('')
 	const [loader, setLoader] = useState(true)
 	const [random, setRandom] = useState()
+	const [archiveProblems, setArchiveProblems] = useState()
 
 	const fuseOptions = {
 		keys: ['qno', 'title', 'slug', 'difficulty', 'tags'],
@@ -28,21 +29,43 @@ export default function Problems() {
 		threshold: 1,
 	}
 
-	const fuseDifficultyOptions = {
-		keys: ['difficulty'],
-		threshold: 1,
-	}
-
 	useEffect(() => {
+		if (!user || user.length) return
+
 		async function fetchProblems() {
 			const res = await fetch('http://localhost:3000/api/problems')
 			const problems = await res.json()
 			setProblems(problems.problemsAPI)
 			setAllProblems(problems.problemsAPI)
-			setLoader(false)
 		}
 		fetchProblems()
-	}, [])
+
+		async function fetchArchive() {
+			const res = await fetch('http://localhost:3000/api/fetchCompletedQno', {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({ user_email: user?.user_email }),
+			})
+			const problems = await res.json()
+			setArchiveProblems(problems.archiveAPI[0].qno)
+		}
+		fetchArchive()
+		setLoader(false)
+	}, [user])
+
+	useEffect(() => {
+		if (search != '') {
+			let fuseInstance = new Fuse(problems, fuseOptions)
+			let res = fuseInstance.search(search)
+			let searchedProblems = []
+			for (let i = 0; i < res.length; i++) {
+				if (archiveProblems.includes(res[i].item.qno)) res[i].item.done = 1
+				searchedProblems.push(res[i].item)
+			}
+			setProblems(searchedProblems)
+		}
+		if (search == '') setProblems(allProblems)
+	}, [search])
 
 	return (
 		<div className={styles.container}>
@@ -60,8 +83,8 @@ export default function Problems() {
 								qno={problem?.qno}
 								title={problem?.title}
 								tags={problem?.tags}
-								bookmark={problem?.bookmark}
 								slug={problem?.slug}
+								done={problem?.done}
 								difficulty={problem?.difficulty}
 								key={index}
 							/>

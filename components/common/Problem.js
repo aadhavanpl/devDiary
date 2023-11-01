@@ -37,26 +37,7 @@ export function SmallProblem({ qno, title, slug, tags, difficulty, border, user,
 	)
 }
 
-export function BigProblem({ qno, title, slug, tags, difficulty, bookmark }) {
-	const [bookmarkk, setBookmark] = useState(bookmark)
-	const [change, setChange] = useState(0)
-	const { user } = useGlobalContext()
-
-	useEffect(() => {
-		if (change) {
-			async function setBookmark() {
-				const res = await fetch('http://localhost:3000/api/bookmark', {
-					method: 'POST',
-					headers: { 'Content-Type': 'application/json' },
-					body: JSON.stringify({ user_email: user?.user_email, qno: qno, bookmark: bookmarkk }),
-				})
-				await res.json()
-				setChange(0)
-			}
-			setBookmark()
-		}
-	}, [bookmarkk])
-
+export function BigProblem({ qno, title, slug, tags, done = 0, difficulty }) {
 	return (
 		<Link href={'/problems/' + slug}>
 			<div className={styles.container} style={{ borderBottom: 'var(--border)' }}>
@@ -71,28 +52,7 @@ export function BigProblem({ qno, title, slug, tags, difficulty, bookmark }) {
 					</div>
 				</div>
 				<div className={styles.rightWrapper}>
-					<img src='/svgs/done.svg' alt='done' />
-					{bookmarkk ? (
-						<img
-							src='/svgs/bookmarked.svg'
-							style={{ cursor: 'pointer' }}
-							onClick={() => {
-								setBookmark(!bookmarkk)
-								setChange(1)
-							}}
-							alt='bookmark'
-						/>
-					) : (
-						<img
-							src='/svgs/bookmark-empty.svg'
-							style={{ cursor: 'pointer' }}
-							onClick={() => {
-								setBookmark(!bookmarkk)
-								setChange(1)
-							}}
-							alt='no-bookmark'
-						/>
-					)}
+					{done ? <img src='/svgs/done.svg' alt='done' /> : null}
 					<LongDifficulty difficulty={difficulty} />
 					<img src='/svgs/arrow-right.svg' alt='arrow' />
 				</div>

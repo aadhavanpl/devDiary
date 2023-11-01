@@ -33,7 +33,11 @@ export async function POST(req) {
 				},
 			},
 		])
-		return NextResponse.json({ qnoAPI }, { message: 'Question numbers fetched' }, { status: 201 })
+		return NextResponse.json(
+			{ archiveAPI },
+			{ message: 'Question numbers fetched' },
+			{ status: 201 }
+		)
 	} catch (error) {
 		console.error('Error:', error)
 		return NextResponse.json({ message: 'Error fetching question numbers' }, { status: 500 })
