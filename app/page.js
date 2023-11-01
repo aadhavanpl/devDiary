@@ -1,12 +1,14 @@
 'use client'
-import styles from './page.module.css'
+import Fuse from 'fuse.js'
+import { useEffect, useState } from 'react'
+import { useRouter } from 'next/navigation'
+
+import { useGlobalContext } from '@/lib/utils/globalContext'
 import { GoogleSignInButton, SignedIn } from '@/components/common/Button'
 import { SmallProblem } from '@/components/common/Problem'
 import { HomeSearchBar } from '@/components/common/SearchBar'
-import Fuse from 'fuse.js'
-import { useEffect, useState } from 'react'
-import { useGlobalContext } from '@/lib/utils/globalContext'
-import { useRouter } from 'next/navigation'
+
+import styles from './page.module.css'
 
 export default function Home() {
 	const [problems, setProblems] = useState()

@@ -1,15 +1,15 @@
 'use client'
 import React, { useEffect, useState } from 'react'
 
+import { useGlobalContext } from '@/lib/utils/globalContext'
 import NavbarLayout from '@/components/common/NavbarLayout'
 import PageHeader from '@/components/common/PageHeader'
 import SubHeading from '@/components/common/SubHeading'
 import Participant from '@/components/common/Participant'
-
-import styles from './leaderboard.module.css'
 import ScrollButton from '@/components/common/ScrollButton'
 import Loader from '@/components/common/Loader'
-import { useGlobalContext } from '@/lib/utils/globalContext'
+
+import styles from './leaderboard.module.css'
 
 export default function Leaderboards() {
 	const [participants, setParticipants] = useState()

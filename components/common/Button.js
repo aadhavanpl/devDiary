@@ -1,7 +1,8 @@
 'use client'
 import Link from 'next/link'
-import styles from './button.module.css'
 import { useGlobalContext } from '@/lib/utils/globalContext'
+import styles from './button.module.css'
+
 export function GoogleSignInButton() {
 	const { signIn } = useGlobalContext()
 	return (

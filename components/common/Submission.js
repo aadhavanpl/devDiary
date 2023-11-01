@@ -1,6 +1,7 @@
 import React from 'react'
-import styles from './submission.module.css'
 import Link from 'next/link'
+
+import styles from './submission.module.css'
 
 export default function Submission({ number, date, time, duration, pathname, id }) {
 	return (

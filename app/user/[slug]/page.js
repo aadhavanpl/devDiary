@@ -1,15 +1,17 @@
 'use client'
+import { useEffect, useState } from 'react'
+import { useParams } from 'next/navigation'
+
+import { useGlobalContext } from '@/lib/utils/globalContext'
 import { UserPageHeader } from '@/components/common/PageHeader'
-import styles from './user.module.css'
 import NavbarLayout from '@/components/common/NavbarLayout'
 import StatCard from '@/components/common/StatCard'
 import SubHeading from '@/components/common/SubHeading'
 import Chart from '@/components/common/Chart'
 import Solutions from '@/components/common/Solutions'
-import { useEffect, useState } from 'react'
 import Loader from '@/components/common/Loader'
-import { useParams } from 'next/navigation'
-import { useGlobalContext } from '@/lib/utils/globalContext'
+
+import styles from './user.module.css'
 
 export default function Slug() {
 	const [loader, setLoader] = useState(true)

@@ -1,6 +1,5 @@
 'use client'
-import React, { useState } from 'react'
-import Fuse from 'fuse.js'
+import React from 'react'
 import styles from './searchbar.module.css'
 
 export function SearchBar({ search, setSearch }) {

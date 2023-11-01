@@ -1,4 +1,3 @@
-import React from 'react'
 import styles from './statcard.module.css'
 export default function StatCard({ icon, value, description }) {
 	return (

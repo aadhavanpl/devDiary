@@ -1,15 +1,17 @@
 'use client'
 import React, { useEffect, useRef, useState } from 'react'
-import styles from './slug.module.css'
-import { GoogleSignInButton, SignedIn, SubmitButton } from '@/components/common/Button'
-import { ProblemNoClick } from '@/components/common/Problem'
+import Link from 'next/link'
 import { Editor } from '@monaco-editor/react'
 import { useRouter, useParams, usePathname } from 'next/navigation'
-import Link from 'next/link'
+
 import { useGlobalContext } from '@/lib/utils/globalContext'
+import { GoogleSignInButton, SignedIn, SubmitButton } from '@/components/common/Button'
+import { ProblemNoClick } from '@/components/common/Problem'
 import Loader from '@/components/common/Loader'
 import Stopwatch from '@/components/common/Stopwatch'
 import LanguageSelector from '@/components/common/LanguageSelector'
+
+import styles from './slug.module.css'
 
 export default function Slug() {
 	const { user } = useGlobalContext()

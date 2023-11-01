@@ -1,17 +1,19 @@
 'use client'
+import React, { useEffect, useState } from 'react'
+import Fuse from 'fuse.js'
+import { useRouter } from 'next/navigation'
+
+import { useGlobalContext } from '@/lib/utils/globalContext'
 import { RandomButton } from '@/components/common/Button'
 import NavbarLayout from '@/components/common/NavbarLayout'
 import PageHeader from '@/components/common/PageHeader'
 import { BigProblem } from '@/components/common/Problem'
 import { SearchBar } from '@/components/common/SearchBar'
-import React, { useEffect, useState } from 'react'
-import styles from './archive.module.css'
-import Fuse from 'fuse.js'
 import ScrollButton from '@/components/common/ScrollButton'
 import Loader from '@/components/common/Loader'
-import { useGlobalContext } from '@/lib/utils/globalContext'
-import { useRouter } from 'next/navigation'
 import SubHeading from '@/components/common/SubHeading'
+
+import styles from './archive.module.css'
 
 export default function Archive() {
 	const [problems, setProblems] = useState()

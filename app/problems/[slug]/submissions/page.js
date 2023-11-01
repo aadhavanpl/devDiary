@@ -1,14 +1,16 @@
 'use client'
 import React, { useEffect, useState } from 'react'
-import styles from '../slug.module.css'
-import { GoogleSignInButton, SignedIn, SubmitButton } from '@/components/common/Button'
+import { useParams, usePathname } from 'next/navigation'
+import Link from 'next/link'
+
+import { useGlobalContext } from '@/lib/utils/globalContext'
+import { GoogleSignInButton, SignedIn } from '@/components/common/Button'
 import { ProblemNoClick } from '@/components/common/Problem'
 import SubHeading from '@/components/common/SubHeading'
 import Submission from '@/components/common/Submission'
-import { useParams, usePathname } from 'next/navigation'
-import Link from 'next/link'
-import { useGlobalContext } from '@/lib/utils/globalContext'
 import Loader from '@/components/common/Loader'
+
+import styles from '../slug.module.css'
 
 export default function Submissions() {
 	const params = useParams()

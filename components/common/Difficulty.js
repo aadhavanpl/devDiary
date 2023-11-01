@@ -1,4 +1,3 @@
-import React from 'react'
 import styles from './difficulty.module.css'
 
 export function SmallDifficulty({ difficulty }) {

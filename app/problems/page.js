@@ -1,16 +1,18 @@
 'use client'
+import { useEffect, useState } from 'react'
+import Fuse from 'fuse.js'
+import { useRouter } from 'next/navigation'
+
+import { useGlobalContext } from '@/lib/utils/globalContext'
 import PageHeader from '@/components/common/PageHeader'
 import NavbarLayout from '@/components/common/NavbarLayout'
 import { SearchBar } from '@/components/common/SearchBar'
 import ScrollButton from '@/components/common/ScrollButton'
 import { BigProblem } from '@/components/common/Problem'
-import { useEffect, useState } from 'react'
-import Fuse from 'fuse.js'
 import Loader from '@/components/common/Loader'
-import { useGlobalContext } from '@/lib/utils/globalContext'
 import { RandomButton } from '@/components/common/Button'
-import { useRouter } from 'next/navigation'
 import SubHeading from '@/components/common/SubHeading'
+
 import styles from './problems.module.css'
 
 export default function Problems() {

@@ -1,12 +1,14 @@
 'use client'
 import React, { useEffect, useState } from 'react'
-import styles from './settings.module.css'
+
+import { useGlobalContext } from '@/lib/utils/globalContext'
 import NavbarLayout from '@/components/common/NavbarLayout'
 import PageHeader from '@/components/common/PageHeader'
 import SubHeading from '@/components/common/SubHeading'
 import Loader from '@/components/common/Loader'
-import { useGlobalContext } from '@/lib/utils/globalContext'
 import { UserNameChangeSubmit } from '@/components/common/Button'
+
+import styles from './settings.module.css'
 
 export default function Settings() {
 	const [userName, setUserName] = useState('')

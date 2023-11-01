@@ -1,14 +1,16 @@
 'use client'
+import { useEffect, useState } from 'react'
+
+import { useGlobalContext } from '@/lib/utils/globalContext'
 import PageHeader from '@/components/common/PageHeader'
-import styles from './dashboard.module.css'
 import NavbarLayout from '@/components/common/NavbarLayout'
 import StatCard from '@/components/common/StatCard'
 import SubHeading from '@/components/common/SubHeading'
 import Chart from '@/components/common/Chart'
 import Solutions from '@/components/common/Solutions'
-import { useEffect, useState } from 'react'
 import Loader from '@/components/common/Loader'
-import { useGlobalContext } from '@/lib/utils/globalContext'
+
+import styles from './dashboard.module.css'
 
 export default function Dashboard() {
 	const [loader, setLoader] = useState(true)
