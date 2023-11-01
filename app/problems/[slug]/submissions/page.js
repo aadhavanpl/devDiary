@@ -23,7 +23,7 @@ export default function Submissions() {
 	useEffect(() => {
 		if (!user) return
 		async function fetchProblemDetails() {
-			const res = await fetch('http://localhost:3000/api/fetchProblem', {
+			const res = await fetch('https://devdiary.live/api/fetchProblem', {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({
@@ -37,7 +37,7 @@ export default function Submissions() {
 		fetchProblemDetails()
 
 		async function fetchUserProblemDetails() {
-			const res = await fetch('http://localhost:3000/api/fetchUserProblemDetails', {
+			const res = await fetch('https://devdiary.live/api/fetchUserProblemDetails', {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({
@@ -55,7 +55,7 @@ export default function Submissions() {
 		fetchUserProblemDetails()
 
 		async function fetchSubmissions() {
-			const res = await fetch('http://localhost:3000/api/submissions', {
+			const res = await fetch('https://devdiary.live/api/submissions', {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({

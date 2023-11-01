@@ -18,7 +18,7 @@ export default function Leaderboards() {
 
 	useEffect(() => {
 		async function fetchParticipants() {
-			const res = await fetch('http://localhost:3000/api/leaderboards')
+			const res = await fetch('https://devdiary.live/api/leaderboards')
 			const problems = await res.json()
 			setParticipants(problems.leaderboardsAPI)
 			setLoader(false)

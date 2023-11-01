@@ -23,7 +23,7 @@ export default function Home() {
 
 	useEffect(() => {
 		async function fetchProblems() {
-			const res = await fetch('http://localhost:3000/api/problems')
+			const res = await fetch('https://devdiary.live/api/problems')
 			const problems = await res.json()
 			setProblems(problems.problemsAPI)
 			setAllProblems(problems.problemsAPI)
