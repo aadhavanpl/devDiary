@@ -22,7 +22,7 @@ export default function Participant({ position, name, problems, email, id }) {
 				</div>
 				<div className={styles.rightWrapper}>
 					<div className={styles.problemsDoneWrapper}>
-						<img src='/svgs/problems-done.svg' />
+						<img src='/svgs/done.svg' />
 						{problems}
 					</div>
 					<img src='/svgs/arrow-right.svg' />

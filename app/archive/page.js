@@ -23,6 +23,7 @@ export default function Archive() {
 
 	const fuseOptions = {
 		keys: ['qno', 'title', 'slug', 'difficulty', 'tags'],
+		shouldSort: true,
 		threshold: 1,
 	}
 
@@ -33,14 +34,29 @@ export default function Archive() {
 	useEffect(() => {
 		if (!user || user.length) return
 		async function fetchProblems() {
+			const archiveRes = await fetch('http://localhost:3000/api/fetchCompletedQno', {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({ user_email: user?.user_email }),
+			})
+			const archiveProblems = await archiveRes.json()
+
 			const res = await fetch('http://localhost:3000/api/archive', {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({ user_email: user?.user_email }),
 			})
 			const problems = await res.json()
-			setProblems(problems.archiveAPI[0].problems)
-			setAllProblems(problems.archiveAPI[0].problems)
+
+			let problemsWithCompletion = []
+			for (let i = 0; i < problems.archiveAPI[0].problems.length; i++) {
+				if (archiveProblems.archiveAPI[0].qno.includes(problems.archiveAPI[0].problems[i].qno))
+					problems.archiveAPI[0].problems[i].done = 1
+				problemsWithCompletion.push(problems.archiveAPI[0].problems[i])
+			}
+
+			setProblems(problemsWithCompletion)
+			setAllProblems(problemsWithCompletion)
 			setLoader(false)
 		}
 		fetchProblems()

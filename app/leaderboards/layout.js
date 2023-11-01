@@ -7,7 +7,7 @@ const montserrat = Montserrat({
 })
 
 export const metadata = {
-	title: 'devDiary | Leaderboard',
+	title: 'devDiary | Leaderboards',
 	description: 'How you compete against others',
 }
 

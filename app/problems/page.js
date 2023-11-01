@@ -32,7 +32,6 @@ export default function Problems() {
 
 	useEffect(() => {
 		if (!user || user.length) return
-
 		async function fetchProblems() {
 			const archiveRes = await fetch('http://localhost:3000/api/fetchCompletedQno', {
 				method: 'POST',
@@ -52,9 +51,9 @@ export default function Problems() {
 			}
 			setProblems(problemsWithCompletion)
 			setAllProblems(problemsWithCompletion)
+			setLoader(false)
 		}
 		fetchProblems()
-		setLoader(false)
 	}, [user])
 
 	useEffect(() => {

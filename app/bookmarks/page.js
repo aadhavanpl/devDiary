@@ -4,7 +4,6 @@ import NavbarLayout from '@/components/common/NavbarLayout'
 import PageHeader from '@/components/common/PageHeader'
 import { BigProblem } from '@/components/common/Problem'
 import { SearchBar } from '@/components/common/SearchBar'
-import SubHeading from '@/components/common/SubHeading'
 import React, { useEffect, useState } from 'react'
 import styles from './bookmarks.module.css'
 import Fuse from 'fuse.js'
@@ -53,7 +52,6 @@ export default function Bookmarks() {
 
 			let problemsWithCompletion = []
 			for (let i = 0; i < problems.bookmarksAPI.length; i++) {
-				console.log(problems.bookmarksAPI[i].problems)
 				if (archiveProblems.archiveAPI[0].qno.includes(problems.bookmarksAPI[i].problems.qno))
 					problems.bookmarksAPI[i].problems.done = 1
 				problemsWithCompletion.push(problems.bookmarksAPI[i].problems)
