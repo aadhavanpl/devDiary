@@ -33,35 +33,35 @@ export default function Problems() {
 		if (!user || user.length) return
 
 		async function fetchProblems() {
-			const res = await fetch('http://localhost:3000/api/problems')
-			const problems = await res.json()
-			setProblems(problems.problemsAPI)
-			setAllProblems(problems.problemsAPI)
-		}
-		fetchProblems()
-
-		async function fetchArchive() {
-			const res = await fetch('http://localhost:3000/api/fetchCompletedQno', {
+			const archiveRes = await fetch('http://localhost:3000/api/fetchCompletedQno', {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({ user_email: user?.user_email }),
 			})
+			const archiveProblems = await archiveRes.json()
+
+			const res = await fetch('http://localhost:3000/api/problems')
 			const problems = await res.json()
-			setArchiveProblems(problems.archiveAPI[0].qno)
+
+			let problemsWithCompletion = []
+			for (let i = 0; i < problems.problemsAPI.length; i++) {
+				if (archiveProblems.archiveAPI[0].qno.includes(problems.problemsAPI[i].qno))
+					problems.problemsAPI[i].done = 1
+				problemsWithCompletion.push(problems.problemsAPI[i])
+			}
+			setProblems(problemsWithCompletion)
+			setAllProblems(problemsWithCompletion)
 		}
-		fetchArchive()
+		fetchProblems()
 		setLoader(false)
 	}, [user])
 
 	useEffect(() => {
 		if (search != '') {
 			let fuseInstance = new Fuse(problems, fuseOptions)
-			let res = fuseInstance.search(search)
+			const res = fuseInstance.search(search)
 			let searchedProblems = []
-			for (let i = 0; i < res.length; i++) {
-				if (archiveProblems.includes(res[i].item.qno)) res[i].item.done = 1
-				searchedProblems.push(res[i].item)
-			}
+			for (let i = 0; i < res.length; i++) searchedProblems.push(res[i].item)
 			setProblems(searchedProblems)
 		}
 		if (search == '') setProblems(allProblems)
