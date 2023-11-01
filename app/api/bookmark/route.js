@@ -4,38 +4,51 @@ import { NextResponse } from 'next/server'
 
 export async function POST(req) {
 	try {
-		const { user_email, qno, bookmark } = await req.json()
+		const { status, user_email, qno, slug, title, tags, difficulty, bookmark } = await req.json()
 		await connectMongoDB()
 
-		/* check if user has done the problem
-			yes
-				set incomming bookmark
-			no
-				if incoming bookmark is 1
-					add blank problem record in user with bookmark to 1
-				else
-					remove problem record from user
-		*/
-
-		await users
-			.find(
-				{
-					user_email: user_email,
-					problems: {
-						$elemMatch: {
-							qno: qno,
-						},
-					},
-				},
-				{
-					'problems.$': 1,
-				}
+		if (status) {
+			await users.updateOne(
+				{ user_email: user_email, 'problems.slug': slug },
+				{ $set: { 'problems.$.bookmark': bookmark } }
 			)
-			.then((res) => {
-				console.log(res)
-			})
+		} else {
+			if (bookmark) {
+				await users.updateOne(
+					{
+						user_email: user_email,
+						'problems.slug': { $ne: slug },
+					},
+					{
+						$push: {
+							problems: {
+								qno: qno,
+								title: title,
+								tags: tags,
+								slug: slug,
+								difficulty: difficulty,
+								bookmark: bookmark,
+								submissions: [],
+							},
+						},
+					}
+				)
+			} else {
+				await users.updateOne(
+					{ user_email: user_email },
+					{
+						$pull: {
+							problems: {
+								slug: slug,
+								submissions: { $size: 0 },
+							},
+						},
+					}
+				)
+			}
+		}
 
-		// return NextResponse.json({ message: 'Bookmarked' }, { status: 201 })
+		return NextResponse.json({ message: 'Bookmarked' }, { status: 201 })
 	} catch (error) {
 		console.error('Error:', error)
 		return NextResponse.json({ message: 'Error Bookmarking' }, { status: 500 })

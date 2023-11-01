@@ -62,28 +62,42 @@ export function BigProblem({ qno, title, slug, tags, done = 0, difficulty }) {
 }
 
 export function ProblemNoClick({ data, done, bookmark }) {
-	const [change, setChange] = useState(0)
-	const [bookmarkk, setBookmark] = useState(bookmark)
+	const [localBookmark, setLocalBookmark] = useState()
+	const [bookmarkChange, setBookmarkChange] = useState(0)
 	const { user } = useGlobalContext()
 
+	function handleBookmarkClick() {
+		if (localBookmark == 1) setLocalBookmark(0)
+		else setLocalBookmark(1)
+		setBookmarkChange(1)
+	}
+
 	useEffect(() => {
-		if (change) {
-			async function setBookmarkk() {
-				const res = await fetch('http://localhost:3000/api/bookmark', {
+		setLocalBookmark(bookmark)
+	}, [bookmark])
+
+	useEffect(() => {
+		if (bookmarkChange) {
+			async function handleBookmark() {
+				const bookmarkRes = await fetch('http://localhost:3000/api/bookmark', {
 					method: 'POST',
 					headers: { 'Content-Type': 'application/json' },
 					body: JSON.stringify({
+						status: done,
 						user_email: user?.user_email,
 						qno: data.qno,
-						bookmark: bookmarkk,
+						slug: data.slug,
+						title: data.title,
+						tags: data.tags,
+						difficulty: data.difficulty,
+						bookmark: localBookmark,
 					}),
 				})
-				await res.json()
-				setChange(0)
+				setBookmarkChange(0)
 			}
-			setBookmarkk()
+			handleBookmark()
 		}
-	}, [bookmarkk])
+	}, [bookmarkChange])
 
 	return (
 		<div className={styles.containerNoClick}>
@@ -99,26 +113,20 @@ export function ProblemNoClick({ data, done, bookmark }) {
 				</div>
 			</div>
 			<div className={styles.rightWrapper}>
-				{done && <img src='/svgs/done.svg' />}
-				{bookmarkk ? (
+				{done && <img src='/svgs/done.svg' alt='tick' />}
+				{localBookmark ? (
 					<img
 						src='/svgs/bookmarked.svg'
 						style={{ cursor: 'pointer' }}
-						onClick={() => {
-							setBookmark(!bookmarkk)
-							setChange(1)
-						}}
+						onClick={() => handleBookmarkClick()}
 						alt='bookmark'
 					/>
 				) : (
 					<img
 						src='/svgs/bookmark-empty.svg'
 						style={{ cursor: 'pointer' }}
-						onClick={() => {
-							setBookmark(!bookmarkk)
-							setChange(1)
-						}}
-						alt='no-bookmark'
+						onClick={() => handleBookmarkClick()}
+						alt='bookmark'
 					/>
 				)}
 				<LongDifficulty difficulty={data?.difficulty} />

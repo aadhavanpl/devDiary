@@ -12,6 +12,7 @@ import Fuse from 'fuse.js'
 import Loader from '@/components/common/Loader'
 import { useGlobalContext } from '@/lib/utils/globalContext'
 import { RandomButton } from '@/components/common/Button'
+import { useRouter } from 'next/navigation'
 
 export default function Problems() {
 	const { user } = useGlobalContext()
@@ -21,7 +22,7 @@ export default function Problems() {
 	const [search, setSearch] = useState('')
 	const [loader, setLoader] = useState(true)
 	const [random, setRandom] = useState()
-	const [archiveProblems, setArchiveProblems] = useState()
+	const router = useRouter()
 
 	const fuseOptions = {
 		keys: ['qno', 'title', 'slug', 'difficulty', 'tags'],
@@ -66,6 +67,10 @@ export default function Problems() {
 		}
 		if (search == '') setProblems(allProblems)
 	}, [search])
+
+	useEffect(() => {
+		if (random) router.push('/problems/' + problems[random]?.slug)
+	}, [random])
 
 	return (
 		<div className={styles.container}>
