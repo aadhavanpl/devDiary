@@ -11,6 +11,7 @@ import ScrollButton from '@/components/common/ScrollButton'
 import Loader from '@/components/common/Loader'
 import { useGlobalContext } from '@/lib/utils/globalContext'
 import { useRouter } from 'next/navigation'
+import SubHeading from '@/components/common/SubHeading'
 
 export default function Bookmarks() {
 	const [problems, setProblems] = useState()
@@ -83,19 +84,22 @@ export default function Bookmarks() {
 					<SearchBar search={search} setSearch={setSearch} />
 					<RandomButton size={problems?.length} setRandom={setRandom} />
 				</div>
-				<div className={styles.problems}>
-					{problems?.map((problem, index) => (
-						<BigProblem
-							qno={problem?.qno}
-							title={problem?.title}
-							tags={problem?.tags}
-							slug={problem?.slug}
-							done={problem?.done}
-							bookmark={problem?.bookmark}
-							difficulty={problem?.difficulty}
-							key={index}
-						/>
-					))}
+				<div className={styles.problemsWrapper}>
+					<SubHeading subheading='Problems' />
+					<div className={styles.problems}>
+						{problems?.map((problem, index) => (
+							<BigProblem
+								qno={problem?.qno}
+								title={problem?.title}
+								tags={problem?.tags}
+								slug={problem?.slug}
+								done={problem?.done}
+								bookmark={problem?.bookmark}
+								difficulty={problem?.difficulty}
+								key={index}
+							/>
+						))}
+					</div>
 				</div>
 				<ScrollButton />
 			</NavbarLayout>

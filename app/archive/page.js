@@ -11,12 +11,13 @@ import ScrollButton from '@/components/common/ScrollButton'
 import Loader from '@/components/common/Loader'
 import { useGlobalContext } from '@/lib/utils/globalContext'
 import { useRouter } from 'next/navigation'
+import SubHeading from '@/components/common/SubHeading'
 
 export default function Archive() {
 	const [problems, setProblems] = useState()
 	const [allProblems, setAllProblems] = useState()
 	const [search, setSearch] = useState('')
-	const [loader, setLoader] = useState(true)
+	const [loader, setLoader] = useState(false)
 	const { user } = useGlobalContext()
 	const [random, setRandom] = useState()
 	const router = useRouter()
@@ -49,8 +50,8 @@ export default function Archive() {
 			const problems = await res.json()
 
 			let problemsWithCompletion = []
-			for (let i = 0; i < problems.archiveAPI[0].problems.length; i++) {
-				if (archiveProblems.archiveAPI[0].qno.includes(problems.archiveAPI[0].problems[i].qno))
+			for (let i = 0; i < problems.archiveAPI[0]?.problems.length; i++) {
+				if (archiveProblems.archiveAPI[0]?.qno.includes(problems.archiveAPI[0].problems[i].qno))
 					problems.archiveAPI[0].problems[i].done = 1
 				problemsWithCompletion.push(problems.archiveAPI[0].problems[i])
 			}
@@ -81,18 +82,22 @@ export default function Archive() {
 					<SearchBar search={search} setSearch={setSearch} />
 					<RandomButton size={problems?.length} setRandom={setRandom} />
 				</div>
-				<div className={styles.problems}>
-					{problems?.map((problem, index) => (
-						<BigProblem
-							qno={problem.qno}
-							title={problem.title}
-							tags={problem.tags}
-							difficulty={problem.difficulty}
-							bookmark={problem.bookmark}
-							key={index}
-							done={1}
-						/>
-					))}
+				<div className={styles.problemsWrapper}>
+					<SubHeading subheading='Problems' />
+					<div className={styles.problems}>
+						{problems?.map((problem, index) => (
+							<BigProblem
+								qno={problem.qno}
+								title={problem.title}
+								tags={problem.tags}
+								slug={problem.slug}
+								difficulty={problem.difficulty}
+								bookmark={problem.bookmark}
+								key={index}
+								done={1}
+							/>
+						))}
+					</div>
 				</div>
 				<ScrollButton />
 			</NavbarLayout>

@@ -27,7 +27,7 @@ export function RandomButton({ size, setRandom }) {
 	return (
 		<div
 			className={styles.randomContainer}
-			onClick={() => setRandom(Math.floor(Math.random() * (size - 1)) + 0)}
+			onClick={() => setRandom(Math.floor(Math.random() * (size - 1)) + 1)}
 		>
 			<img src='/svgs/random.svg' />
 			Random

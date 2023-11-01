@@ -15,7 +15,7 @@ export default function Dashboard() {
 	const { user } = useGlobalContext()
 	const [solutions, setSolutions] = useState()
 	const [problemCount, setProblemCount] = useState()
-	const [duration, setDuration] = useState()
+	const [duration, setDuration] = useState(0)
 	const [chartData, setChartData] = useState()
 	const [position, setPosition] = useState()
 
@@ -55,9 +55,11 @@ export default function Dashboard() {
 					const minutes = Math.floor((seconds % 3600) / 60)
 					return [hours, minutes]
 				}
-				const totalSeconds = data.tempUsers[0].durations.reduce((total, time) => total + time, 0)
-				const [hours, minutes] = secondsToHoursMinutes(totalSeconds)
-				setDuration(`${hours}h ${minutes}m`)
+				if (data.tempUsers[0] != undefined) {
+					const totalSeconds = data.tempUsers[0]?.durations.reduce((total, time) => total + time, 0)
+					const [hours, minutes] = secondsToHoursMinutes(totalSeconds)
+					setDuration(`${hours}h ${minutes}m`)
+				}
 			}
 			fetchDurations()
 

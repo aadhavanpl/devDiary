@@ -50,13 +50,6 @@ export default function Settings() {
 						<input defaultValue={userName} maxLength='20' onChange={handleChange} />
 						<UserNameChangeSubmit onClick={handleSubmit} svg='/svgs/user-tick.svg' title='Submit' />
 					</div>
-					<div className={styles['theme-wrapper']}>
-						<SubHeading subheading='Theme' />
-						<div className={styles['themeToggleWrapper']}>
-							<ThemeToggle theme='L' />
-							<ThemeToggle theme='D' />
-						</div>
-					</div>
 				</div>
 			</NavbarLayout>
 			<Loader loader={loader} />

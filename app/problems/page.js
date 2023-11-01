@@ -1,28 +1,27 @@
 'use client'
 import PageHeader from '@/components/common/PageHeader'
-import styles from './problems.module.css'
 import NavbarLayout from '@/components/common/NavbarLayout'
 import { SearchBar } from '@/components/common/SearchBar'
 import ScrollButton from '@/components/common/ScrollButton'
-import { BigDifficulty } from '@/components/common/Difficulty'
 import { BigProblem } from '@/components/common/Problem'
-import SubHeading from '@/components/common/SubHeading'
 import { useEffect, useState } from 'react'
 import Fuse from 'fuse.js'
 import Loader from '@/components/common/Loader'
 import { useGlobalContext } from '@/lib/utils/globalContext'
 import { RandomButton } from '@/components/common/Button'
 import { useRouter } from 'next/navigation'
+import SubHeading from '@/components/common/SubHeading'
+import styles from './problems.module.css'
 
 export default function Problems() {
 	const { user } = useGlobalContext()
+	const router = useRouter()
 
 	const [problems, setProblems] = useState()
 	const [allProblems, setAllProblems] = useState()
 	const [search, setSearch] = useState('')
 	const [loader, setLoader] = useState(true)
 	const [random, setRandom] = useState()
-	const router = useRouter()
 
 	const fuseOptions = {
 		keys: ['qno', 'title', 'slug', 'difficulty', 'tags'],
@@ -45,7 +44,7 @@ export default function Problems() {
 
 			let problemsWithCompletion = []
 			for (let i = 0; i < problems.problemsAPI.length; i++) {
-				if (archiveProblems.archiveAPI[0].qno.includes(problems.problemsAPI[i].qno))
+				if (archiveProblems.archiveAPI[0]?.qno.includes(problems.problemsAPI[i].qno))
 					problems.problemsAPI[i].done = 1
 				problemsWithCompletion.push(problems.problemsAPI[i])
 			}
