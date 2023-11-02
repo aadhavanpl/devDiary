@@ -2,11 +2,11 @@
 import React, { useEffect, useState } from 'react'
 
 import { useGlobalContext } from '@/lib/utils/globalContext'
-import NavbarLayout from '@/components/common/NavbarLayout'
-import PageHeader from '@/components/common/PageHeader'
-import SubHeading from '@/components/common/SubHeading'
-import Loader from '@/components/common/Loader'
-import { UserNameChangeSubmit } from '@/components/common/Button'
+import NavbarLayout from '@/app/components/NavbarLayout'
+import PageHeader from '@/app/components/PageHeader'
+import SubHeading from '@/app/components/SubHeading'
+import Loader from '@/app/components/Loader'
+import { UserNameChangeSubmit } from '@/app/components/Button'
 
 import styles from './settings.module.css'
 

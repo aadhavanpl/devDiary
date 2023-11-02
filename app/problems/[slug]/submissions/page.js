@@ -4,11 +4,11 @@ import { useParams, usePathname } from 'next/navigation'
 import Link from 'next/link'
 
 import { useGlobalContext } from '@/lib/utils/globalContext'
-import { GoogleSignInButton, SignedIn } from '@/components/common/Button'
-import { ProblemNoClick } from '@/components/common/Problem'
-import SubHeading from '@/components/common/SubHeading'
-import Submission from '@/components/common/Submission'
-import Loader from '@/components/common/Loader'
+import { GoogleSignInButton, SignedIn } from '@/app/components/Button'
+import { ProblemNoClick } from '@/app/components/Problem'
+import SubHeading from '@/app/components/SubHeading'
+import Submission from '@/app/components/Submission'
+import Loader from '@/app/components/Loader'
 
 import styles from '../slug.module.css'
 
@@ -79,7 +79,7 @@ export default function Submissions() {
 					src='/svgs/logo.svg'
 					className={styles.logo}
 					alt='logo'
-					onClick={() => router.push('/')}
+					onClick={() => router.replace('https://www.devdiary.live')}
 				/>
 				<div className={styles.googleSignIn}>
 					{user ? <SignedIn photoURL={user ? user?.user_photo : null} /> : <GoogleSignInButton />}

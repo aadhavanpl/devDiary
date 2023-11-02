@@ -4,14 +4,14 @@ import Fuse from 'fuse.js'
 import { useRouter } from 'next/navigation'
 
 import { useGlobalContext } from '@/lib/utils/globalContext'
-import { RandomButton } from '@/components/common/Button'
-import NavbarLayout from '@/components/common/NavbarLayout'
-import PageHeader from '@/components/common/PageHeader'
-import { BigProblem } from '@/components/common/Problem'
-import { SearchBar } from '@/components/common/SearchBar'
-import ScrollButton from '@/components/common/ScrollButton'
-import Loader from '@/components/common/Loader'
-import SubHeading from '@/components/common/SubHeading'
+import { RandomButton } from '@/app/components/Button'
+import NavbarLayout from '@/app/components/NavbarLayout'
+import PageHeader from '@/app/components/PageHeader'
+import { BigProblem } from '@/app/components/Problem'
+import { SearchBar } from '@/app/components/SearchBar'
+import ScrollButton from '@/app/components/ScrollButton'
+import Loader from '@/app/components/Loader'
+import SubHeading from '@/app/components/SubHeading'
 
 import styles from './archive.module.css'
 
@@ -19,7 +19,7 @@ export default function Archive() {
 	const [problems, setProblems] = useState()
 	const [allProblems, setAllProblems] = useState()
 	const [search, setSearch] = useState('')
-	const [loader, setLoader] = useState(false)
+	const [loader, setLoader] = useState(true)
 	const { user } = useGlobalContext()
 	const [random, setRandom] = useState()
 	const router = useRouter()

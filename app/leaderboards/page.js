@@ -2,12 +2,12 @@
 import React, { useEffect, useState } from 'react'
 
 import { useGlobalContext } from '@/lib/utils/globalContext'
-import NavbarLayout from '@/components/common/NavbarLayout'
-import PageHeader from '@/components/common/PageHeader'
-import SubHeading from '@/components/common/SubHeading'
-import Participant from '@/components/common/Participant'
-import ScrollButton from '@/components/common/ScrollButton'
-import Loader from '@/components/common/Loader'
+import NavbarLayout from '@/app/components/NavbarLayout'
+import PageHeader from '@/app/components/PageHeader'
+import SubHeading from '@/app/components/SubHeading'
+import Participant from '@/app/components/Participant'
+import ScrollButton from '@/app/components/ScrollButton'
+import Loader from '@/app/components/Loader'
 
 import styles from './leaderboard.module.css'
 

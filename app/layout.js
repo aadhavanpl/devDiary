@@ -15,9 +15,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
 	return (
 		<html lang='en'>
-			<GlobalContextWrapper>
-				<body style={montserrat.style}>{children}</body>
-			</GlobalContextWrapper>
+			<body style={montserrat.style}>
+				<GlobalContextWrapper>{children}</GlobalContextWrapper>
+			</body>
 		</html>
 	)
 }

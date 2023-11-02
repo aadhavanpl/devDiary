@@ -5,10 +5,10 @@ import { Editor } from '@monaco-editor/react'
 import { useRouter, useParams } from 'next/navigation'
 
 import { useGlobalContext } from '@/lib/utils/globalContext'
-import { GoogleSignInButton, SignedIn } from '@/components/common/Button'
-import { ProblemNoClick } from '@/components/common/Problem'
-import Loader from '@/components/common/Loader'
-import LanguageSelector from '@/components/common/LanguageSelector'
+import { GoogleSignInButton, SignedIn } from '@/app/components/Button'
+import { ProblemNoClick } from '@/app/components/Problem'
+import Loader from '@/app/components/Loader'
+import LanguageSelector from '@/app/components/LanguageSelector'
 
 import styles from '../../slug.module.css'
 
@@ -101,7 +101,7 @@ export default function SubmissionSlug() {
 					src='/svgs/logo.svg'
 					className={styles.logo}
 					alt='logo'
-					onClick={() => router.push('/')}
+					onClick={() => router.replace('https://www.devdiary.live')}
 				/>
 				<div className={styles.googleSignIn}>
 					{user ? <SignedIn photoURL={user?.user_photo} /> : <GoogleSignInButton />}

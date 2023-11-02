@@ -2,13 +2,13 @@
 import { useEffect, useState } from 'react'
 
 import { useGlobalContext } from '@/lib/utils/globalContext'
-import PageHeader from '@/components/common/PageHeader'
-import NavbarLayout from '@/components/common/NavbarLayout'
-import StatCard from '@/components/common/StatCard'
-import SubHeading from '@/components/common/SubHeading'
-import Chart from '@/components/common/Chart'
-import Solutions from '@/components/common/Solutions'
-import Loader from '@/components/common/Loader'
+import PageHeader from '@/app/components/PageHeader'
+import NavbarLayout from '@/app/components/NavbarLayout'
+import StatCard from '@/app/components/StatCard'
+import SubHeading from '@/app/components/SubHeading'
+import Chart from '@/app/components/Chart'
+import Solutions from '@/app/components/Solutions'
+import Loader from '@/app/components/Loader'
 
 import styles from './dashboard.module.css'
 

@@ -4,9 +4,9 @@ import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 
 import { useGlobalContext } from '@/lib/utils/globalContext'
-import { GoogleSignInButton, SignedIn } from '@/components/common/Button'
-import { SmallProblem } from '@/components/common/Problem'
-import { HomeSearchBar } from '@/components/common/SearchBar'
+import { GoogleSignInButton, SignedIn } from '@/app/components/Button'
+import { SmallProblem } from '@/app/components/Problem'
+import { HomeSearchBar } from '@/app/components/SearchBar'
 
 import styles from './page.module.css'
 
@@ -42,7 +42,7 @@ export default function Home() {
 			setProblems(tempProblems)
 		}
 		if (search == '') setProblems(allProblems)
-	}, [search, problems])
+	}, [search])
 
 	return (
 		<main className={styles.main}>
