@@ -1,4 +1,6 @@
 import styles from './tag.module.css'
+import '../../app/globals.css'
+
 export function SmallTag({ tag, color }) {
 	return (
 		<div className={styles.smallTag} style={{ backgroundColor: color }}>

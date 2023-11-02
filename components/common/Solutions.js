@@ -1,6 +1,7 @@
 'use client'
 import React, { useEffect, useState } from 'react'
 import styles from './solutions.module.css'
+import '../../app/globals.css'
 
 export default function Solutions({ solutions }) {
 	const [widths, setWidths] = useState()

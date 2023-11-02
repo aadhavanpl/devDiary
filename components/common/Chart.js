@@ -8,9 +8,11 @@ import {
 	Title,
 	Tooltip,
 } from 'chart.js'
-import styles from './chart.module.css'
 import { Line } from 'react-chartjs-2'
 import { useEffect, useState } from 'react'
+
+import styles from './chart.module.css'
+import '../../app/globals.css'
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip)
 

@@ -2,6 +2,8 @@
 import Link from 'next/link'
 import { useGlobalContext } from '@/lib/utils/globalContext'
 import styles from './button.module.css'
+import '../../app/globals.css'
+import { useRouter } from 'next/navigation'
 
 export function GoogleSignInButton() {
 	const { signIn } = useGlobalContext()
@@ -14,11 +16,10 @@ export function GoogleSignInButton() {
 }
 
 export function SignedIn({ photoURL }) {
+	const router = useRouter()
 	return (
-		<div className={styles.signedInContainer}>
-			<Link href='/dashboard' className={styles.link}>
-				Dashboard
-			</Link>
+		<div className={styles.signedInContainer} onClick={() => router.push('/dashboard')}>
+			Dashboard
 			<img src={photoURL} alt='google-image' />
 		</div>
 	)

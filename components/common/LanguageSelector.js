@@ -1,4 +1,5 @@
 import styles from './languageselector.module.css'
+import '../../app/globals.css'
 
 export default function LanguageSelector({ language, setLanguage, disabled = false }) {
 	return (

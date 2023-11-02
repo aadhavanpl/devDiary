@@ -1,6 +1,7 @@
 'use client'
 import React from 'react'
 import styles from './searchbar.module.css'
+import '../../app/globals.css'
 
 export function SearchBar({ search, setSearch }) {
 	return (

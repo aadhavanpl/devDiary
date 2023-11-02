@@ -2,6 +2,7 @@
 'use client'
 import React, { useEffect, useState } from 'react'
 import styles from './problem.module.css'
+import '../../app/globals.css'
 import { SmallTag } from './Tag'
 import { LongDifficulty, SmallDifficulty } from './Difficulty'
 import { useGlobalContext } from '@/lib/utils/globalContext'

@@ -1,4 +1,5 @@
 import styles from './loader.module.css'
+import '../../app/globals.css'
 
 export default function Loader({ loader }) {
 	return (

@@ -1,4 +1,6 @@
 import styles from './statcard.module.css'
+import '../../app/globals.css'
+
 export default function StatCard({ icon, value, description }) {
 	return (
 		<div className={styles['container']}>

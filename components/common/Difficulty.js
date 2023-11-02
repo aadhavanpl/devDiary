@@ -1,4 +1,5 @@
 import styles from './difficulty.module.css'
+import '../../app/globals.css'
 
 export function SmallDifficulty({ difficulty }) {
 	if (difficulty == 'Easy') difficulty = 'E'

@@ -1,4 +1,5 @@
 import styles from './scrollbutton.module.css'
+import '../../app/globals.css'
 
 export default function ScrollButton() {
 	return (

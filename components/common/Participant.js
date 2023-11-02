@@ -1,6 +1,7 @@
 import React from 'react'
 import styles from './participant.module.css'
 import Link from 'next/link'
+import '../../app/globals.css'
 
 export default function Participant({ position, name, problems, email, id }) {
 	return (

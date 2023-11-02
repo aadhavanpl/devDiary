@@ -46,9 +46,7 @@ export default function Home() {
 
 	return (
 		<main className={styles.main}>
-			<picture>
-				<img src='/svgs/logo.svg' className={styles.logo} alt='logo' />
-			</picture>
+			<img src='/svgs/logo.svg' className={styles.logo} alt='logo' />
 			<div className={search ? styles.containerWithSearch : styles.containerWithoutSearch}>
 				<HomeSearchBar search={search} setSearch={setSearch} />
 				{search && <div className={styles.inputBorder}></div>}

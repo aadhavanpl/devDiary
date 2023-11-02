@@ -1,4 +1,5 @@
 import styles from './pageheader.module.css'
+import '../../app/globals.css'
 
 export default function PageHeader({ heading, desc }) {
 	return (

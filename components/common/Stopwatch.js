@@ -1,5 +1,7 @@
 import { UserNameChangeSubmit } from './Button'
 import styles from './stopwatch.module.css'
+import '../../app/globals.css'
+
 export default function Stopwatch({ time, running, startStopwatch, resetStopwatch }) {
 	const secondDeg = (time % 60) * 6
 	const minuteDeg = ((time / 60) % 60) * 6

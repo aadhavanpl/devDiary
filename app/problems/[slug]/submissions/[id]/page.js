@@ -97,9 +97,12 @@ export default function SubmissionSlug() {
 	return (
 		<div className={styles.container}>
 			<div className={styles.header}>
-				<Link href='/' className={styles.link}>
-					<img src='/svgs/logo.svg' className={styles.logo} alt='logo' />
-				</Link>
+				<img
+					src='/svgs/logo.svg'
+					className={styles.logo}
+					alt='logo'
+					onClick={() => router.push('/')}
+				/>
 				<div className={styles.googleSignIn}>
 					{user ? <SignedIn photoURL={user?.user_photo} /> : <GoogleSignInButton />}
 				</div>
