@@ -25,7 +25,7 @@ export default function Home() {
 
 	useEffect(() => {
 		async function fetchProblems() {
-			const res = await fetch('https://devdiary.live/api/problems')
+			const res = await fetch('https://www.devdiary.live/api/problems')
 			const problems = await res.json()
 			setProblems(problems.problemsAPI)
 			setAllProblems(problems.problemsAPI)
@@ -34,7 +34,7 @@ export default function Home() {
 	}, [])
 
 	useEffect(() => {
-		if (search != '') {
+		if (search != '' && problems?.length > 0) {
 			let fuseInstance = new Fuse(problems, fuseOptions)
 			const res = fuseInstance.search(search)
 			let tempProblems = []
@@ -42,7 +42,7 @@ export default function Home() {
 			setProblems(tempProblems)
 		}
 		if (search == '') setProblems(allProblems)
-	}, [search])
+	}, [search, problems])
 
 	return (
 		<main className={styles.main}>

@@ -24,7 +24,7 @@ export default function Dashboard() {
 	useEffect(() => {
 		if (user) {
 			async function fetchCountProblems() {
-				const res = await fetch('https://devdiary.live/api/countProblems', {
+				const res = await fetch('https://www.devdiary.live/api/countProblems', {
 					method: 'POST',
 					headers: { 'Content-Type': 'application/json' },
 					body: JSON.stringify({
@@ -42,7 +42,7 @@ export default function Dashboard() {
 			fetchCountProblems()
 
 			async function fetchDurations() {
-				const res = await fetch('https://devdiary.live/api/fetchDurations', {
+				const res = await fetch('https://www.devdiary.live/api/fetchDurations', {
 					method: 'POST',
 					headers: { 'Content-Type': 'application/json' },
 					body: JSON.stringify({
@@ -66,7 +66,7 @@ export default function Dashboard() {
 			fetchDurations()
 
 			async function fetchChartValues() {
-				const res = await fetch('https://devdiary.live/api/fetchChart', {
+				const res = await fetch('https://www.devdiary.live/api/fetchChart', {
 					method: 'POST',
 					headers: { 'Content-Type': 'application/json' },
 					body: JSON.stringify({
@@ -79,7 +79,7 @@ export default function Dashboard() {
 			fetchChartValues()
 
 			async function fetchParticipants() {
-				const res = await fetch('https://devdiary.live/api/leaderboards')
+				const res = await fetch('https://www.devdiary.live/api/leaderboards')
 				const problems = await res.json()
 
 				for (let i = 0; i < problems.leaderboardsAPI.length; i++) {

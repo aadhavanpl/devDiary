@@ -37,14 +37,14 @@ export default function Bookmarks() {
 	useEffect(() => {
 		if (!user || user.length) return
 		async function fetchProblems() {
-			const archiveRes = await fetch('https://devdiary.live/api/fetchCompletedQno', {
+			const archiveRes = await fetch('https://www.devdiary.live/api/fetchCompletedQno', {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({ user_email: user?.user_email }),
 			})
 			const archiveProblems = await archiveRes.json()
 
-			const res = await fetch('https://devdiary.live/api/bookmarks', {
+			const res = await fetch('https://www.devdiary.live/api/bookmarks', {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({
