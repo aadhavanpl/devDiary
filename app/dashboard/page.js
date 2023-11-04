@@ -46,10 +46,11 @@ export default function Dashboard() {
 					method: 'POST',
 					headers: { 'Content-Type': 'application/json' },
 					body: JSON.stringify({
-						user_email: user?.user_email,
+						user_email: 'varshareddyarrabelli2003@gmail.com',
 					}),
 				})
 				const data = await res.json()
+				console.log(data.tempUsers[0]?.durations)
 
 				/* duration */
 				function secondsToHoursMinutes(seconds) {
@@ -58,7 +59,11 @@ export default function Dashboard() {
 					return [hours, minutes]
 				}
 				if (data.tempUsers[0] != undefined) {
-					const totalSeconds = data.tempUsers[0]?.durations.reduce((total, time) => total + time, 0)
+					const totalSeconds = data.tempUsers[0]?.durations.reduce(
+						(total, time) => total + Number(time),
+						0
+					)
+					console.log(totalSeconds)
 					const [hours, minutes] = secondsToHoursMinutes(totalSeconds)
 					setDuration(`${hours}h ${minutes}m`)
 				}
