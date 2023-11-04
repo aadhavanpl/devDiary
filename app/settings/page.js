@@ -18,7 +18,7 @@ export default function Settings() {
 	useEffect(() => {
 		if (!user) return
 		async function fetchUserName() {
-			const res = await fetch('https://www.devdiary.live/api/fetchUserName', {
+			const res = await fetch('http://localhost:3000/api/fetchUserName', {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({

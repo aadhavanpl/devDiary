@@ -18,7 +18,7 @@ export default function Navbar({ photoURL, name }) {
 					src='/svgs/small-logo.svg'
 					className={styles['logo']}
 					alt='logo'
-					onClick={() => router.push('https://www.devdiary.live')}
+					onClick={() => router.push('http://localhost:3000')}
 				/>
 				<div className={styles['profile-container']}>
 					<img src={photoURL} className={styles['profile-pic']} />

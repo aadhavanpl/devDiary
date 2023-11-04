@@ -21,7 +21,7 @@ export default function Bookmarks() {
 	const [search, setSearch] = useState('')
 	const [loader, setLoader] = useState(true)
 	const { user } = useGlobalContext()
-	const [random, setRandom] = useState()
+	const [random, setRandom] = useState(-1)
 	const router = useRouter()
 
 	const fuseOptions = {
@@ -31,20 +31,20 @@ export default function Bookmarks() {
 	}
 
 	useEffect(() => {
-		if (random) router.push('/problems/' + problems[random]?.slug)
+		if (random != -1) router.push('/problems/' + problems[random]?.slug)
 	}, [random])
 
 	useEffect(() => {
 		if (!user || user.length) return
 		async function fetchProblems() {
-			const archiveRes = await fetch('https://www.devdiary.live/api/fetchCompletedQno', {
+			const archiveRes = await fetch('http://localhost:3000/api/fetchCompletedQno', {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({ user_email: user?.user_email }),
 			})
 			const archiveProblems = await archiveRes.json()
 
-			const res = await fetch('https://www.devdiary.live/api/bookmarks', {
+			const res = await fetch('http://localhost:3000/api/bookmarks', {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({
