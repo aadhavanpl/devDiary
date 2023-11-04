@@ -11,6 +11,7 @@ import Submission from '@/app/components/Submission'
 import Loader from '@/app/components/Loader'
 
 import styles from '../slug.module.css'
+import { useRouter } from 'next/navigation'
 
 export default function Submissions() {
 	const params = useParams()
@@ -21,6 +22,8 @@ export default function Submissions() {
 	const [currProblem, setCurrProblem] = useState('')
 	const [completionStatus, setCompletionStatus] = useState(false)
 	const [bookmark, setBookmark] = useState(0)
+
+	const router = useRouter()
 
 	useEffect(() => {
 		if (!user) return

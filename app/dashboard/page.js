@@ -46,11 +46,10 @@ export default function Dashboard() {
 					method: 'POST',
 					headers: { 'Content-Type': 'application/json' },
 					body: JSON.stringify({
-						user_email: 'varshareddyarrabelli2003@gmail.com',
+						user_email: user?.user_email,
 					}),
 				})
 				const data = await res.json()
-				console.log(data.tempUsers[0]?.durations)
 
 				/* duration */
 				function secondsToHoursMinutes(seconds) {
@@ -63,7 +62,6 @@ export default function Dashboard() {
 						(total, time) => total + Number(time),
 						0
 					)
-					console.log(totalSeconds)
 					const [hours, minutes] = secondsToHoursMinutes(totalSeconds)
 					setDuration(`${hours}h ${minutes}m`)
 				}

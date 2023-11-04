@@ -74,17 +74,20 @@ export default function Slug() {
 				const data = await res.json()
 
 				/* duration */
-				function timeToMinutes(timeString) {
-					const [hours, minutes, seconds] = timeString.split(':').map(Number)
-					return hours * 60 + minutes + seconds / 60
+				function secondsToHoursMinutes(seconds) {
+					const hours = Math.floor(seconds / 3600)
+					const minutes = Math.floor((seconds % 3600) / 60)
+					return [hours, minutes]
 				}
-				const totalMinutes = Math.round(
-					data.tempUsers[0].durations.reduce((total, duration) => {
-						return total + timeToMinutes(duration)
-					}, 0)
-				)
-				const formattedTime = `${Math.floor(totalMinutes / 60)}h ${Math.round(totalMinutes % 60)}m`
-				setDuration(formattedTime)
+				if (data.tempUsers[0] != undefined) {
+					const totalSeconds = data.tempUsers[0]?.durations.reduce(
+						(total, time) => total + Number(time),
+						0
+					)
+					console.log(totalSeconds)
+					const [hours, minutes] = secondsToHoursMinutes(totalSeconds)
+					setDuration(`${hours}h ${minutes}m`)
+				}
 			}
 			fetchDurations()
 
@@ -113,7 +116,6 @@ export default function Slug() {
 							return n + (s[(v - 20) % 10] || s[v] || s[0])
 						}
 						setPosition(getOrdinal(i + 1))
-						setName(problems.leaderboardsAPI[i].user_name)
 						break
 					}
 				}
