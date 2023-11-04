@@ -28,7 +28,7 @@ export default function Slug() {
 	useEffect(() => {
 		if (params.slug) {
 			async function fetchUserInfo() {
-				const res = await fetch('http://localhost:3000/api/fetchUser', {
+				const res = await fetch('https://www.devdiary.live/api/fetchUser', {
 					method: 'POST',
 					headers: { 'Content-Type': 'application/json' },
 					body: JSON.stringify({
@@ -46,7 +46,7 @@ export default function Slug() {
 	useEffect(() => {
 		if (email) {
 			async function fetchCountProblems() {
-				const res = await fetch('http://localhost:3000/api/countProblems', {
+				const res = await fetch('https://www.devdiary.live/api/countProblems', {
 					method: 'POST',
 					headers: { 'Content-Type': 'application/json' },
 					body: JSON.stringify({
@@ -64,7 +64,7 @@ export default function Slug() {
 			fetchCountProblems()
 
 			async function fetchDurations() {
-				const res = await fetch('http://localhost:3000/api/fetchDurations', {
+				const res = await fetch('https://www.devdiary.live/api/fetchDurations', {
 					method: 'POST',
 					headers: { 'Content-Type': 'application/json' },
 					body: JSON.stringify({
@@ -92,7 +92,7 @@ export default function Slug() {
 			fetchDurations()
 
 			async function fetchChartValues() {
-				const res = await fetch('http://localhost:3000/api/fetchChart', {
+				const res = await fetch('https://www.devdiary.live/api/fetchChart', {
 					method: 'POST',
 					headers: { 'Content-Type': 'application/json' },
 					body: JSON.stringify({
@@ -105,7 +105,7 @@ export default function Slug() {
 			fetchChartValues()
 
 			async function fetchParticipants() {
-				const res = await fetch('http://localhost:3000/api/leaderboards', { cache: 'no-store' })
+				const res = await fetch('https://www.devdiary.live/api/leaderboards', { cache: 'no-store' })
 				const problems = await res.json()
 
 				for (let i = 0; i < problems.leaderboardsAPI.length; i++) {

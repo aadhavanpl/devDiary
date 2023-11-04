@@ -80,7 +80,7 @@ export function ProblemNoClick({ data, done, bookmark }) {
 	useEffect(() => {
 		if (bookmarkChange) {
 			async function handleBookmark() {
-				const bookmarkRes = await fetch('http://localhost:3000/api/bookmark', {
+				const bookmarkRes = await fetch('https://www.devdiary.live/api/bookmark', {
 					method: 'POST',
 					headers: { 'Content-Type': 'application/json' },
 					body: JSON.stringify({

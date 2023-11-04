@@ -48,7 +48,7 @@ export default function Slug() {
 			':' +
 			date.getSeconds().toString().padStart(2, '0')
 
-		const res = await fetch('http://localhost:3000/api/problem', {
+		const res = await fetch('https://www.devdiary.live/api/problem', {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify({
@@ -74,7 +74,7 @@ export default function Slug() {
 	useEffect(() => {
 		if (!user) return
 		async function fetchProblemDetails() {
-			const res = await fetch('http://localhost:3000/api/fetchProblem', {
+			const res = await fetch('https://www.devdiary.live/api/fetchProblem', {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({
@@ -88,7 +88,7 @@ export default function Slug() {
 		fetchProblemDetails()
 
 		async function fetchUserProblemDetails() {
-			const res = await fetch('http://localhost:3000/api/fetchUserProblemDetails', {
+			const res = await fetch('https://www.devdiary.live/api/fetchUserProblemDetails', {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({
@@ -149,7 +149,7 @@ export default function Slug() {
 					src='/svgs/logo.svg'
 					className={styles.logo}
 					alt='logo'
-					onClick={() => router.replace('http://localhost:3000')}
+					onClick={() => router.replace('https://www.devdiary.live')}
 				/>
 				<div className={styles.googleSignIn}>
 					{user ? <SignedIn photoURL={user ? user?.user_photo : null} /> : <GoogleSignInButton />}

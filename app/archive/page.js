@@ -37,14 +37,14 @@ export default function Archive() {
 	useEffect(() => {
 		if (!user || user.length) return
 		async function fetchProblems() {
-			const archiveRes = await fetch('http://localhost:3000/api/fetchCompletedQno', {
+			const archiveRes = await fetch('https://www.devdiary.live/api/fetchCompletedQno', {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({ user_email: user?.user_email }),
 			})
 			const archiveProblems = await archiveRes.json()
 
-			const res = await fetch('http://localhost:3000/api/archive', {
+			const res = await fetch('https://www.devdiary.live/api/archive', {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({ user_email: user?.user_email }),
