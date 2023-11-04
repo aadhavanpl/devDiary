@@ -2,7 +2,9 @@ import connectMongoDB from '@/lib/mongodb'
 import { users } from '@/models/users'
 import { NextResponse } from 'next/server'
 
-export async function GET() {
+export const revalidate = 0
+
+export async function GET(req) {
 	try {
 		await connectMongoDB()
 		const leaderboardsAPI = await users.aggregate([
