@@ -5,6 +5,7 @@ import { GlobalContextWrapper } from '@/lib/utils/globalContext'
 const montserrat = Montserrat({
 	subsets: ['latin'],
 	weight: ['100', '200', '300', '400', '500', '600'],
+	display: 'swap',
 })
 
 export const metadata = {
