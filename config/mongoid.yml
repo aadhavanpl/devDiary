@@ -1,0 +1,11 @@
+# config/mongoid.yml
+
+development:
+  clients:
+    default:
+      uri: mongodb://sussybaka:deeBug123s@143.110.241.167:27017/devDiary?authSource=admin&authMechanism=SCRAM-SHA-256
+      options:
+        server_selection_timeout: 5
+  options:
+    raise_not_found_error: false
+    use_activesupport_time_zone: true
