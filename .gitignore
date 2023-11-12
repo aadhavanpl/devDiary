@@ -40,3 +40,41 @@
 /yarn-error.log
 yarn-debug.log*
 .yarn-integrity
+
+# .gitignore for Ruby on Rails
+
+# Ignore database configurations
+/config/database.yml
+
+# Ignore environment configurations
+.env
+
+# Ignore logs and temporary files
+/log/*
+/tmp/*
+
+# Ignore IDE/Editor-specific files
+.idea/
+.vscode/
+*.iml
+
+# Ignore dependency directories
+/vendor/
+/node_modules/
+
+# Ignore operating system files
+.DS_Store
+Thumbs.db
+
+# Ignore generated files
+/public/assets/
+/public/packs/
+
+# Ignore system files
+.ruby-version
+
+# Ignore miscellaneous files
+.env.local
+*.log
+*.swp
+
